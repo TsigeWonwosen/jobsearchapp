@@ -26,7 +26,7 @@ export const FomContainer = styled.section`
   width: 70%;
   margin: 1rem auto;
   padding: 2rem;
-  border: 1px solid black;
+  border: 0.2px solid #c4c8cc;
   border-radius: 12px;
 `;
 
@@ -40,7 +40,7 @@ export const FormGroup = styled.div`
 `;
 
 export const LabelStyle = styled.section`
-  margin-bottom: 0.5em;
+  margin-bottom: 1rem;
   color: #c4c8cc;
   display: flex;
   align-items: left;
@@ -48,13 +48,15 @@ export const LabelStyle = styled.section`
 `;
 
 export const Input = styled.input`
-  padding: 0.5em;
+  padding: 0.6rem;
   color: #c4c8cc;
   background: #2d2d2d;
-  border: none;
+  border: 1px solid #c4c8cc;
   border-radius: 3px;
   width: 90%;
   margin-bottom: 0.5em;
+  font-size: 1rem;
+  outline: none;
 `;
 
 export const Label = styled.span`

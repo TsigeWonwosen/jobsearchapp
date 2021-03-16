@@ -43,12 +43,15 @@ export const Wrapper = styled.div`
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  width: 100%;
+  width: 100vw;
+  min-height: 100vh;
   margin: 0rem auto;
   padding: 5rem auto 4rem;
   background-color: #2d2d2d;
-
   text-align: 'left';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 export const Title = styled.h1`
   font-size: 1.7rem;

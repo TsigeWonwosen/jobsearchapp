@@ -41,7 +41,6 @@ export default function SingleJob({ job }) {
           </Body>
           {company_logo && (
             <ImageContener>
-              {' '}
               <img src={company_logo} alt={company} />
             </ImageContener>
           )}
@@ -74,6 +73,8 @@ export const Card = styled.section`
   border-radius: 20px;
 
   & img {
+    width: 100px;
+    height: 100px;
     border-radius: 5px;
     object-fit: cover;
   }
@@ -83,6 +84,7 @@ export const ImageContener = styled.section`
   max-width: 100px;
   max-height: 100px;
   border-radius: 5px;
+  overflow: hidden;
 `;
 export const JobApply = styled.section`
   display: flex;

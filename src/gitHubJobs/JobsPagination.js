@@ -1,10 +1,10 @@
 import React from 'react';
-import { Pagination } from 'react-bootstrap';
+// import { Pagination } from 'react-bootstrap';
 import styled from 'styled-components';
 export default function JobsPagination({ page, setPage }) {
   return (
     <Wrapper>
-      <Pagination>
+      {/* <Pagination>
         <Pagination.First />
         {page !== 1 && (
           <Pagination.Prev
@@ -28,7 +28,7 @@ export default function JobsPagination({ page, setPage }) {
         <Pagination.Next onClick={() => setPage((prevPage) => prevPage + 1)} />
 
         <Pagination.Last />
-      </Pagination>
+      </Pagination> */}
     </Wrapper>
   );
 }

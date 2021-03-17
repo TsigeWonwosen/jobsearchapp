@@ -11,6 +11,7 @@ const PAGINATION_SIZE = 5;
 function Jobs() {
   const [params, setParams] = useState({});
   const [page, setPage] = useState(1);
+  const [loc, setSelectedLocation] = useState('');
   const { jobs, loading, error } = useFetchJobs(params, page);
   const [selectedJobs, setSelectedJobs] = useState([]);
   const [lastIndexOfSelectedJobs, setLastIndexOfSelectedJobs] = useState(1);
@@ -23,23 +24,37 @@ function Jobs() {
       return { ...prevParams, [param]: value };
     });
   }
-  const numberOfJobs = jobs.length;
-  const totalPaginationSize = numberOfJobs / PAGINATION_SIZE;
+  const setLocation = (type) => {
+    setSelectedLocation(type);
+  };
+
+  let filteredJobs = [];
+  if (loc.length < 1) {
+    filteredJobs = jobs;
+  } else {
+    filteredJobs = jobs?.filter(({ type }) =>
+      type.toLowerCase().includes(loc.toLowerCase()),
+    );
+  }
+
+  const numberOfJobs = filteredJobs.length;
+  const totalPaginationSize =
+    numberOfJobs > PAGINATION_SIZE
+      ? Math.floor(numberOfJobs / PAGINATION_SIZE)
+      : 1;
   const paginationIndexes = Array.from(
     { length: totalPaginationSize },
     (v, k) => k + 1,
   );
-
-  console.log(lastIndexOfSelectedJobs);
   useEffect(() => {
     async function selectNewJobs() {
-      let finalIndex = lastIndexOfSelectedJobs * PAGINATION_SIZE;
-      let initial = finalIndex - PAGINATION_SIZE;
-      let TenSelectedJobs = await jobs.slice(initial, finalIndex);
+      let finalIndex = (await lastIndexOfSelectedJobs) * PAGINATION_SIZE;
+      let initial = (await finalIndex) - PAGINATION_SIZE;
+      let TenSelectedJobs = await filteredJobs.slice(initial, finalIndex);
       await setSelectedJobs(TenSelectedJobs);
     }
     selectNewJobs();
-  }, [lastIndexOfSelectedJobs, jobs]);
+  }, [lastIndexOfSelectedJobs, loc]);
 
   const next = async () => {
     await setLastIndexOfSelectedJobs(lastIndexOfSelectedJobs + 1);
@@ -54,13 +69,17 @@ function Jobs() {
       <Title>
         GitHub Jobs ...[{numberOfJobs} - {lastIndexOfSelectedJobs}]
       </Title>
-      <SearchForm params={params} onParamChange={handleParamChange} />
+      <SearchForm
+        params={params}
+        onParamChange={handleParamChange}
+        setLocation={setLocation}
+      />
 
       <Pagination>
         <Button onClick={prev} disabled={lastIndexOfSelectedJobs <= 1}>
           Prev
         </Button>
-        {paginationIndexes.map((index) => (
+        {paginationIndexes?.map((index) => (
           <span
             key={index}
             onClick={() => {

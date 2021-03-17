@@ -23,12 +23,11 @@ function Jobs() {
 
   return (
     <Wrapper>
-      {loading && <h1>Loading ...</h1>}
-      {error && <h1>Error ...Try Refreshing</h1>}
-
       <Title>GitHub Jobs ..</Title>
       <SearchForm params={params} onParamChange={handleParamChange} />
-      {/* <JobsPagination page={page} setPage={setPage} /> */}
+      <JobsPagination page={page} setPage={setPage} />
+      {loading && <h1>Loading ...</h1>}
+      {error && <h1>Error ...Try Refreshing</h1>}
       {jobs?.map((job) => (
         <SingleJob job={job} key={job.id} />
       ))}
@@ -52,6 +51,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #f2f2f3;
 `;
 export const Title = styled.h1`
   font-size: 1.7rem;

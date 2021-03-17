@@ -71,12 +71,61 @@ export const Card = styled.section`
   margin: 2rem auto;
   color: #f2f2f3;
   border-radius: 20px;
+  box-shadow: -2px 2px 1rem 4px rgba(255, 255, 255, 0.2);
 
   & img {
     width: 100px;
     height: 100px;
     border-radius: 5px;
     object-fit: cover;
+  }
+  & ul,
+  ol {
+    margin-bottom: 13px;
+    margin-left: 26px;
+
+    & li {
+      margin: 1rem 0;
+      font-size: 0.8rem;
+      line-height: 1.6rem;
+      font-weight: 700;
+      color: #cacccb;
+      list-style: inside;
+
+      & p {
+        font-size: 0.84rem;
+        line-height: 1.4rem;
+        font-weight: 700;
+        color: #cacccb;
+        margin: 0.7rem 0;
+      }
+    }
+  }
+  & p {
+    font-size: 0.84rem;
+    line-height: 1.6rem;
+    font-weight: 500;
+    color: #cacccb;
+    margin: 0.6rem 0;
+  }
+  & blockquote {
+    font-size: 0.8rem;
+    line-height: 1.6rem;
+    font-weight: 500;
+    color: #cacccb;
+    margin: 0.5rem 0;
+  }
+
+  & code,
+  quote {
+    display: block;
+    position: relative;
+    margin: 0;
+    color: #cacccb;
+    font-size: 0.8rem;
+    box-sizing: border-box;
+    font-weight: 500;
+    border: 1px solid white;
   }
 `;
 
@@ -88,7 +137,6 @@ export const ImageContener = styled.section`
 `;
 export const JobApply = styled.section`
   display: flex;
-  /* align-items: center; */
   justify-content: space-between;
 `;
 export const Body = styled.section`
@@ -97,33 +145,6 @@ export const Body = styled.section`
   flex-direction: column;
   justify-content: left;
   align-items: left;
-
-  & p {
-    text-decoration: none;
-    font-size: 0.9rem;
-    padding: 1rem 0.4rem;
-    text-align: left;
-    font-family: inherent;
-    width: 100%;
-  }
-  & li {
-    width: 100%;
-    text-align: left;
-    margin-bottom: 0.5rem;
-    text-decoration: none;
-    padding-left: 1rem;
-    border: none;
-    font-size: 1rem;
-    font-family: inherent;
-  }
-  & ul {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    margin: 0.5rem 0;
-    width: 100%;
-    text-align: left;
-  }
 `;
 export const CardBody = styled.section`
   width: 90%;

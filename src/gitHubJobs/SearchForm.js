@@ -8,13 +8,13 @@ export default function SearchForm({ params, onParamChange }) {
         <LabelStyle>
           <Label>Location</Label>
         </LabelStyle>
-        <Input id="label" />
+        <Input id="label" placeholder="Search all jobs" />
       </FormGroup>
       <FormGroup>
         <LabelStyle>
           <Label>Position</Label>
         </LabelStyle>
-        <Input />
+        <Input placeholder="Search location" />
       </FormGroup>
     </FomContainer>
   );

@@ -101,6 +101,14 @@ export const Card = styled.section`
       }
     }
   }
+  & ::marker {
+    unicode-bidi: isolate;
+    font-variant-numeric: tabular-nums;
+    text-transform: none;
+    text-indent: 0px !important;
+    text-align: start !important;
+    text-align-last: start !important;
+  }
   & p {
     font-size: 0.84rem;
     line-height: 1.6rem;
@@ -171,7 +179,7 @@ export const CardSubTitle = styled.section`
 
 export const BadgeContainer = styled.section`
   display: flex;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `;
 export const Badge = styled.span`
   background-color: #cfd2d6;
@@ -181,8 +189,7 @@ export const Badge = styled.span`
   padding: 5px 14px;
   margin-top: 1rem;
   margin-right: 1rem;
-
-  border-radius: 100px;
+  border-radius: 5px;
   transition: all 0.3s ease-in-out;
 `;
 export const Image = styled.img`
@@ -197,7 +204,6 @@ export const Text = styled.p`
 `;
 export const Button = styled.button`
   padding: 5px 13px;
-  margin: 1rem 0;
   color: #3ea3fb;
   border: 1px solid #3ea3fb;
   background-color: transparent;
@@ -211,6 +217,13 @@ export const Button = styled.button`
     color: white;
     background-color: #3ea3fb;
     outline: none;
-    border: none;
+    border: 1px solid #3ea3fb;
   }
+`;
+
+export const ApplyButton = styled(Button)`
+  color: white;
+  background-color: #3ea3fb;
+  outline: none;
+  border: none;
 `;

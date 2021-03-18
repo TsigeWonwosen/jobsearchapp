@@ -1,109 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import useFetchJobs from './useFetchJobs';
+import React from 'react';
 import SingleJob from './SingleJob';
 import SearchForm from './SearchForm';
 
 import JobsPagination from './JobsPagination';
+import useFilter from './useFilter';
+
 import styled from 'styled-components';
 import './jobs.css';
 
-const PAGINATION_SIZE = 5;
-function Jobs() {
-  const [params, setParams] = useState({});
-  const [page, setPage] = useState(1);
-  const [loc, setSelectedLocation] = useState('');
-  const { jobs, loading, error } = useFetchJobs(params, page);
-  const [selectedJobs, setSelectedJobs] = useState([]);
-  const [lastIndexOfSelectedJobs, setLastIndexOfSelectedJobs] = useState(1);
-
-  function handleParamChange(e) {
-    const param = e.target.name;
-    const value = e.target.value;
-    setPage(1);
-    setParams((prevParams) => {
-      return { ...prevParams, [param]: value };
-    });
-  }
-  const setLocation = (type) => {
-    setSelectedLocation(type);
-  };
-
-  let filteredJobs = [];
-  if (loc.length < 1) {
-    filteredJobs = jobs;
-  } else {
-    filteredJobs = jobs?.filter(({ type }) =>
-      type.toLowerCase().includes(loc.toLowerCase()),
-    );
-  }
-
-  const numberOfJobs = filteredJobs.length;
-  const totalPaginationSize =
-    numberOfJobs > PAGINATION_SIZE
-      ? Math.floor(numberOfJobs / PAGINATION_SIZE)
-      : 1;
-  const paginationIndexes = Array.from(
-    { length: totalPaginationSize },
-    (v, k) => k + 1,
+function Jobs({ jobs, loading, error }) {
+  const [selectedJobs, numberOfJobs, setLocation, ...restProps] = useFilter(
+    jobs,
   );
-  useEffect(() => {
-    async function selectNewJobs() {
-      let finalIndex = (await lastIndexOfSelectedJobs) * PAGINATION_SIZE;
-      let initial = (await finalIndex) - PAGINATION_SIZE;
-      let TenSelectedJobs = await filteredJobs.slice(initial, finalIndex);
-      await setSelectedJobs(TenSelectedJobs);
-    }
-    selectNewJobs();
-  }, [lastIndexOfSelectedJobs, loc]);
-
-  const next = async () => {
-    await setLastIndexOfSelectedJobs(lastIndexOfSelectedJobs + 1);
-  };
-
-  const prev = async () => {
-    await setLastIndexOfSelectedJobs(lastIndexOfSelectedJobs - 1);
-  };
-
   return (
     <Wrapper>
-      <Title>
-        GitHub Jobs ...[{numberOfJobs} - {lastIndexOfSelectedJobs}]
-      </Title>
-      <SearchForm
-        params={params}
-        onParamChange={handleParamChange}
-        setLocation={setLocation}
-      />
-
-      <Pagination>
-        <Button onClick={prev} disabled={lastIndexOfSelectedJobs <= 1}>
-          Prev
-        </Button>
-        {paginationIndexes?.map((index) => (
-          <span
-            key={index}
-            onClick={() => {
-              setLastIndexOfSelectedJobs(index);
-            }}
-            className={lastIndexOfSelectedJobs === index ? 'active' : ''}
-          >
-            {' '}
-            {index}
-          </span>
-        ))}
-        <Button
-          onClick={next}
-          disabled={lastIndexOfSelectedJobs >= totalPaginationSize}
-        >
-          Next
-        </Button>
-      </Pagination>
+      <Title>GitHub Jobs ...[{numberOfJobs}]</Title>
+      <SearchForm setLocation={setLocation} />
+      <JobsPagination rest={restProps} />
+      {selectedJobs &&
+        selectedJobs?.map((job) => <SingleJob job={job} key={job.id} />)}
       {loading && <h1>Loading ...</h1>}
       {error && <h1>Error ...Try Refreshing</h1>}
-      {selectedJobs?.map((job) => (
-        <SingleJob job={job} key={job.id} />
-      ))}
-      <JobsPagination page={page} setPage={setPage} />
     </Wrapper>
   );
 }
@@ -150,45 +67,5 @@ export const Button = styled.button`
     background-color: ${({ disabled }) => (disabled ? '#999999' : '#3ea3fb')};
     outline: none;
     border: 1px solid #3ea3fb;
-  }
-`;
-
-export const Pagination = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* width: 50%; */
-  border: 1px solid rgba(2, 2, 2, 2);
-  margin: 1rem 0;
-  padding: 1rem 1rem;
-  border-radius: 12px;
-
-  & span {
-    padding: 3px 13px;
-    margin-right: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #3ea3fb;
-    border: 1px solid ${({ disabled }) => (disabled ? '#999999' : '#3ea3fb')};
-    background-color: ${({ disabled }) =>
-      disabled ? '#cccccc' : 'transparent'};
-    border-radius: 10px;
-    text-align: left;
-    outline: none;
-    transition: all 0.3s ease-in-out;
-
-    &:hover,
-    &:focus {
-      color: white;
-      background-color: ${({ disabled }) => (disabled ? '#999999' : '#3ea3fb')};
-      outline: none;
-      border: 1px solid #3ea3fb;
-    }
-    &.active {
-      color: white;
-      background: #3ea3fb;
-      border: 1px solid #3ea3fb;
-    }
   }
 `;

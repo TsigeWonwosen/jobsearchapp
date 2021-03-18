@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function SearchForm({ params, onParamChange, setLocation }) {
+export default function SearchForm({ setLocation }) {
   const [location, setSelectedLocation] = React.useState('');
 
   return (

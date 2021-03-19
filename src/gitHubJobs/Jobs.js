@@ -9,14 +9,31 @@ import styled from 'styled-components';
 import './jobs.css';
 
 function Jobs({ jobs, loading, error }) {
-  const [selectedJobs, numberOfJobs, setLocation, ...restProps] = useFilter(
-    jobs,
-  );
+  const {
+    selectedJobs,
+    numberOfJobs,
+    setLocation,
+    setType,
+    totalPaginationSize,
+    next,
+    prev,
+    setLastIndexOfSelectedJobs,
+    lastIndexOfSelectedJobs,
+  } = useFilter(jobs);
+  const rest = {
+    totalPaginationSize,
+    next,
+    prev,
+    setLastIndexOfSelectedJobs,
+    lastIndexOfSelectedJobs,
+  };
   return (
     <Wrapper>
-      <Title>GitHub Jobs ...[{numberOfJobs}]</Title>
-      <SearchForm setLocation={setLocation} />
-      <JobsPagination rest={restProps} />
+      <Title>
+        GitHub Jobs ...[{numberOfJobs}- {selectedJobs.length}]
+      </Title>
+      <SearchForm setLocation={setLocation} setType={setType} />
+      <JobsPagination rest={rest} />
       {selectedJobs &&
         selectedJobs?.map((job) => <SingleJob job={job} key={job.id} />)}
       {loading && <h1>Loading ...</h1>}

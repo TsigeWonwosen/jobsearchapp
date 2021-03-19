@@ -2,15 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function JobsPagination({ rest }) {
-  const [
+  const {
     totalPaginationSize,
-    loc,
     next,
     prev,
     setLastIndexOfSelectedJobs,
     lastIndexOfSelectedJobs,
-  ] = rest;
-  React.useEffect(() => {}, [rest]);
+  } = rest;
+  React.useEffect(() => {}, [totalPaginationSize]);
   const paginationIndexes = Array.from(
     { length: totalPaginationSize },
     (v, k) => k + 1,

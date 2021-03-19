@@ -1,21 +1,25 @@
 import { useState, useEffect } from 'react';
 
-const PAGINATION_SIZE = 10;
+const PAGINATION_SIZE = 5;
 
 const useFilter = (jobs) => {
+  const [typeOfJob, setTypeOfJob] = useState('');
   const [loc, setSelectedLocation] = useState('');
   const [selectedJobs, setSelectedJobs] = useState([]);
   const [lastIndexOfSelectedJobs, setLastIndexOfSelectedJobs] = useState(1);
   let filteredJobs = [];
-  let numberOfJobs = 1;
-  let totalPaginationSize = 1;
+  let numberOfJobs;
+  let totalPaginationSize;
 
-  if (loc.length < 1) {
+  if (loc.length < 1 && typeOfJob.length < 1) {
     filteredJobs = jobs;
   } else {
-    filteredJobs = jobs?.filter(({ type }) =>
-      type.toLowerCase().includes(loc.toLowerCase()),
-    );
+    filteredJobs = jobs?.filter(({ type, location }) => {
+      return (
+        location.toLowerCase().includes(loc.toLowerCase()) &&
+        type.toLowerCase().includes(typeOfJob.toLowerCase())
+      );
+    });
   }
 
   numberOfJobs = filteredJobs?.length;
@@ -24,34 +28,46 @@ const useFilter = (jobs) => {
       ? Math.floor(numberOfJobs / PAGINATION_SIZE)
       : 1;
   useEffect(() => {
-    function selectNewJobs() {
-      let finalIndex = lastIndexOfSelectedJobs * PAGINATION_SIZE;
-      let initial = finalIndex - PAGINATION_SIZE;
-      let TenSelectedJobs = filteredJobs?.slice(initial, finalIndex);
-      setSelectedJobs(TenSelectedJobs);
+    async function selectNewJobs() {
+      try {
+        let finalIndex = lastIndexOfSelectedJobs * PAGINATION_SIZE;
+        let initial = finalIndex - PAGINATION_SIZE;
+        let TopSelectedJobs = await filteredJobs?.slice(initial, finalIndex);
+        setSelectedJobs(TopSelectedJobs);
+      } catch (error) {
+        console.error(error);
+      }
     }
     selectNewJobs();
-  }, [lastIndexOfSelectedJobs, loc]);
+  }, [lastIndexOfSelectedJobs, loc, typeOfJob]);
+
   const next = () => {
     setLastIndexOfSelectedJobs(lastIndexOfSelectedJobs + 1);
   };
+
   const prev = () => {
     setLastIndexOfSelectedJobs(lastIndexOfSelectedJobs - 1);
   };
-  const setLocation = (type) => {
-    setSelectedLocation(type);
+
+  const setLocation = (location) => {
+    setSelectedLocation(location);
   };
-  return [
+  const setType = (type) => {
+    setTypeOfJob(type);
+  };
+  return {
     selectedJobs,
     numberOfJobs,
+    setType,
     setLocation,
     totalPaginationSize,
-    loc,
     next,
     prev,
     setLastIndexOfSelectedJobs,
     lastIndexOfSelectedJobs,
-  ];
+  };
 };
 
 export default useFilter;
+
+// && type.toLowerCase().includes(type.toLowerCase()),

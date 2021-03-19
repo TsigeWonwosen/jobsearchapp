@@ -1,36 +1,49 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function SearchForm({ setLocation }) {
+export default function SearchForm({ setLocation, setType }) {
   const [location, setSelectedLocation] = React.useState('');
+  const [type, setSelectedType] = React.useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLocation(location);
+    setType(type);
+    setSelectedLocation('');
+    setSelectedType('');
+  };
 
   return (
-    <FomContainer>
+    <FomContainer onSubmit={handleSubmit}>
       <FormGroup>
         <LabelStyle>
           <Label>Location</Label>
         </LabelStyle>
-        <Input id="label" placeholder="Search all jobs" />
+        <Input
+          id="label"
+          value={location}
+          onChange={(e) => setSelectedLocation(e.target.value)}
+          placeholder="Search all Location"
+        />
       </FormGroup>
       <FormGroup>
         <LabelStyle>
-          <Label>Position</Label>
+          <Label>Jobs Type</Label>
         </LabelStyle>
-        <Select
-          value={location}
-          onChange={(e) => setSelectedLocation(e.target.value)}
-        >
+        <Select value={type} onChange={(e) => setSelectedType(e.target.value)}>
           <option value="">Select Type </option>
           <option value="contract">Contract</option>
           <option value="full time">Full Time</option>
         </Select>
       </FormGroup>
-      <Button onClick={() => setLocation(location)}>Filter</Button>
+      <ButtonContainer>
+        <Button type="submit"> Apply Filter</Button>
+      </ButtonContainer>
     </FomContainer>
   );
 }
 
-export const FomContainer = styled.section`
+export const FomContainer = styled.form`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,6 +63,11 @@ export const FormGroup = styled.div`
   width: 90%;
 `;
 
+const ButtonContainer = styled(FormGroup)`
+  margin-top: 2rem;
+  align-items: center;
+  max-width: 150px;
+`;
 export const LabelStyle = styled.section`
   margin-bottom: 1rem;
   color: #c4c8cc;
@@ -81,7 +99,7 @@ export const Select = styled.select`
   font-size: 16px;
   font-family: sans-serif;
   font-weight: 700;
-  color: #444;
+  color: #fff;
   line-height: 1.3;
   padding: 0.6em 1.4em 0.5em 0.8em;
   width: 100%;
@@ -94,7 +112,7 @@ export const Select = styled.select`
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  background-color: #fff;
+  background-color: #404345;
   background-size: 0.65em auto, 100%;
 
   &::-ms-expand {
@@ -107,7 +125,7 @@ export const Select = styled.select`
     border-color: #aaa;
     box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
     box-shadow: 0 0 0 3px -moz-mac-focusring;
-    color: #222;
+    color: #fff;
     outline: none;
   }
   & option {
@@ -119,10 +137,10 @@ export const Button = styled.button`
   padding: 0;
   margin: 0;
   width: 100px;
-  height: 30px;
-  padding: 3px 7px;
+  padding: 0.6em 1.4em 0.5em 0.8em;
   margin-left: 1rem;
   text-align: center;
+  border-radius: 100px;
   background-color: rgba(59, 153, 252, 0.7);
   color: white;
   border: none;

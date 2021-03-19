@@ -28,8 +28,8 @@ export default function SingleJob({ job }) {
               {new Date(created_at).toLocaleDateString()}
             </CardSubTitle>
             <BadgeContainer>
-              <Badge>{type}</Badge>
               <Badge>{location}</Badge>
+              <Badge>{type}</Badge>
             </BadgeContainer>
 
             <div
@@ -210,6 +210,7 @@ export const Button = styled.button`
   border-radius: 100px;
   text-align: left;
   outline: none;
+  cursor: pointer;
   transition: all 0.3s ease-in-out;
 
   &:hover,

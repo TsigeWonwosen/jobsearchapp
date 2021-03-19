@@ -77,6 +77,7 @@ export const Pagination = styled.section`
     border-radius: 10px;
     text-align: left;
     outline: none;
+    cursor: pointer;
     transition: all 0.3s ease-in-out;
 
     &:hover,
@@ -103,6 +104,7 @@ export const Button = styled.button`
   border-radius: 100px;
   text-align: left;
   outline: none;
+  cursor: pointer;
   transition: all 0.3s ease-in-out;
 
   &:hover,

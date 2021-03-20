@@ -48,9 +48,10 @@ export const Wrapper = styled.div`
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  width: 100vw;
+  width: 80vw;
   min-height: 100vh;
   margin: 0rem auto;
+  margin-left: 220px;
   padding: 5rem auto 4rem;
   background-color: #2d2d2d;
   text-align: 'left';
@@ -58,6 +59,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   color: #f2f2f3;
+  overflow-x: hidden;
+  /* z-index: 100; */
 `;
 export const Title = styled.h1`
   font-size: 1.7rem;

@@ -9,7 +9,8 @@ export default function JobsPagination({ rest }) {
     setLastIndexOfSelectedJobs,
     lastIndexOfSelectedJobs,
   } = rest;
-  React.useEffect(() => {}, [totalPaginationSize]);
+  React.useEffect(() => { }, [totalPaginationSize]);
+  
   const paginationIndexes = Array.from(
     { length: totalPaginationSize },
     (v, k) => k + 1,

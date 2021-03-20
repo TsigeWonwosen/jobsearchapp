@@ -37,7 +37,7 @@ export default function SearchForm({ setLocation, setType }) {
         </Select>
       </FormGroup>
       <ButtonContainer>
-        <Button type="submit"> Apply Filter</Button>
+        <Button type="submit"> Search</Button>
       </ButtonContainer>
     </FomContainer>
   );
@@ -137,7 +137,7 @@ export const Button = styled.button`
   padding: 0;
   margin: 0;
   width: 100px;
-  padding: 0.6em 1.4em 0.5em 0.8em;
+  padding: 0.6rem 1.4em 0.5em 0.8em;
   margin-left: 1rem;
   text-align: center;
   border-radius: 100px;

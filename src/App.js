@@ -1,4 +1,4 @@
-import { Jobs, Nav, SideBar, useFetchJobs } from './components/';
+import { Jobs, Nav, SideBar ,useFetchJobs } from './components/';
 
 import './App.css';
 import styled from 'styled-components';

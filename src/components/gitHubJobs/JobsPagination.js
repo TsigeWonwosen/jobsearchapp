@@ -9,65 +9,75 @@ export default function JobsPagination({ rest }) {
     setLastIndexOfSelectedJobs,
     lastIndexOfSelectedJobs,
   } = rest;
-  React.useEffect(() => { }, [totalPaginationSize]);
-  
+  React.useEffect(() => {}, [totalPaginationSize]);
+
   const paginationIndexes = Array.from(
     { length: totalPaginationSize },
     (v, k) => k + 1,
   );
 
   return (
-    <Wrapper>
-      <Pagination>
-        <Button onClick={prev} disabled={lastIndexOfSelectedJobs <= 1}>
-          Prev
-        </Button>
-        {paginationIndexes?.map((index) => (
-          <span
-            key={index}
-            onClick={() => {
-              setLastIndexOfSelectedJobs(index);
-            }}
-            className={lastIndexOfSelectedJobs === index ? 'active' : ''}
-          >
-            {' '}
-            {index}
-          </span>
-        ))}
-        <Button
-          onClick={next}
-          disabled={lastIndexOfSelectedJobs >= totalPaginationSize}
+    <Pagination>
+      <Button onClick={prev} disabled={lastIndexOfSelectedJobs <= 1}>
+        Prev
+      </Button>
+      {paginationIndexes?.map((index) => (
+        <span
+          key={index}
+          onClick={() => {
+            setLastIndexOfSelectedJobs(index);
+          }}
+          className={lastIndexOfSelectedJobs === index ? 'active' : ''}
         >
-          Next
-        </Button>
-      </Pagination>
-    </Wrapper>
+          {' '}
+          {index}
+        </span>
+      ))}
+      <Button
+        onClick={next}
+        disabled={lastIndexOfSelectedJobs >= totalPaginationSize}
+      >
+        Next
+      </Button>
+    </Pagination>
   );
 }
 
 export const Wrapper = styled.div`
-  width: 70%;
+  width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  border: 1px solid black;
-  margin: 2rem auto;
+  border: 0.2px solid rgba(255, 255, 255, 0.2);
+  margin: 1rem auto;
   border-radius: 12px;
+  @media (max-width: 900px) {
+    width: 55%;
+    padding: 1rem 0.5rem;
+  }
 `;
 
 export const Pagination = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgba(2, 2, 2, 2);
+  border: 0.2px solid rgba(255, 255, 255, 0.2);
   margin: 1rem 0;
-  padding: 1rem 1rem;
-  border-radius: 12px;
+  padding-left: 0.2rem;
 
+  padding: 1rem 1rem;
+  border-radius: 10px;
+
+  @media (max-width: 900px) {
+    margin: 1rem 0;
+    padding: 1rem 0.4rem;
+    padding-left: 0.3rem;
+  }
   & span {
     padding: 3px 13px;
-    margin-right: 1rem;
+    margin-right: 0.2rem;
+    margin-left: 0.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,6 +90,12 @@ export const Pagination = styled.section`
     outline: none;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+
+    @media (max-width: 900px) {
+      padding: 3px 8px;
+      margin-right: 0.2rem;
+      margin-left: 0.2rem;
+    }
 
     &:hover,
     &:focus {
@@ -107,7 +123,11 @@ export const Button = styled.button`
   outline: none;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-
+  @media (max-width: 900px) {
+    padding: 5px 10px;
+    margin-right: 0.3rem;
+    margin-left: 0.3rem;
+  }
   &:hover,
   &:focus {
     color: white;

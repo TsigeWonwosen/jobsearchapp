@@ -1,39 +1,41 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 
-const PAGINATION_SIZE = 5;
+const PAGINATION_SIZE = 10;
 
 const useFilter = (jobs) => {
   const [typeOfJob, setTypeOfJob] = useState('');
-  const [loc, setSelectedLocation] = useState('');
+  const [jobLocation, setSelectedLocation] = useState('');
   const [selectedJobs, setSelectedJobs] = useState([]);
   const [lastIndexOfSelectedJobs, setLastIndexOfSelectedJobs] = useState(1);
-
-  let totalPaginationSize = 1;
-  let numberOfJobs;
+  const [totalPaginationSize, setTotalPagination] = useState(1);
+  const [numberOfJobs, setNumberOfJobs] = useState(jobs.length);
 
   const filteredJobs = useMemo(() => {
     let newFilteredJobs = [];
-    if (loc.length < 1 && typeOfJob.length < 1) {
+    if (setSelectedLocation.length < 1 && typeOfJob.length < 1) {
       newFilteredJobs = jobs;
     } else {
       newFilteredJobs = jobs?.filter(({ type, location }) => {
         return (
-          location.toLowerCase().includes(loc.toLowerCase()) &&
+          location.toLowerCase().includes(jobLocation.toLowerCase()) &&
           type.toLowerCase().includes(typeOfJob.toLowerCase())
         );
       });
     }
     return newFilteredJobs;
-  }, [typeOfJob, loc, jobs]);
+  }, [typeOfJob, jobLocation, jobs]);
 
-  numberOfJobs = filteredJobs?.length;
-  totalPaginationSize =
-    numberOfJobs > PAGINATION_SIZE
-      ? Math.ceil(numberOfJobs / PAGINATION_SIZE)
-      : 1;
-
-  
   const selectedJobsCb = useCallback(() => {
+    let totalPaginationSize = 1;
+    let numberOfJobs;
+    numberOfJobs = filteredJobs?.length;
+    totalPaginationSize =
+      numberOfJobs > PAGINATION_SIZE
+        ? Math.ceil(numberOfJobs / PAGINATION_SIZE)
+        : 1;
+    setTotalPagination(totalPaginationSize);
+    setNumberOfJobs(numberOfJobs);
+
     async function selectNewJobs() {
       try {
         let finalIndex = lastIndexOfSelectedJobs * PAGINATION_SIZE;

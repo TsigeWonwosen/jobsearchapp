@@ -1,9 +1,14 @@
 import React from 'react';
 import DOMPurify from 'dompurify';
-
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
 import styled from 'styled-components';
 
-export default function SingleJob({ job, Index, handleFeaturedJob }) {
+TimeAgo.addDefaultLocale(en);
+export default function SingleJob({ featuredJob }) {
+  if (featuredJob === 'undefined' || featuredJob === null) {
+    return <h1>Loading ..</h1>;
+  }
   const {
     title,
     company,
@@ -12,18 +17,20 @@ export default function SingleJob({ job, Index, handleFeaturedJob }) {
     location,
     type,
     company_logo,
-  } = job;
-
+    description,
+  } = featuredJob;
+  const timeAgo = new TimeAgo('en-US');
+  const timeCreated = timeAgo.format(new Date(created_at));
+  // {new Date(created_at).toLocaleDateString()}
   return (
-    <Card onClick={() => handleFeaturedJob(Index)}>
+    <Card>
       <CardBody>
         <JobApply>
           <Body>
-            <CardTitle>{title}</CardTitle>
-            <JobTitle>{company}</JobTitle>
-            <CardSubTitle>
-              {new Date(created_at).toLocaleDateString()}
-            </CardSubTitle>
+            <CardTitle>
+              {title} - <JobTitle>{company}</JobTitle>
+            </CardTitle>
+            <CardSubTitle>{timeCreated}</CardSubTitle>
             <BadgeContainer>
               <Badge>{location}</Badge>
               <Badge>{type}</Badge>
@@ -42,30 +49,45 @@ export default function SingleJob({ job, Index, handleFeaturedJob }) {
             </ImageContener>
           )}
         </JobApply>
+        <Article
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(description),
+          }}
+        ></Article>
       </CardBody>
     </Card>
   );
 }
 
 export const Card = styled.section`
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   background-color: #393939;
-  width: 95%;
+  width: 100%;
   max-width: 100%;
-  min-height: 160px;
-  margin: 1rem auto;
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
+  margin: 0 auto;
   color: #f2f2f3;
-  border-radius: 5px;
-  box-shadow: -1px 1px 0.5rem 1px rgba(255, 255, 255, 0.2);
-  overflow-y: hidden;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
   & img {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     border-radius: 5px;
     object-fit: cover;
   }
@@ -95,9 +117,9 @@ export const Card = styled.section`
     unicode-bidi: isolate;
     font-variant-numeric: tabular-nums;
     text-transform: none;
-    text-indent: 0px !important;
+    /* text-indent: 0px !important;
     text-align: start !important;
-    text-align-last: start !important;
+    text-align-last: start !important; */
   }
   & p {
     font-size: 0.84rem;
@@ -133,8 +155,8 @@ export const Card = styled.section`
 `;
 
 export const ImageContener = styled.section`
-  max-width: 60x;
-  max-height: 60px;
+  max-width: 80px;
+  max-height: 80px;
   border-radius: 5px;
   overflow: hidden;
 `;
@@ -144,36 +166,34 @@ export const JobApply = styled.section`
   width: 100%;
 `;
 export const Body = styled.section`
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: left;
   align-items: left;
 `;
 export const CardBody = styled.section`
-  width: 100%;
-  padding: 2rem 1rem;
-  margin: 0rem auto;
+  width: 90%;
+  padding: 2rem;
+  margin: 1rem auto;
   text-align: left;
 `;
 
 export const CardTitle = styled.h2`
   text-align: left;
-  font-size: 0.9rem;
-  color: #378ad3;
+  font-size: 1.5rem;
 `;
 
 export const JobTitle = styled.span`
   text-align: left;
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
+  font-size: 1rem;
   color: #f2f2f3;
 `;
 export const CardSubTitle = styled.section`
-  color: gray;
-  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 1rem;
+  margin-top: 0.2rem;
   text-align: left;
-  margin-top: 0.5rem;
 `;
 
 export const BadgeContainer = styled.section`
@@ -226,4 +246,70 @@ export const ApplyButton = styled(Button)`
   background-color: #3ea3fb;
   outline: none;
   border: none;
+`;
+
+export const Article = styled.article`
+  width: 100%;
+  height: 100%;
+  margin-top: 2rem;
+  padding: 3rem 0.5 1rem;
+  & div {
+    max-width: 100%;
+  }
+  & li {
+    margin: 1rem 0;
+    font-size: 0.8rem;
+    line-height: 1.6rem;
+    font-weight: 700;
+    color: #cacccb;
+    list-style: inside;
+
+    & p {
+      font-size: 0.84rem;
+      line-height: 1.4rem;
+      font-weight: 700;
+      color: #cacccb;
+      margin: 0.7rem 0;
+    }
+  }
+
+  & ::marker {
+    unicode-bidi: isolate;
+    font-variant-numeric: tabular-nums;
+    text-transform: none;
+    /* text-indent: 0px !important;
+    text-align: start !important;
+    text-align-last: start !important; */
+  }
+  & p {
+    font-size: 0.84rem;
+    line-height: 1.6rem;
+    font-weight: 500;
+    color: #cacccb;
+    margin: 0.6rem 0;
+  }
+  & blockquote {
+    font-size: 0.8rem;
+    line-height: 1.6rem;
+    font-weight: 500;
+    color: #cacccb;
+    margin: 0.5rem 0;
+  }
+
+  & code,
+  quote {
+    display: block;
+    position: relative;
+    margin: 0;
+    color: #cacccb;
+    font-size: 0.8rem;
+    box-sizing: border-box;
+    font-weight: 500;
+    border: 1px solid white;
+  }
+  & a {
+    display: none;
+    max-width: 90%;
+    overflow: hidden;
+  }
 `;

@@ -7,6 +7,7 @@ function Nav() {
       <Logo>
         <h2>Jobs.</h2>
       </Logo>
+      <Title>GitHub Jobs ...</Title>
       <NavItems>
         <Items>Home</Items>
         <Items>Jobs</Items>
@@ -37,6 +38,13 @@ export const Wrapper = styled.nav`
   color: #ffffff;
   box-shadow: 0 4px 1rem 4px rgba(0, 0, 0, 0.2);
   border-top: 3px solid #f48029;
+`;
+
+export const Title = styled.h1`
+  font-size: 1rem;
+  letter-spacing: 2px;
+  font-family: sans-serif;
+  color: #f2f2f3;
 `;
 
 export const Logo = styled.section`

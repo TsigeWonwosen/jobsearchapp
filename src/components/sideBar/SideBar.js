@@ -31,6 +31,10 @@ export const Wrapper = styled.nav`
   background-color: #2d2d2d;
   color: #ffffff;
   box-shadow: 2px 0 10px 1px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 900px) {
+    left: -100%;
+  }
 `;
 
 export const NavItems = styled.ul`

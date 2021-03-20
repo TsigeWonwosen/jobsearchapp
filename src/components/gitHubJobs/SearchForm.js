@@ -47,11 +47,15 @@ export const FomContainer = styled.form`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 70%;
+  width: 90%;
   margin: 1rem auto;
-  padding: 2rem;
-  border: 0.2px solid #c4c8cc;
+  padding: 1rem;
+  border: 0.2px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
+  @media (max-width: 900px) {
+    width: 100%;
+    overflow: hidden;
+  }
 `;
 
 export const FormGroup = styled.div`
@@ -61,6 +65,9 @@ export const FormGroup = styled.div`
   align-items: left;
   justify-content: left;
   width: 90%;
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 const ButtonContainer = styled(FormGroup)`
@@ -86,6 +93,10 @@ export const Input = styled.input`
   margin-bottom: 0.5em;
   font-size: 1rem;
   outline: none;
+  @media (max-width: 900px) {
+    padding: 0.4rem 0.5;
+    margin-bottom: 0rem;
+  }
 `;
 
 export const Label = styled.span`
@@ -98,8 +109,9 @@ export const Select = styled.select`
   display: block;
   font-size: 16px;
   font-family: sans-serif;
-  font-weight: 700;
-  color: #fff;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #f2f2f2;
   line-height: 1.3;
   padding: 0.6em 1.4em 0.5em 0.8em;
   width: 100%;
@@ -108,11 +120,11 @@ export const Select = styled.select`
   margin: 0;
   border: 1px solid #aaa;
   box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-  border-radius: 0.5em;
+  border-radius: 5px;
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  background-color: #404345;
+  background-color: #2d2d2d;
   background-size: 0.65em auto, 100%;
 
   &::-ms-expand {

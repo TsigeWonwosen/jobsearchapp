@@ -1,11 +1,13 @@
 import React from 'react';
 import DOMPurify from 'dompurify';
-import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en';
+
+import { timeSince } from '../../utility/timeAge';
+
 import styled from 'styled-components';
 
-TimeAgo.addDefaultLocale(en);
 export default function SingleJob({ featuredJob }) {
+
+  
   if (featuredJob === 'undefined' || featuredJob === null) {
     return <h1>Loading ..</h1>;
   }
@@ -18,10 +20,12 @@ export default function SingleJob({ featuredJob }) {
     type,
     company_logo,
     description,
+    url,
   } = featuredJob;
-  const timeAgo = new TimeAgo('en-US');
-  const timeCreated = timeAgo.format(new Date(created_at));
-  // {new Date(created_at).toLocaleDateString()}
+  console.log(featuredJob);
+  const timeOfDays = timeSince(new Date(created_at));
+
+
   return (
     <Card>
       <CardBody>
@@ -30,12 +34,12 @@ export default function SingleJob({ featuredJob }) {
             <CardTitle>
               {title} - <JobTitle>{company}</JobTitle>
             </CardTitle>
-            <CardSubTitle>{timeCreated}</CardSubTitle>
+            <CardSubTitle>{timeOfDays}</CardSubTitle>
             <BadgeContainer>
               <Badge>{location}</Badge>
               <Badge>{type}</Badge>
             </BadgeContainer>
-
+            <ApplyButton href={url}>Apply</ApplyButton>
             <div
               className="content"
               dangerouslySetInnerHTML={{
@@ -221,15 +225,21 @@ export const Text = styled.p`
   font-size: 0.7px;
   text-align: left;
 `;
-export const Button = styled.button`
-  padding: 5px 13px;
+
+export const Button = styled.a`
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  padding: 5px 8px;
   color: #3ea3fb;
   border: 1px solid #3ea3fb;
   background-color: transparent;
   border-radius: 100px;
+  max-width: 2rem;
   text-align: left;
   outline: none;
   cursor: pointer;
+  display: inline-block;
   transition: all 0.3s ease-in-out;
 
   &:hover,
@@ -246,6 +256,10 @@ export const ApplyButton = styled(Button)`
   background-color: #3ea3fb;
   outline: none;
   border: none;
+  max-width: 5rem !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 `;
 
 export const Article = styled.article`

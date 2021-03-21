@@ -12,6 +12,7 @@ import './jobs.css';
 
 function Jobs({ jobs, loading, error }) {
   const [featured, setFeatured] = React.useState(0);
+  const [sortByDate, setSortByDate] = React.useState('');
   const {
     selectedJobs,
     numberOfJobs,
@@ -24,7 +25,21 @@ function Jobs({ jobs, loading, error }) {
     lastIndexOfSelectedJobs,
   } = useFilter(jobs);
 
-  const featuredJob = selectedJobs?.[featured];
+  console.log(jobs?.[0]);
+
+  let SortedselectedJobs = sortByDate.length
+    ? selectedJobs.sort((a, b) =>
+        sortByDate === 'title'
+          ? a.sortByDate - b.sortByDate
+          : new Date(b.sortByDate) - new Date(a.sortByDate),
+      )
+    : selectedJobs;
+  const featuredJob = SortedselectedJobs?.[featured];
+
+  React.useEffect(() => {
+    console.log(sortByDate);
+  }, [sortByDate]);
+
   const rest = {
     totalPaginationSize,
     next,
@@ -36,18 +51,26 @@ function Jobs({ jobs, loading, error }) {
   const handleFeaturedJob = (id) => {
     setFeatured(id);
   };
+
+  const handleSortJobs = (data) => {
+    setSortByDate(data);
+  };
   return (
     <Container>
       <Wrapper>
         <SearchForm setLocation={setLocation} setType={setType} />
-        <Info numberOfJobs={numberOfJobs} rest={rest} />
+        <Info
+          numberOfJobs={numberOfJobs}
+          rest={rest}
+          handleSortJobs={handleSortJobs}
+        />
         {loading && <h1>Loading ...</h1>}
         {error && <h1>Error ...Try Refreshing</h1>}
 
         <JobsListWrapper>
           <JobsList>
-            {selectedJobs &&
-              selectedJobs?.map((job, index) => (
+            {SortedselectedJobs &&
+              SortedselectedJobs?.map((job, index) => (
                 <SingleJob
                   job={job}
                   key={job.id}
@@ -56,7 +79,7 @@ function Jobs({ jobs, loading, error }) {
                 />
               ))}
           </JobsList>
-          {selectedJobs.length > 0 && (
+          {SortedselectedJobs.length > 0 && (
             <JobsListShow>
               <FeaturedJob featuredJob={featuredJob} />
             </JobsListShow>

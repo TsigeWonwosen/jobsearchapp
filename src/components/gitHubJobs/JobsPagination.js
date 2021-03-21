@@ -114,7 +114,8 @@ export const Pagination = styled.section`
 
 export const Button = styled.button`
   padding: 5px 13px;
-  margin-right: 1rem;
+  margin-right: 0.6rem;
+  margin-left: 0.6rem;
   color: #3ea3fb;
   border: 1px solid ${({ disabled }) => (disabled ? '#999999' : '#3ea3fb')};
   background-color: ${({ disabled }) => (disabled ? '#cccccc' : 'transparent')};

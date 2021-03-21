@@ -149,7 +149,9 @@ export const Button = styled.button`
   padding: 0;
   margin: 0;
   width: 100px;
-  padding: 0.6rem 1.4em 0.5em 0.8em;
+  padding: 0.6rem 1rem 0.6rem;
+  font-size: 1rem;
+  letter-spacing: 1px;
   margin-left: 1rem;
   text-align: center;
   border-radius: 100px;

@@ -8,7 +8,6 @@ import useFilter from './useFilter';
 import Info from './Info';
 
 import styled from 'styled-components';
-import './jobs.css';
 
 function Jobs({ jobs, loading, error }) {
   const [featured, setFeatured] = React.useState(0);

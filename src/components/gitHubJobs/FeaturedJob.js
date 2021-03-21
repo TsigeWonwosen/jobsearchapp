@@ -6,8 +6,6 @@ import { timeSince } from '../../utility/timeAge';
 import styled from 'styled-components';
 
 export default function SingleJob({ featuredJob }) {
-
-  
   if (featuredJob === 'undefined' || featuredJob === null) {
     return <h1>Loading ..</h1>;
   }
@@ -24,7 +22,6 @@ export default function SingleJob({ featuredJob }) {
   } = featuredJob;
   console.log(featuredJob);
   const timeOfDays = timeSince(new Date(created_at));
-
 
   return (
     <Card>
@@ -48,9 +45,9 @@ export default function SingleJob({ featuredJob }) {
             ></div>
           </Body>
           {company_logo && (
-            <ImageContener>
+            <ImageContainer>
               <img src={company_logo} alt={company} />
-            </ImageContener>
+            </ImageContainer>
           )}
         </JobApply>
         <Article
@@ -121,9 +118,9 @@ export const Card = styled.section`
     unicode-bidi: isolate;
     font-variant-numeric: tabular-nums;
     text-transform: none;
-    /* text-indent: 0px !important;
+    text-indent: 0px !important;
     text-align: start !important;
-    text-align-last: start !important; */
+    text-align-last: start !important;
   }
   & p {
     font-size: 0.84rem;
@@ -156,9 +153,40 @@ export const Card = styled.section`
     max-width: 90%;
     overflow: hidden;
   }
+
+  & pre {
+    all: none !important;
+    background: #666;
+    border: none;
+    border-left: 5px solid #f36d33;
+    color: #f4f4f4;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+    overflow: auto;
+    padding: 0 1em;
+  }
+  & code {
+    border: none !important;
+    background: none;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    letter-spacing: normal;
+    word-break: break-all;
+    width: 100%;
+    overflow: auto;
+    padding: 1rem;
+  }
 `;
 
-export const ImageContener = styled.section`
+export const ImageContainer = styled.section`
   max-width: 80px;
   max-height: 80px;
   border-radius: 5px;
@@ -227,6 +255,7 @@ export const Text = styled.p`
 `;
 
 export const Button = styled.a`
+  all: none;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -245,7 +274,7 @@ export const Button = styled.a`
   &:hover,
   &:focus {
     color: white;
-    background-color: #3ea3fb;
+    background-color: #3ea3fb99;
     outline: none;
     border: 1px solid #3ea3fb;
   }
@@ -256,6 +285,9 @@ export const ApplyButton = styled(Button)`
   background-color: #3ea3fb;
   outline: none;
   border: none;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  border: 1px solid #3ea3fb;
   max-width: 5rem !important;
   display: flex !important;
   justify-content: center !important;
@@ -278,25 +310,47 @@ export const Article = styled.article`
     color: #cacccb;
     list-style: inside;
 
-    & p {
+    & p > quotes {
       font-size: 0.84rem;
       line-height: 1.4rem;
       font-weight: 700;
-      color: #cacccb;
+      color: #facccb;
       margin: 0.7rem 0;
     }
+  }
+  & p::target-text {
+    font-size: 0.84rem;
+    line-height: 1.4rem;
+    font-weight: 700;
+    color: #facccb;
+    margin: 0.7rem 0;
   }
 
   & ::marker {
     unicode-bidi: isolate;
     font-variant-numeric: tabular-nums;
     text-transform: none;
-    /* text-indent: 0px !important;
+    text-indent: 0px !important;
     text-align: start !important;
-    text-align-last: start !important; */
+    text-align-last: start !important;
   }
-  & p {
-    font-size: 0.84rem;
+  & p:first-child {
+    font-size: 1.1rem;
+    line-height: 1.7rem;
+    font-weight: 500;
+    color: #f4f4f4;
+    margin: 0.6rem 0;
+  }
+  p {
+    font-size: 0.9rem;
+    line-height: 1.6rem;
+    font-weight: 500;
+    color: #cacccb;
+    margin: 0.6rem 0;
+  }
+  & p em,
+  strong {
+    font-size: 1.1rem;
     line-height: 1.6rem;
     font-weight: 500;
     color: #cacccb;
@@ -322,7 +376,10 @@ export const Article = styled.article`
     border: 1px solid white;
   }
   & a {
-    display: none;
+    /* display: none; */
+    display: inline-block !important;
+    color: #cacccb;
+    font-size: 0.8rem;
     max-width: 90%;
     overflow: hidden;
   }

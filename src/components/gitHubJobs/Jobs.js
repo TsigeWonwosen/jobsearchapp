@@ -11,7 +11,7 @@ import styled from 'styled-components';
 
 function Jobs({ jobs, loading, error }) {
   const [featured, setFeatured] = React.useState(0);
-  const [sortByDate, setSortByDate] = React.useState('');
+  const [sortString, setSortString] = React.useState('');
   const {
     selectedJobs,
     numberOfJobs,
@@ -24,20 +24,28 @@ function Jobs({ jobs, loading, error }) {
     lastIndexOfSelectedJobs,
   } = useFilter(jobs);
 
-  console.log(jobs?.[0]);
+  let SortedJobs =
+    sortString.length && sortString === 'title'
+      ? selectedJobs.sort((a, b) => {
+          const sortStringA = a.title?.toUpperCase();
+          const sortStringB = b.title?.toUpperCase();
 
-  let SortedselectedJobs = sortByDate.length
-    ? selectedJobs.sort((a, b) =>
-        sortByDate === 'title'
-          ? a.sortByDate - b.sortByDate
-          : new Date(b.sortByDate) - new Date(a.sortByDate),
-      )
-    : selectedJobs;
-  const featuredJob = SortedselectedJobs?.[featured];
+          if (sortStringA < sortStringB) {
+            return -1;
+          }
+          if (sortStringA > sortStringB) {
+            return 1;
+          }
 
-  React.useEffect(() => {
-    console.log(sortByDate);
-  }, [sortByDate]);
+          return 0;
+        })
+      : selectedJobs.sort((a, b) => {
+          return new Date(b.created_at) - new Date(a.created_at);
+        });
+
+  const featuredJob = SortedJobs?.[featured];
+
+  React.useEffect(() => {}, [sortString]);
 
   const rest = {
     totalPaginationSize,
@@ -52,7 +60,7 @@ function Jobs({ jobs, loading, error }) {
   };
 
   const handleSortJobs = (data) => {
-    setSortByDate(data);
+    setSortString(data);
   };
   return (
     <Container>
@@ -62,14 +70,15 @@ function Jobs({ jobs, loading, error }) {
           numberOfJobs={numberOfJobs}
           rest={rest}
           handleSortJobs={handleSortJobs}
+          sortString={sortString}
         />
         {loading && <h1>Loading ...</h1>}
         {error && <h1>Error ...Try Refreshing</h1>}
 
         <JobsListWrapper>
           <JobsList>
-            {SortedselectedJobs &&
-              SortedselectedJobs?.map((job, index) => (
+            {SortedJobs &&
+              SortedJobs?.map((job, index) => (
                 <SingleJob
                   job={job}
                   key={job.id}
@@ -78,7 +87,7 @@ function Jobs({ jobs, loading, error }) {
                 />
               ))}
           </JobsList>
-          {SortedselectedJobs.length > 0 && (
+          {SortedJobs.length > 0 && (
             <JobsListShow>
               <FeaturedJob featuredJob={featuredJob} />
             </JobsListShow>

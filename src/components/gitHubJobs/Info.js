@@ -1,22 +1,27 @@
 import React from 'react';
 import JobsPagination from './JobsPagination';
 import styled from 'styled-components';
-function Info({ numberOfJobs, rest, handleSortJobs }) {
-  const [selected, setSelected] = React.useState('');
+function Info({ numberOfJobs, rest, handleSortJobs, sortString }) {
   return (
     <Wrapper>
-      <JobsInfo>{numberOfJobs} jobs</JobsInfo>
+      <JobsInfo>{numberOfJobs} Jobs</JobsInfo>
 
       <JobsPagination rest={rest} />
       <JobSortWrapper>
         <JobsInfo>Sort by :</JobsInfo>
         <JobsSort
-          value={selected}
+          value={sortString}
           onChange={(e) => handleSortJobs(e.target.value)}
         >
-          <option>matches</option>
-          <option value="created_at">day</option>
-          <option value="title">title</option>
+          <option key="Matches" value="">
+            Matches
+          </option>
+          <option key="created_at" value="created_at">
+            Day
+          </option>
+          <option key="title" value="title">
+            Title
+          </option>
         </JobsSort>
       </JobSortWrapper>
     </Wrapper>

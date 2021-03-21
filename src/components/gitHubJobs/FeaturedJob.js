@@ -20,7 +20,6 @@ export default function SingleJob({ featuredJob }) {
     description,
     url,
   } = featuredJob;
-  console.log(featuredJob);
   const timeOfDays = timeSince(new Date(created_at));
 
   return (

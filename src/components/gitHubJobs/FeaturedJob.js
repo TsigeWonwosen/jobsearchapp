@@ -35,7 +35,9 @@ export default function SingleJob({ featuredJob }) {
               <Badge>{location}</Badge>
               <Badge>{type}</Badge>
             </BadgeContainer>
-            <ApplyButton href={url}>Apply</ApplyButton>
+            <ApplyButton href={url} target="_blank">
+              Apply
+            </ApplyButton>
             <div
               className="content"
               dangerouslySetInnerHTML={{

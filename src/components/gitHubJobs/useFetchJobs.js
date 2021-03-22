@@ -13,7 +13,7 @@ export default function useFetchJobs() {
     try {
       setLoading(true);
       const response = await Axios(BASE_URL);
-
+      console.log(response);
       if (response) {
         setError(false);
         setLoading(false);
@@ -30,7 +30,7 @@ export default function useFetchJobs() {
 
   useEffect(() => {
     getJobs();
-  }, [getJobs]);
+  }, [getJobs, jobs]);
 
   return {
     jobs,

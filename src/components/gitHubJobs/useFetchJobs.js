@@ -12,7 +12,9 @@ export default function useFetchJobs() {
     const cancelToken = Axios.CancelToken.source();
     try {
       setLoading(true);
-      const response = await Axios(BASE_URL);
+      const response = await Axios(BASE_URL, {
+        headers: { accept: 'Accept: application/json' },
+      });
       console.log(response);
       if (response) {
         setError(false);
@@ -30,7 +32,7 @@ export default function useFetchJobs() {
 
   useEffect(() => {
     getJobs();
-  }, [getJobs, jobs]);
+  }, [getJobs]);
 
   return {
     jobs,

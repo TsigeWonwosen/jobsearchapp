@@ -1,31 +1,24 @@
-import React from 'react';
+import React from "react";
 
-import SingleJob from './SingleJob';
-import FeaturedJob from './FeaturedJob';
-import SearchForm from './SearchForm';
+import SingleJob from "./SingleJob";
+import FeaturedJob from "./FeaturedJob";
+import SearchForm from "./SearchForm";
 
-import useFilter from './useFilter';
-import Info from './Info';
+import useFilter from "./useFilter";
+import Info from "./Info";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 function Jobs({ jobs, loading, error }) {
   const [featured, setFeatured] = React.useState(0);
-  const [sortString, setSortString] = React.useState('');
-  const {
-    selectedJobs,
-    numberOfJobs,
-    setLocation,
-    setType,
-    totalPaginationSize,
-    next,
-    prev,
-    setLastIndexOfSelectedJobs,
-    lastIndexOfSelectedJobs,
-  } = useFilter(jobs);
+  const [sortString, setSortString] = React.useState("");
+
+  jobs = [];
+  const { selectedJobs, numberOfJobs, setLocation, setType, totalPaginationSize, next, prev, setLastIndexOfSelectedJobs, lastIndexOfSelectedJobs } =
+    useFilter(jobs);
 
   let SortedJobs =
-    sortString.length && sortString === 'title'
+    sortString.length && sortString === "title"
       ? selectedJobs.sort((a, b) => {
           const sortStringA = a.title?.toUpperCase();
           const sortStringB = b.title?.toUpperCase();
@@ -66,26 +59,13 @@ function Jobs({ jobs, loading, error }) {
     <Container>
       <Wrapper>
         <SearchForm setLocation={setLocation} setType={setType} />
-        <Info
-          numberOfJobs={numberOfJobs}
-          rest={rest}
-          handleSortJobs={handleSortJobs}
-          sortString={sortString}
-        />
+        <Info numberOfJobs={numberOfJobs} rest={rest} handleSortJobs={handleSortJobs} sortString={sortString} />
         {loading && <h1>Loading ...</h1>}
         {error && <h1>Error ...Try Refreshing</h1>}
 
         <JobsListWrapper>
           <JobsList>
-            {SortedJobs &&
-              SortedJobs?.map((job, index) => (
-                <SingleJob
-                  job={job}
-                  key={job.id}
-                  Index={index}
-                  handleFeaturedJob={handleFeaturedJob}
-                />
-              ))}
+            {SortedJobs && SortedJobs?.map((job, index) => <SingleJob job={job} key={job.id} Index={index} handleFeaturedJob={handleFeaturedJob} />)}
           </JobsList>
           {SortedJobs.length > 0 && (
             <JobsListShow>
@@ -215,8 +195,8 @@ export const Button = styled.button`
   padding: 5px 13px;
   margin-right: 1rem;
   color: #3ea3fb;
-  border: 1px solid ${({ disabled }) => (disabled ? '#999999' : '#3ea3fb')};
-  background-color: ${({ disabled }) => (disabled ? '#cccccc' : 'transparent')};
+  border: 1px solid ${({ disabled }) => (disabled ? "#999999" : "#3ea3fb")};
+  background-color: ${({ disabled }) => (disabled ? "#cccccc" : "transparent")};
   border-radius: 100px;
   text-align: left;
   outline: none;
@@ -225,7 +205,7 @@ export const Button = styled.button`
   &:hover,
   &:focus {
     color: white;
-    background-color: ${({ disabled }) => (disabled ? '#999999' : '#3ea3fb')};
+    background-color: ${({ disabled }) => (disabled ? "#999999" : "#3ea3fb")};
     outline: none;
     border: 1px solid #3ea3fb;
   }

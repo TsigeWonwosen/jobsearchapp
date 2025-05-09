@@ -49,8 +49,7 @@ const useFilter = (jobs) => {
         console.log(error);
       }
     }
-    // console.log("SelectedNewJobs :");
-    // console.log(selectNewJobs());
+
     return selectNewJobs();
   };
 

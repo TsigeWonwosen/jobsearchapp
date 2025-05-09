@@ -13,14 +13,17 @@ export default function useFetchJobs() {
       setLoading(true);
       // const response = await Axios.get(BASE_URL);
       // if (typeof response !== "string") {
-      if (jobsData.jobs.length > 0) {
-        setLoading(false);
-        // const jobs = await response.data;
-        setJobs(jobsData.jobs);
-      }
+      // if (jobsData.jobs.length > 0) {
+      setLoading(false);
+      const response = await import("../../data/jobs.json");
+      // const jobs = await response.data;
+      setJobs(response.jobs);
+      // }
     } catch (e) {
-      setError(true);
       console.log(e.message);
+      setError(true);
+    } finally {
+      setLoading(false);
     }
   };
 

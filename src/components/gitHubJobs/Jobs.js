@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import SingleJob from "./SingleJob";
 import FeaturedJob from "./FeaturedJob";
 import SearchForm from "./SearchForm";
-
 import useFilter from "./useFilter";
 import Info from "./Info";
 
@@ -13,9 +12,17 @@ function Jobs({ jobs, loading, error }) {
   const [featured, setFeatured] = React.useState(0);
   const [sortString, setSortString] = React.useState("");
 
-  jobs = [];
-  const { selectedJobs, numberOfJobs, setLocation, setType, totalPaginationSize, next, prev, setLastIndexOfSelectedJobs, lastIndexOfSelectedJobs } =
-    useFilter(jobs);
+  const {
+    selectedJobs,
+    numberOfJobs,
+    setLocation,
+    setType,
+    totalPaginationSize,
+    next,
+    prev,
+    setLastIndexOfSelectedJobs,
+    lastIndexOfSelectedJobs,
+  } = useFilter(jobs);
 
   let SortedJobs =
     sortString.length && sortString === "title"
@@ -38,7 +45,10 @@ function Jobs({ jobs, loading, error }) {
 
   const featuredJob = SortedJobs?.[featured];
 
-  React.useEffect(() => {}, [sortString]);
+  useEffect(() => {
+    // console.log(jobs);
+    // console.log(jobs);
+  }, [sortString, jobs]);
 
   const rest = {
     totalPaginationSize,
@@ -58,14 +68,30 @@ function Jobs({ jobs, loading, error }) {
   return (
     <Container>
       <Wrapper>
-        <SearchForm setLocation={setLocation} setType={setType} />
-        <Info numberOfJobs={numberOfJobs} rest={rest} handleSortJobs={handleSortJobs} sortString={sortString} />
+        <SearchForm
+          setLocation={setLocation}
+          setType={setType}
+        />
+        <Info
+          numberOfJobs={numberOfJobs}
+          rest={rest}
+          handleSortJobs={handleSortJobs}
+          sortString={sortString}
+        />
         {loading && <h1>Loading ...</h1>}
         {error && <h1>Error ...Try Refreshing</h1>}
 
         <JobsListWrapper>
           <JobsList>
-            {SortedJobs && SortedJobs?.map((job, index) => <SingleJob job={job} key={job.id} Index={index} handleFeaturedJob={handleFeaturedJob} />)}
+            {SortedJobs &&
+              SortedJobs?.map((job, index) => (
+                <SingleJob
+                  job={job}
+                  key={index}
+                  Index={index}
+                  handleFeaturedJob={handleFeaturedJob}
+                />
+              ))}
           </JobsList>
           {SortedJobs.length > 0 && (
             <JobsListShow>

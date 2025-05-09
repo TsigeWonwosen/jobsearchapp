@@ -10,7 +10,12 @@ function App() {
       <Nav />
       <Container>
         <SideBar />
-        <Jobs jobs={jobs} loading={loading} error={error} />;
+        <Jobs
+          jobs={jobs}
+          loading={loading}
+          error={error}
+        />
+        ;
       </Container>
     </>
   );

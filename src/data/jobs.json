@@ -1,0 +1,73 @@
+{
+  "jobs": [
+    {
+      "title": "Senior React Developer",
+      "company": "TechVision",
+      "created_at": "2025-05-15T09:30:00Z",
+      "how_to_apply": "Apply at https://techvision.recruitee.com",
+      "location": "Remote (Global)",
+      "type": "Full-time",
+      "company_logo": "https://logo.clearbit.com/techvision.io",
+      "description": "Lead frontend development for our SaaS platform using React 18, TypeScript, and Next.js. 5+ years experience required.",
+      "url": "https://techvision.io/careers/senior-react-dev"
+    },
+    {
+      "title": "DevOps Engineer (AWS)",
+      "company": "CloudNova",
+      "created_at": "2025-05-14T11:20:00Z",
+      "how_to_apply": "Email CV to devops@cloudnova.com with subject 'AWS Position'",
+      "location": "Austin, TX | Hybrid",
+      "type": "Full-time",
+      "company_logo": "https://logo.clearbit.com/cloudnova.com",
+      "description": "Implement CI/CD pipelines and manage Kubernetes clusters for enterprise clients. Terraform experience required.",
+      "url": "https://cloudnova.com/jobs/aws-devops"
+    },
+    {
+      "title": "UX/UI Designer",
+      "company": "PixelForge",
+      "created_at": "2025-05-13T14:15:00Z",
+      "how_to_apply": "Portfolio review via https://pixelforge.design/hiring",
+      "location": "New York, NY",
+      "type": "Contract",
+      "company_logo": "https://logo.clearbit.com/pixelforge.design",
+      "description": "Redesign fintech mobile app with Figma. Must have 3+ years mobile design experience.",
+      "url": "https://pixelforge.design/careers/ux-contract"
+    },
+    {
+      "title": "Data Scientist (Python)",
+      "company": "AI Analytics Co.",
+      "created_at": "2025-05-12T10:00:00Z",
+      "how_to_apply": "Submit code samples to ds-hiring@aianalytics.co",
+      "location": "Remote (US Only)",
+      "type": "Full-time",
+      "company_logo": "https://logo.clearbit.com/aianalytics.co",
+      "description": "Develop ML models for predictive analytics. Strong pandas/scikit-learn skills required.",
+      "url": "https://aianalytics.co/jobs/data-scientist-2025"
+    },
+    {
+      "title": "Technical Writer",
+      "company": "DocuTech",
+      "created_at": "2025-05-11T13:45:00Z",
+      "how_to_apply": "Writing test via our careers portal",
+      "location": "Chicago, IL",
+      "type": "Part-time",
+      "company_logo": "https://logo.clearbit.com/docutech.org",
+      "description": "Create API documentation and developer guides. Markdown/Git experience preferred.",
+      "url": "https://docutech.org/writer-position"
+    },
+    {
+      "title": "Cybersecurity Specialist",
+      "company": "SecureNet",
+      "created_at": "2025-04-01T08:10:00Z",
+      "how_to_apply": "Security clearance required. Apply through DoD portal.",
+      "location": "Washington, DC",
+      "type": "Full-time",
+      "company_logo": "https://logo.clearbit.com/securenetsolutions.com",
+      "description": "Penetration testing and threat analysis for government systems. CISSP certification mandatory.",
+      "url": "https://securenetsolutions.com/careers/cyber-dc"
+    }
+  ],
+  "total": 50,
+  "description": "Mock job listings with realistic data for development/testing",
+  "api_version": "1.1"
+}

@@ -1,42 +1,32 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import Axios from "axios";
-//https://api.allorigins.win/raw?url=https://jobs.github.com/positions.json
-//https://job-listings.p.rapidapi.com/api/job/details/
-
-const BASE_URL = "https://api.allorigins.win/raw?url=https://jobs.github.com/positions.json";
+import jobsData from "../../data/jobs.json";
+const BASE_URL = "../../data/jobs.json";
 
 export default function useFetchJobs() {
   const [jobs, setJobs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const getJobs = useCallback(async () => {
-    const cancelToken = Axios.CancelToken.source();
+  const getJobs = async () => {
     try {
       setLoading(true);
-      const response = await Axios(BASE_URL, {
-        headers: { accept: "Accept: application/json" },
-      });
-      console.log(">>>>", typeof response.data);
-      if (typeof response !== "string") {
-        setError(false);
+      // const response = await Axios.get(BASE_URL);
+      // if (typeof response !== "string") {
+      if (jobsData.jobs.length > 0) {
         setLoading(false);
-        const jobs = await response.data;
-        setJobs(jobs);
-        console.log(">>>> 2", typeof response.data);
+        // const jobs = await response.data;
+        setJobs(jobsData.jobs);
       }
     } catch (e) {
       setError(true);
       console.log(e.message);
     }
-    return () => {
-      cancelToken.cancel();
-    };
-  }, []);
+  };
 
   useEffect(() => {
     getJobs();
-  }, [getJobs]);
+  }, []);
 
   return {
     jobs,

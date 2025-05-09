@@ -1,16 +1,16 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback } from "react";
 
-const PAGINATION_SIZE = 10;
+const PAGINATION_SIZE = 3;
 
 const useFilter = (jobs) => {
-  const [typeOfJob, setTypeOfJob] = useState('');
-  const [jobLocation, setSelectedLocation] = useState('');
+  const [typeOfJob, setTypeOfJob] = useState("");
+  const [jobLocation, setSelectedLocation] = useState("");
   const [selectedJobs, setSelectedJobs] = useState([]);
   const [lastIndexOfSelectedJobs, setLastIndexOfSelectedJobs] = useState(1);
   const [totalPaginationSize, setTotalPagination] = useState(1);
   const [numberOfJobs, setNumberOfJobs] = useState(jobs.length);
 
-  const filteredJobs = useMemo(() => {
+  const filteredJobs = () => {
     let newFilteredJobs = [];
     if (setSelectedLocation.length < 1 && typeOfJob.length < 1) {
       newFilteredJobs = jobs;
@@ -23,12 +23,12 @@ const useFilter = (jobs) => {
       });
     }
     return newFilteredJobs;
-  }, [typeOfJob, jobLocation, jobs]);
+  };
 
-  const selectedJobsCb = useCallback(() => {
+  const selectedJobsCb = () => {
     let totalPaginationSize = 1;
     let numberOfJobs;
-    numberOfJobs = filteredJobs?.length;
+    numberOfJobs = filteredJobs()?.length;
     totalPaginationSize =
       numberOfJobs > PAGINATION_SIZE
         ? Math.ceil(numberOfJobs / PAGINATION_SIZE)
@@ -36,22 +36,27 @@ const useFilter = (jobs) => {
     setTotalPagination(totalPaginationSize);
     setNumberOfJobs(numberOfJobs);
 
-    async function selectNewJobs() {
+    function selectNewJobs() {
       try {
         let finalIndex = lastIndexOfSelectedJobs * PAGINATION_SIZE;
         let initial = finalIndex - PAGINATION_SIZE;
-        let TopSelectedJobs = filteredJobs?.slice(initial, finalIndex);
+        let TopSelectedJobs =
+          filteredJobs().length > 0
+            ? filteredJobs()?.slice(initial, finalIndex)
+            : [];
         setSelectedJobs(TopSelectedJobs);
       } catch (error) {
         console.log(error);
       }
     }
+    // console.log("SelectedNewJobs :");
+    // console.log(selectNewJobs());
     return selectNewJobs();
-  }, [lastIndexOfSelectedJobs, filteredJobs]);
+  };
 
   useEffect(() => {
     selectedJobsCb();
-  }, [selectedJobsCb]);
+  }, [lastIndexOfSelectedJobs, jobs]);
 
   const next = () => {
     setLastIndexOfSelectedJobs(lastIndexOfSelectedJobs + 1);

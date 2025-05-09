@@ -22,12 +22,12 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
 }
 
 /* Track */
 body::-webkit-scrollbar-track {
-  background: #9c9a9a;
+  background: #2d2e30;
 }
 
 /* Handle */

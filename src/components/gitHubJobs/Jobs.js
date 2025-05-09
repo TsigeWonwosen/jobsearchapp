@@ -7,6 +7,7 @@ import useFilter from "./useFilter";
 import Info from "./Info";
 
 import styled from "styled-components";
+import JobsPagination from "./JobsPagination";
 
 function Jobs({ jobs, loading, error }) {
   const [featured, setFeatured] = React.useState(0);
@@ -45,10 +46,7 @@ function Jobs({ jobs, loading, error }) {
 
   const featuredJob = SortedJobs?.[featured];
 
-  useEffect(() => {
-    // console.log(jobs);
-    // console.log(jobs);
-  }, [sortString, jobs]);
+  useEffect(() => {}, [sortString, jobs]);
 
   const rest = {
     totalPaginationSize,
@@ -83,6 +81,13 @@ function Jobs({ jobs, loading, error }) {
 
         <JobsListWrapper>
           <JobsList>
+            <div className="flex justify-sart align-center px-2 py-2 flex-col gap-2 border-b-[1px] border-gray-600 mb-1">
+              <h2 className="text-base font-semibold">Top job picks for you</h2>
+              <p className="text-sm text-gray-300">
+                Based on your profile, preferences, and activity like applies,
+                searches, and saves {numberOfJobs} results
+              </p>
+            </div>
             {SortedJobs &&
               SortedJobs?.map((job, index) => (
                 <SingleJob
@@ -92,6 +97,7 @@ function Jobs({ jobs, loading, error }) {
                   handleFeaturedJob={handleFeaturedJob}
                 />
               ))}
+            <JobsPagination rest={rest} />
           </JobsList>
           {SortedJobs.length > 0 && (
             <JobsListShow>

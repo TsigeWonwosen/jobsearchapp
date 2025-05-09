@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const PAGINATION_SIZE = 3;
+const PAGINATION_SIZE = 5;
 
 const useFilter = (jobs) => {
   const [typeOfJob, setTypeOfJob] = useState("");
@@ -52,7 +52,7 @@ const useFilter = (jobs) => {
 
     return selectNewJobs();
   };
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     selectedJobsCb();
   }, [lastIndexOfSelectedJobs, jobs]);

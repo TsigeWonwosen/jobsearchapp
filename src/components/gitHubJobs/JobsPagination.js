@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 export default function JobsPagination({ rest }) {
   const {
@@ -13,12 +13,15 @@ export default function JobsPagination({ rest }) {
 
   const paginationIndexes = Array.from(
     { length: totalPaginationSize },
-    (v, k) => k + 1,
+    (v, k) => k + 1
   );
 
   return (
     <Pagination>
-      <Button onClick={prev} disabled={lastIndexOfSelectedJobs <= 1}>
+      <Button
+        onClick={prev}
+        disabled={lastIndexOfSelectedJobs <= 1}
+      >
         Prev
       </Button>
       {paginationIndexes?.map((index) => (
@@ -27,9 +30,9 @@ export default function JobsPagination({ rest }) {
           onClick={() => {
             setLastIndexOfSelectedJobs(index);
           }}
-          className={lastIndexOfSelectedJobs === index ? 'active' : ''}
+          className={lastIndexOfSelectedJobs === index ? "active" : ""}
         >
-          {' '}
+          {" "}
           {index}
         </span>
       ))}
@@ -44,13 +47,13 @@ export default function JobsPagination({ rest }) {
 }
 
 export const Wrapper = styled.div`
-  width: 80%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
   border: 0.2px solid rgba(255, 255, 255, 0.2);
-  margin: 1rem auto;
+  gap: 2rem;
   border-radius: 12px;
   @media (max-width: 900px) {
     width: 55%;
@@ -59,15 +62,15 @@ export const Wrapper = styled.div`
 `;
 
 export const Pagination = styled.section`
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 0.2px solid rgba(255, 255, 255, 0.2);
-  margin: 1rem 0;
-  padding-left: 0.2rem;
-
-  padding: 1rem 1rem;
-  border-radius: 10px;
+  border-top: 0.2px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 0.2px solid rgba(255, 255, 255, 0.2);
+  padding: 1.5rem 0;
+  margin-top: 1rem;
+  gap: 1rem;
 
   @media (max-width: 900px) {
     margin: 1rem 0;
@@ -75,17 +78,18 @@ export const Pagination = styled.section`
     padding-left: 0.3rem;
   }
   & span {
-    padding: 3px 13px;
-    margin-right: 0.2rem;
-    margin-left: 0.2rem;
+    height: 26px;
+    width: 26px;
+    padding: 5px 5px;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size:13px
     color: #3ea3fb;
-    border: 1px solid ${({ disabled }) => (disabled ? '#999999' : '#3ea3fb')};
+    border: 1px solid ${({ disabled }) => (disabled ? "#999999" : "#3ea3fb")};
     background-color: ${({ disabled }) =>
-      disabled ? '#cccccc' : 'transparent'};
-    border-radius: 10px;
+      disabled ? "#cccccc" : "transparent"};
+    border-radius: 100%;
     text-align: left;
     outline: none;
     cursor: pointer;
@@ -100,7 +104,7 @@ export const Pagination = styled.section`
     &:hover,
     &:focus {
       color: white;
-      background-color: ${({ disabled }) => (disabled ? '#999999' : '#3ea3fb')};
+      background-color: ${({ disabled }) => (disabled ? "#999999" : "#3ea3fb")};
       outline: none;
       border: 1px solid #3ea3fb;
     }
@@ -113,12 +117,10 @@ export const Pagination = styled.section`
 `;
 
 export const Button = styled.button`
-  padding: 5px 13px;
-  margin-right: 0.6rem;
-  margin-left: 0.6rem;
+  padding: 1px 10px;
   color: #3ea3fb;
-  border: 1px solid ${({ disabled }) => (disabled ? '#999999' : '#3ea3fb')};
-  background-color: ${({ disabled }) => (disabled ? '#cccccc' : 'transparent')};
+  border: 1px solid ${({ disabled }) => (disabled ? "#999999" : "#3ea3fb")};
+  background-color: ${({ disabled }) => (disabled ? "#cccccc" : "transparent")};
   border-radius: 100px;
   text-align: left;
   outline: none;
@@ -132,7 +134,7 @@ export const Button = styled.button`
   &:hover,
   &:focus {
     color: white;
-    background-color: ${({ disabled }) => (disabled ? '#999999' : '#3ea3fb')};
+    background-color: ${({ disabled }) => (disabled ? "#999999" : "#3ea3fb")};
     outline: none;
     border: 1px solid #3ea3fb;
   }

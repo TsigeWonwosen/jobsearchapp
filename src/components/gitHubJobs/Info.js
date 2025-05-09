@@ -1,25 +1,31 @@
-import React from 'react';
-import JobsPagination from './JobsPagination';
-import styled from 'styled-components';
+import React from "react";
+import JobsPagination from "./JobsPagination";
+import styled from "styled-components";
 function Info({ numberOfJobs, rest, handleSortJobs, sortString }) {
   return (
     <Wrapper>
-      <JobsInfo>{numberOfJobs} Jobs</JobsInfo>
-
-      <JobsPagination rest={rest} />
       <JobSortWrapper>
         <JobsInfo>Sort by :</JobsInfo>
         <JobsSort
           value={sortString}
           onChange={(e) => handleSortJobs(e.target.value)}
         >
-          <option key="Matches" value="">
+          <option
+            key="Matches"
+            value=""
+          >
             Matches
           </option>
-          <option key="created_at" value="created_at">
+          <option
+            key="created_at"
+            value="created_at"
+          >
             Day
           </option>
-          <option key="title" value="title">
+          <option
+            key="title"
+            value="title"
+          >
             Title
           </option>
         </JobsSort>
@@ -32,12 +38,11 @@ export default Info;
 
 export const Wrapper = styled.nav`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 0 2rem;
-  height: 60px;
+  height: 50px;
   width: 90%;
-  margin: 1rem auto;
   background-color: #2d2d2d;
   color: #ffffff;
   @media (max-width: 900px) {

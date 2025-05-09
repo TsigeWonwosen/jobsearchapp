@@ -1,7 +1,7 @@
 import { Jobs, Nav, SideBar, useFetchJobs } from "./components/";
 
-import "./App.css";
 import styled from "styled-components";
+import "./App.css";
 function App() {
   const { jobs = [], loading, error } = useFetchJobs();
 

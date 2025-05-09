@@ -1,7 +1,8 @@
-import React from 'react';
-import DOMPurify from 'dompurify';
+import React from "react";
+import DOMPurify from "dompurify";
 
-import styled from 'styled-components';
+import styled from "styled-components";
+import { Ellipsis, X } from "lucide-react";
 
 export default function SingleJob({ job, Index, handleFeaturedJob }) {
   const {
@@ -16,52 +17,56 @@ export default function SingleJob({ job, Index, handleFeaturedJob }) {
 
   return (
     <Card onClick={() => handleFeaturedJob(Index)}>
-      <CardBody>
-        <JobApply>
-          <Body>
+      <JobApply>
+        {company_logo && (
+          <ImageContener>
+            <Image
+              src={company_logo}
+              alt={company}
+            />
+          </ImageContener>
+        )}
+        <Body>
+          <section className="flex justify-between items-center">
             <CardTitle>{title}</CardTitle>
-            <JobTitle>{company}</JobTitle>
-            <CardSubTitle>
-              {new Date(created_at).toLocaleDateString()}
-            </CardSubTitle>
-            <BadgeContainer>
-              <Badge>{location}</Badge>
-              <Badge>{type}</Badge>
-            </BadgeContainer>
+            <div className="flex justify-center items-center gap-2">
+              {" "}
+              <Ellipsis className="h-4 w-4  text-gray-300" />{" "}
+              <X className="h-4 w-4  text-gray-300" />
+            </div>
+          </section>
+          <JobTitle>{company}</JobTitle>
+          <CardSubTitle>
+            {new Date(created_at).toLocaleDateString()}
+          </CardSubTitle>
+          <BadgeContainer>
+            <Badge>{location}</Badge>
+            <Badge>{type}</Badge>
+          </BadgeContainer>
 
-            <div
-              className="content"
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(how_to_apply),
-              }}
-            ></div>
-          </Body>
-          {company_logo && (
-            <ImageContener>
-              <img src={company_logo} alt={company} />
-            </ImageContener>
-          )}
-        </JobApply>
-      </CardBody>
+          <div
+            className="content"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(how_to_apply),
+            }}
+          ></div>
+        </Body>
+      </JobApply>
     </Card>
   );
 }
 
 export const Card = styled.section`
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   background-color: #393939;
   width: 95%;
+  height: auto;
   max-width: 100%;
   min-height: 160px;
-  margin: 1rem auto;
+  margin: 0.2rem auto;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
-  color: #f2f2f3;
-  border-radius: 5px;
-  box-shadow: -1px 1px 0.5rem 1px rgba(255, 255, 255, 0.2);
+  align-slef: left;
+  border-radius: 1px;
   overflow-y: hidden;
   & img {
     width: 50px;
@@ -133,15 +138,19 @@ export const Card = styled.section`
 `;
 
 export const ImageContener = styled.section`
-  max-width: 60x;
-  max-height: 60px;
-  border-radius: 5px;
+  width: 65x;
+  height: 60px;
+  border-radius: 3px;
   overflow: hidden;
+  background-color: gray;
 `;
 export const JobApply = styled.section`
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  align-item: center;
+  gap: 1rem;
+  padding: 0.7rem 0.9rem;
 `;
 export const Body = styled.section`
   width: 100%;
@@ -149,23 +158,18 @@ export const Body = styled.section`
   flex-direction: column;
   justify-content: left;
   align-items: left;
-`;
-export const CardBody = styled.section`
-  width: 100%;
-  padding: 2rem 1rem;
-  margin: 0rem auto;
-  text-align: left;
+  text-height: 0.8rem;
 `;
 
 export const CardTitle = styled.h2`
   text-align: left;
   font-size: 0.9rem;
-  color: #378ad3;
+  color: #278ad3;
 `;
 
 export const JobTitle = styled.span`
   text-align: left;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   margin-top: 0.5rem;
   color: #f2f2f3;
 `;
@@ -192,9 +196,10 @@ export const Badge = styled.span`
   transition: all 0.3s ease-in-out;
 `;
 export const Image = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
 `;
 export const Text = styled.p`
   color: #cfd2d6;
@@ -206,7 +211,7 @@ export const Button = styled.button`
   color: #3ea3fb;
   border: 1px solid #3ea3fb;
   background-color: transparent;
-  border-radius: 100px;
+  border-radius: 4px;
   text-align: left;
   outline: none;
   cursor: pointer;

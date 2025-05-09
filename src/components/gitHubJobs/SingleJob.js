@@ -16,58 +16,59 @@ export default function SingleJob({ job, Index, handleFeaturedJob }) {
   } = job;
 
   return (
-    <Card onClick={() => handleFeaturedJob(Index)}>
-      <JobApply>
-        {company_logo && (
-          <ImageContener>
-            <Image
-              src={company_logo}
-              alt={company}
-            />
-          </ImageContener>
-        )}
-        <Body>
-          <section className="flex justify-between items-center">
-            <CardTitle>{title}</CardTitle>
-            <div className="flex justify-center items-center gap-2">
-              {" "}
-              <Ellipsis className="h-4 w-4  text-gray-300" />{" "}
-              <X className="h-4 w-4  text-gray-300" />
-            </div>
-          </section>
-          <JobTitle>{company}</JobTitle>
-          <CardSubTitle>
-            {new Date(created_at).toLocaleDateString()}
-          </CardSubTitle>
-          <BadgeContainer>
-            <Badge>{location}</Badge>
-            <Badge>{type}</Badge>
-          </BadgeContainer>
+    <JobApply onClick={() => handleFeaturedJob(Index)}>
+      {company_logo && (
+        <ImageContener>
+          <Image
+            src={company_logo}
+            alt={company}
+          />
+        </ImageContener>
+      )}
+      <Body>
+        <section className="flex justify-between items-center">
+          <CardTitle>{title}</CardTitle>
+          <div className="flex justify-center items-center gap-2">
+            <Ellipsis className="h-4 w-4  text-gray-300" />{" "}
+            <X className="h-4 w-4  text-gray-300" />
+          </div>
+        </section>
+        <JobTitle>{company}</JobTitle>
+        <CardSubTitle>{new Date(created_at).toLocaleDateString()}</CardSubTitle>
+        <BadgeContainer>
+          <Badge>{location}</Badge>
+          <Badge>{type}</Badge>
+        </BadgeContainer>
 
-          <div
-            className="content"
-            dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(how_to_apply),
-            }}
-          ></div>
-        </Body>
-      </JobApply>
-    </Card>
+        <div
+          className="content mb-2"
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(how_to_apply),
+          }}
+        ></div>
+      </Body>
+    </JobApply>
   );
 }
 
-export const Card = styled.section`
+export const JobApply = styled.section`
   background-color: #393939;
   width: 95%;
   height: auto;
-  max-width: 100%;
   min-height: 160px;
-  margin: 0.2rem auto;
+  padding: 0.7rem 0.6rem;
+  max-height: 350px;
+  max-width: 100%;
+  margin: 0.2rem;
+  padding:0.5rem 1rem
+  margin-right: auto;
   display: flex;
   justify-content: center;
-  align-slef: left;
   border-radius: 1px;
+  align-item: center;
+  gap: 1rem;
   overflow-y: hidden;
+
   & img {
     width: 50px;
     height: 50px;
@@ -138,20 +139,13 @@ export const Card = styled.section`
 `;
 
 export const ImageContener = styled.section`
-  width: 65x;
+  width: 60x;
   height: 60px;
   border-radius: 3px;
   overflow: hidden;
   background-color: gray;
 `;
-export const JobApply = styled.section`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-item: center;
-  gap: 1rem;
-  padding: 0.7rem 0.9rem;
-`;
+
 export const Body = styled.section`
   width: 100%;
   display: flex;

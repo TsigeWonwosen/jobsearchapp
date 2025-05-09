@@ -88,16 +88,18 @@ function Jobs({ jobs, loading, error }) {
                 searches, and saves {numberOfJobs} results
               </p>
             </div>
-            {SortedJobs &&
-              SortedJobs?.map((job, index) => (
-                <SingleJob
-                  job={job}
-                  key={index}
-                  Index={index}
-                  handleFeaturedJob={handleFeaturedJob}
-                />
-              ))}
-            <JobsPagination rest={rest} />
+            <div className="w-full h-full">
+              {SortedJobs &&
+                SortedJobs?.map((job, index) => (
+                  <SingleJob
+                    job={job}
+                    key={index}
+                    Index={index}
+                    handleFeaturedJob={handleFeaturedJob}
+                  />
+                ))}
+              <JobsPagination rest={rest} />
+            </div>
           </JobsList>
           {SortedJobs.length > 0 && (
             <JobsListShow>
@@ -147,6 +149,7 @@ export const Wrapper = styled.div`
 export const JobsListWrapper = styled.section`
   display: flex;
   width: 100%;
+  height: auto;
   margin: 1rem auto;
   max-width: calc(100vw - 200px);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -164,12 +167,12 @@ export const JobsListWrapper = styled.section`
 export const JobsList = styled.section`
   width: 100%;
   height: 100vh;
-  max-height: 100%;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   flex: 4;
-  overflow-y: scroll;
+  overflow-y: auto;
   @media (max-width: 900px) {
     width: 100%;
     overflow: hidden;
@@ -197,11 +200,13 @@ export const JobsListShow = styled.section`
   width: 100%;
   height: 100%;
   max-height: 100vh;
+  min-height: calc(100vh - 50px);
+
   flex: 6;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {

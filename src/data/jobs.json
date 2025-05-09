@@ -77,6 +77,39 @@
       "description": "About the job Coolshop is a UX-centered digital solution provider focused on creating effective extended sales processes. Born in 2010, we leverage the Italian world-renowned talents in creativity and design, writing cutting-edge code to provide great B2B and B2C applications. Proudly from Torino, now in Rotterdam, Chicago, and Dubai. We are looking for a Frontend Developer (React) for our Turin branch.The mission is to develop tools that improve the way our customers work and interact with our products and services.The mission is to develop tools that improve the way our customers work and interact with our products and services.",
 
       "url": "https://securenetsolutions.com/careers/cyber-dc"
+    },
+    {
+      "title": "Senior React Developer",
+      "company": "TechVision",
+      "created_at": "2025-05-15T09:30:00Z",
+      "how_to_apply": "Apply at https://techvision.recruitee.com",
+      "location": "Remote (Global)",
+      "type": "Full-time",
+      "company_logo": "https://logo.clearbit.com/techvision.io",
+      "description": "<p><strong>About the Role:</strong> Lead frontend development for our SaaS platform using React 18, TypeScript, and Next.js. You'll architect scalable solutions and mentor junior developers.</p><p><strong>Key Responsibilities:</strong></p><ul><li>Develop performant UIs with React Hooks</li><li>Optimize Web Vitals scores (LCP, FID, CLS)</li><li>Collaborate with UX designers using Figma</li><li>Implement CI/CD pipelines with GitHub Actions</li></ul><p><strong>Requirements:</strong> 5+ years React experience, GraphQL proficiency, and expertise in Webpack module federation.</p>",
+      "url": "https://techvision.io/careers/senior-react-dev"
+    },
+    {
+      "title": "DevOps Engineer (AWS)",
+      "company": "CloudNova",
+      "created_at": "2025-05-14T11:20:00Z",
+      "how_to_apply": "Email CV to devops@cloudnova.com",
+      "location": "Austin, TX | Hybrid",
+      "type": "Full-time",
+      "company_logo": "https://logo.clearbit.com/cloudnova.com",
+      "description": "<p><strong>Why Join Us?</strong> CloudNova is revolutionizing cloud infrastructure with AI-driven automation. We need a DevOps expert to manage our Kubernetes clusters.</p><p><strong>You'll:</strong></p><ul><li>Design Terraform modules for multi-region AWS deployments</li><li>Implement GitOps workflows with ArgoCD</li><li>Reduce EC2 costs by 30% via spot instance optimization</li><li>Develop SLAs/SLOs with Prometheus/Grafana</li></ul><p><strong>Perks:</strong> $5k/annual training budget, 4-day workweeks every August.</p>",
+      "url": "https://cloudnova.com/jobs/aws-devops"
+    },
+    {
+      "title": "UX Researcher",
+      "company": "DesignHub",
+      "created_at": "2025-04-01T08:10:00Z",
+      "how_to_apply": "Portfolio to careers@designhub.com",
+      "location": "Berlin, Germany",
+      "type": "Contract",
+      "company_logo": "https://logo.clearbit.com/designhub.com",
+      "description": "<p><strong>Impact:</strong> Conduct user research for Fortune 500 clients using mixed methods (surveys, diary studies, usability tests).</p><p><strong>Tools We Use:</strong></p><ul><li>Qualtrics for quantitative analysis</li><li>Dovetail for qualitative insights</li><li>Figma for prototype testing</li></ul><p><strong>Ideal Candidate:</strong> 3+ years in enterprise UX research, fluent in German/English, with experience in accessibility audits (WCAG 2.1).</p>",
+      "url": "https://designhub.com/ux-researcher"
     }
   ],
   "total": 50,

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import Axios from "axios";
-import jobsData from "../../data/jobs.json";
-const BASE_URL = "../../data/jobs.json";
+// import Axios from "axios";
+// import jobsData from "../../data/jobs.json";
+// const BASE_URL = "../../data/jobs.json";
 
 export default function useFetchJobs() {
   const [jobs, setJobs] = useState([]);

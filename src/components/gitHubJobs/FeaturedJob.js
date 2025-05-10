@@ -19,80 +19,62 @@ export default function FeaturedJob({ featuredJob }) {
     url,
   } = featuredJob;
 
-  const timeOfDays = timeSince(new Date(created_at));
+  const timeOfDays = timeSince(created_at);
 
   return (
-    <Card>
-      <CardBody>
-        <JobApply>
-          <Body>
-            <CardTitle>
-              {title} - <JobTitle>{company}</JobTitle>
-            </CardTitle>
-            <CardSubTitle>{timeOfDays}</CardSubTitle>
-            <BadgeContainer>
-              <Badge>{location}</Badge>
-              <Badge>{type}</Badge>
-            </BadgeContainer>
-            <ApplyButton
-              href={url}
-              target="_blank"
-            >
-              Apply
-            </ApplyButton>
-            <div
-              className="content"
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(how_to_apply),
-              }}
-            ></div>
-          </Body>
-          {company_logo && (
-            <ImageContainer>
-              <img
-                src={company_logo}
-                alt={company}
-              />
-            </ImageContainer>
-          )}
-        </JobApply>
-        <Article
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(description),
-          }}
-        ></Article>
-      </CardBody>
-    </Card>
+    <FeaturedJobCard>
+      <JobApply>
+        <Body>
+          <CardTitle>
+            {title} - <JobTitle>{company}</JobTitle>
+          </CardTitle>
+          <CardSubTitle>{timeOfDays}</CardSubTitle>
+          <BadgeContainer>
+            <Badge>{location}</Badge>
+            <Badge>{type}</Badge>
+          </BadgeContainer>
+          <StyledAnchor
+            href={url}
+            target="_blank"
+          >
+            Apply
+          </StyledAnchor>
+          <div
+            className="content"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(how_to_apply),
+            }}
+          ></div>
+        </Body>
+        {company_logo && (
+          <ImageContainer>
+            <img
+              src={company_logo}
+              alt={company}
+            />
+          </ImageContainer>
+        )}
+      </JobApply>
+      <Article
+        dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(description),
+        }}
+      ></Article>
+    </FeaturedJobCard>
   );
 }
 
-export const Card = styled.section`
-  background-color: #393939;
+export const FeaturedJobCard = styled.section`
+  background-color: #252728;
   width: 100%;
   height: 100%;
+  min-height: calc(100vh - (70px + 50px));
   max-width: 100%;
-  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 5px;
   color: #f2f2f3;
-  overflow-y: scroll;
+  overflow-y: auto;
 
-  &::-webkit-scrollbar {
-    width: 3px;
-  }
-
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
   & img {
     width: 80px;
     height: 80px;
@@ -206,17 +188,11 @@ export const JobApply = styled.section`
   height: 100%;
 `;
 export const Body = styled.section`
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: left;
   align-items: left;
-`;
-export const CardBody = styled.section`
-  width: 90%;
-  padding: 2rem;
-  margin: 1rem auto;
-  text-align: left;
 `;
 
 export const CardTitle = styled.h2`
@@ -257,50 +233,47 @@ export const Image = styled.img`
   object-fit: cover;
 `;
 export const Text = styled.p`
+  width: 100%;
+  height: auto;
   color: #cfd2d6;
   font-size: 0.7px;
   text-align: left;
 `;
 
-export const Button = styled.a`
-  all: none;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  padding: 5px 8px;
-  color: #3ea3fb;
-  border: 1px solid #3ea3fb;
-  background-color: transparent;
-  border-radius: 100px;
-  max-width: 2rem;
-  text-align: left;
-  outline: none;
-  cursor: pointer;
-  display: inline-block;
-  transition: all 0.3s ease-in-out;
+const StyledAnchor = styled.a`
+  color: #2c3e50;
+  text-decoration: none;
+  font-family: "Arial", sans-serif;
+  padding: 6px 12px;
+  border: 1px solid #bdc3c7;
+  border-radius: 3px;
+  transition: all 0.2s;
 
-  &:hover,
-  &:focus {
+  &:hover {
+    background-color: #2c3e50;
     color: white;
-    background-color: #3ea3fb99;
-    outline: none;
-    border: 1px solid #3ea3fb;
+    border-color: #2c3e50;
+  }
+
+  &:visited {
+    color: #7f8c8d;
   }
 `;
 
-export const ApplyButton = styled(Button)`
-  color: white;
-  background-color: #3ea3fb;
-  outline: none;
-  border: none;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  border: 1px solid #3ea3fb;
-  max-width: 5rem !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-`;
+// export const FeaturedJobButton = styled(ButtonFeatured)`
+//   color: white;
+//   background-color: #3ea3fb;
+//   outline: none;
+//   border: none;
+//   font-size: 0.9rem;
+//   letter-spacing: 1px;
+//   border: 1px solid #3ea3fb;
+//   max-width: 5rem;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-bottom: 2rem;
+// `;
 
 export const Article = styled.article`
   width: 100%;

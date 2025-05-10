@@ -1,4 +1,4 @@
-import { Jobs, Nav, SideBar, useFetchJobs } from "./components/";
+import { Jobs, Nav } from "./components/";
 import { AppProvider } from "./context/AppContext";
 import styled from "styled-components";
 import "./App.css";
@@ -20,4 +20,5 @@ export const Container = styled.div`
   flex-direction: column;
   width: 100vw;
   min-height: 100vh;
+  background-color: #1c1c1d;
 `;

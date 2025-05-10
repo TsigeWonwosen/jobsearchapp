@@ -13,11 +13,10 @@ export default function SingleJob({ job, handleFeaturedJob, isselected }) {
     type,
     company_logo,
   } = job;
-
   return (
     <JobApply
       onClick={() => handleFeaturedJob(job.id)}
-      isselected={isselected}
+      $isselected={isselected}
     >
       {company_logo && (
         <ImageContener>
@@ -34,7 +33,7 @@ export default function SingleJob({ job, handleFeaturedJob, isselected }) {
           }`}
         >
           <CardTitle>{title}</CardTitle>
-          <div className="flex justify-center items-center gap-2">
+          <div className="flex justify-center items-center gap-3">
             <Ellipsis className="h-4 w-4  text-gray-300" />{" "}
             <X className="h-4 w-4  text-gray-300" />
           </div>
@@ -59,29 +58,25 @@ export default function SingleJob({ job, handleFeaturedJob, isselected }) {
 
 export const JobApply = styled.section`
   background-color: #393939;
-  width: 95%;
-  height: auto;
+  width: 98%;
   min-height: 160px;
-  padding: 0.7rem 0.6rem;
   max-height: 350px;
   max-width: 100%;
+  line-height: 0.7rem !important;
   margin: 0.2rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   margin-right: auto;
   display: flex;
   justify-content: center;
   border-radius: 1px;
   gap: 1rem;
-  background-color: ${({ isselected }) =>
-    isselected ? "#383838" : "transparent"};
+  background-color: ${({ $isselected }) =>
+    $isselected ? "#252728" : "transparent"};
   border-left: 4px solid
-    ${({ isselected }) => (isselected ? "#0050FF" : "transparent")};
+    ${({ $isselected }) => ($isselected ? "#0050FF" : "transparent")};
+  border-bottom: 0.5px solid rgba(55, 51, 51, 0.775);
   overflow-y: hidden;
   transition: all 0.3s ease-in-out;
-
-  // &:hover{
-  // background-color: #010101;
-  // }
 
   & img {
     width: 50px;
@@ -166,7 +161,6 @@ export const Body = styled.section`
   flex-direction: column;
   justify-content: left;
   align-items: left;
-  text-height: 0.8rem;
 `;
 
 export const CardTitle = styled.h2`
@@ -193,8 +187,8 @@ export const BadgeContainer = styled.section`
   margin-bottom: 1rem;
 `;
 export const Badge = styled.span`
-  background-color: #cfd2d6;
-  color: black;
+  background-color: #4e5051;
+  color: #e6e7eb;
   font-size: 0.8rem;
   text-align: center;
   padding: 5px 14px;
@@ -232,13 +226,4 @@ export const Button = styled.button`
     outline: none;
     border: 1px solid #3ea3fb;
   }
-`;
-
-export const ApplyButton = styled(Button)`
-  color: white;
-  background-color: #3ea3fb;
-  outline: none;
-  border: none;
-  padding: 1px;
-  margin-bottom: 2rem;
 `;

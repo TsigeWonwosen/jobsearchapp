@@ -7,7 +7,7 @@ export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const [featured, setFeatured] = React.useState("1");
   const [sortString, setSortString] = React.useState("");
-  const { jobs = [], loading, error } = useFetchJobs();
+  const { jobs = [] } = useFetchJobs();
   const {
     selectedJobs,
     numberOfJobs,
@@ -67,6 +67,7 @@ export const AppProvider = ({ children }) => {
     setLocation,
     setType,
     totalPaginationSize,
+    featured,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

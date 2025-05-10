@@ -30,28 +30,30 @@ function Jobs() {
       {error && <h1>Error ...Try Refreshing</h1>}
 
       <JobsListWrapper>
-        <JobsList>
-          <div className="flex justify-sart align-center px-2 py-2 flex-col gap-2 border-b-[1px] border-gray-600 mb-1">
+        <div className="h-full w-1/2 min-h-screen">
+          <div className="w-full flex justify-sart align-center px-1 py-2 pb-3 flex-col gap-2 border-b-[0.5px] border-gray-800 mb-2">
             <h2 className="text-base font-semibold">Top job picks for you</h2>
             <p className="text-sm text-gray-300">
               Based on your profile, preferences, and activity like applies,
               searches, and saves {numberOfJobs} results
             </p>
           </div>
-          <div className="w-full h-full">
-            {SortedJobs &&
-              SortedJobs?.map((job) => (
-                <SingleJob
-                  job={job}
-                  key={job.id}
-                  isselected={featured === job.id ? "selected" : undefined}
-                  handleFeaturedJob={handleFeaturedJob}
-                />
-              ))}
-            <JobsPagination rest={rest} />
-          </div>
-        </JobsList>
-        <div className="w-1/2 h-full">
+          <JobsList>
+            <div className="w-full h-full">
+              {SortedJobs &&
+                SortedJobs?.map((job) => (
+                  <SingleJob
+                    job={job}
+                    key={job.id}
+                    isselected={featured === job.id ? "selected" : undefined}
+                    handleFeaturedJob={handleFeaturedJob}
+                  />
+                ))}
+            </div>
+          </JobsList>
+          <JobsPagination rest={rest} />
+        </div>
+        <div className="w-1/2 h-full flex justify-center items-center ">
           {SortedJobs.length > 0 && (
             <JobsListShow>
               <FeaturedJob featuredJob={featuredJob} />
@@ -66,13 +68,14 @@ function Jobs() {
 export default Jobs;
 
 export const Container = styled.div`
-  width: 99vw;
-  max-width: 100%;
   min-height: calc(100vh - 50px);
-  min-height: 100%;
-  margin: 0rem auto;
-  padding: 3rem auto 2rem;
-  background-color: #2d2d2d;
+  height: 100%;
+  width: 100%;
+  max-width: 1280px;
+  margin: 1rem auto;
+  padding: 1rem auto 2rem;
+  border-radius: 5px;
+  background-color: #1c1c1d;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -89,46 +92,38 @@ export const Container = styled.div`
 export const JobsListWrapper = styled.section`
   display: flex;
   width: 100%;
-  height: auto;
-  margin: 1rem auto;
-  max-width: calc(100vw - 20px);
-  padding: 2rem 3rem;
+  height: 100vh;
+  margin: 0.2rem auto;
+  padding: 1rem;
   overflow: hidden;
-
-  @media (max-width: 900px) {
-    flex-direction: column-reverse;
-    width: 100%;
-    max-width: calc(100vw);
-    margin: 1.5rem auto;
-    padding: 1rem 0.5rem;
-  }
+  gap: 1rem;
+  border-top: 0.5px solid rgba(55, 51, 51, 0.775);
 `;
 
 export const JobsList = styled.section`
   width: 100%;
-  height: 100vh;
-  max-height: 100vh;
+  height: 100%;
+  max-height: calc(100vh - (70px + 100px));
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 4;
   overflow-y: auto;
-  @media (max-width: 900px) {
-    width: 100%;
-    overflow: hidden;
-  }
+  gap: 0.5rem;
+
   &::-webkit-scrollbar {
-    width: 5px;
-    border-radius: 4px;
+    width: 8px;
+    border-radius: 8px;
   }
   /* Track */
   &::-webkit-scrollbar-track {
-    background: #f2f2f2;
+    background: #888;
+    border-radius: 8px;
   }
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #555;
+    border-radius: 8px;
   }
 
   /* Handle on hover */
@@ -141,13 +136,11 @@ export const JobsListShow = styled.section`
   height: 100%;
   max-height: 100vh;
   min-height: calc(100vh - 50px);
-
-  flex: 6;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   &::-webkit-scrollbar {
     width: 3px;

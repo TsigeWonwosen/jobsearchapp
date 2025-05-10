@@ -1,5 +1,4 @@
-import React from 'react';
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export default function SideBar() {
   return (
@@ -49,7 +48,6 @@ export const Items = styled.li`
   align-items: left;
   padding: 4px 10px;
   margin-bottom: 1rem;
-
   text-align: left;
   cursor: pointer;
 `;

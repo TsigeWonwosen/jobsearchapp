@@ -52,7 +52,6 @@ const useFilter = (jobs) => {
 
     return selectNewJobs();
   };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     selectedJobsCb();
   }, [lastIndexOfSelectedJobs, jobs]);

@@ -19,27 +19,30 @@ export default function SearchForm() {
 
   return (
     <FomContainer onSubmit={handleSubmit}>
-      <SearchLocation>
-        <Input
-          id="label"
-          value={location}
-          onChange={(e) => setSelectedLocation(e.target.value)}
-          placeholder="Search Location"
-        />
-        <section className="absolute top-1/2 left-3  -translate-y-1/2">
-          <MapPin />
-        </section>
-      </SearchLocation>
+      <SearchAndSelectWrapper>
+        <SearchLocation>
+          <Input
+            id="label"
+            value={location}
+            onChange={(e) => setSelectedLocation(e.target.value)}
+            placeholder="Search Location"
+          />
+          <section className="absolute top-1/2 left-3  -translate-y-1/2 text-gray-200">
+            <MapPin size={"18px"} />
+          </section>
+        </SearchLocation>
 
-      <FormSelect
-        value={type}
-        onChange={(e) => setSelectedType(e.target.value)}
-      >
-        <option value="">Jobs Type </option>
-        <option value="contract">Contract</option>
-        <option value="full time">Full Time</option>
-        <option value="remote">Remote</option>
-      </FormSelect>
+        <FormSelect
+          value={type}
+          onChange={(e) => setSelectedType(e.target.value)}
+        >
+          <option value="">Jobs Type </option>
+          <option value="contract">Contract</option>
+          <option value="full time">Full Time</option>
+          <option value="remote">Remote</option>
+        </FormSelect>
+      </SearchAndSelectWrapper>
+
       <Button type="submit"> Search</Button>
     </FomContainer>
   );
@@ -50,7 +53,8 @@ export const FomContainer = styled.form`
   justify-content: center;
   align-items: center;
   width: auto;
-  gap: 1rem;
+  font-size: 14px;
+  gap: 0.5rem;
   margin: 1rem auto;
   @media (max-width: 900px) {
     width: 100%;
@@ -58,16 +62,21 @@ export const FomContainer = styled.form`
   }
 `;
 
+export const SearchAndSelectWrapper = styled.div`
+  display: flex;
+`;
 export const FormSelect = styled.select`
   padding: 8px 16px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  background-color: white;
-  font-size: 16px;
+  border: 1px solid gray;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
   color: white;
+  font-size: 14px;
+  letter-spacing: 1px;
   width: 100%;
   max-width: 250px;
   background-color: #383838;
+  background-color: #333334;
 
   &:focus {
     outline: none;
@@ -83,16 +92,20 @@ export const FormSelect = styled.select`
 
 export const SearchLocation = styled.div`
   position: relative;
-  color: #c4c8cc;
+  color: gray;
   display: flex;
   flex-direction: column;
   align-items: left;
   justify-content: center;
-  width: 90%;
-  max-width: 300px;
-  height: auto;
-  border: 1px solid #c4c8cc;
-  border-radius: 4px;
+  width: 100%;
+  min-width: 300px;
+  max-width: 350px;
+  /* height: 100%; */
+  background-color: #333334;
+  border: 1px solid gray;
+  border-right: none;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
 
   @media (max-width: 900px) {
     width: 100%;
@@ -100,13 +113,13 @@ export const SearchLocation = styled.div`
 `;
 
 export const Input = styled.input`
-  padding: 0.6rem;
+  padding: 8px 1rem;
   padding-left: 3rem;
   color: #c4c8cc;
-  background: #2d2d2d;
-  width: 90%;
-  font-size: 1rem;
+  width: 100%;
+  font-size: 14px;
   outline: none;
+  background: transparent;
   @media (max-width: 900px) {
     padding: 0.4rem 0.5;
     margin-bottom: 0rem;
@@ -115,25 +128,22 @@ export const Input = styled.input`
 
 export const Select = styled.select`
   display: block;
-  font-size: 16px;
+  font-size: 14px;
   font-family: sans-serif;
   font-weight: 400;
   letter-spacing: 1px;
   color: #f2f2f2;
-  line-height: 1.3;
-  padding: 0.6em 1.4em 0.5em 0.8em;
+  padding: 6px 1.4em;
   width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  border: 1px solid #aaa;
-  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-  border-radius: 5px;
+  max-width: 100px;
+  /* border: 1px solid gray; */
+  /* box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  border-radius: none;
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  background-color: #2d2d2d;
-  background-size: 0.65em auto, 100%;
+  background-color: #333334;
+  background-size: 0.65em auto, 100%; */
 
   &::-ms-expand {
     display: none;
@@ -154,15 +164,13 @@ export const Select = styled.select`
 `;
 
 export const Button = styled.button`
-  padding: 0;
-  margin: 0;
-  width: 100px;
-  padding: 0.4rem 0.5rem;
-  font-size: 1rem;
+  width: auto;
+  padding: 5px 1rem;
+  font-size: 15px;
   letter-spacing: 1px;
   text-align: center;
-  border-radius: 5px;
-  border: 2px solid rgba(59, 153, 252, 0.7);
+  border-radius: 50px;
+  border: 2px solid gray;
   color: white;
   outline: none;
   cursor: pointer;

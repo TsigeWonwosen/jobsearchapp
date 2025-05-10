@@ -1,20 +1,21 @@
-import React from "react";
 import styled from "styled-components";
 import SearchForm from "../gitHubJobs/SearchForm";
 
 function Nav() {
   return (
-    <Wrapper>
-      <Logo>
-        <h2 className="font-semibold text-[24px]">Jobs.</h2>
-      </Logo>
-      <SearchForm />
-      <NavItems>
-        <Items>Home</Items>
-        <Items>Jobs</Items>
-        <Items>Contact</Items>
-      </NavItems>
-    </Wrapper>
+    <div className="w-full  border-b border-gray-400">
+      <Wrapper>
+        <Logo>
+          <h2 className="font-semibold text-[24px]">Jobs.</h2>
+        </Logo>
+        <SearchForm />
+        <NavItems>
+          <Items>Home</Items>
+          <Items>Jobs</Items>
+          <Items>Contact</Items>
+        </NavItems>
+      </Wrapper>
+    </div>
   );
 }
 
@@ -27,18 +28,17 @@ export const Wrapper = styled.nav`
   left: 0;
   right: 0;
   z-index: 10;
-  margin: 0;
-  padding: 0;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
-  height: 60px;
+  padding: 0 1rem;
+  height: 70px;
   width: 100vw;
-  background-color: #2d2d2d;
+  max-width: 1280px;
+  background-color: #252728;
   color: #ffffff;
   box-shadow: 0 4px 1rem 4px rgba(0, 0, 0, 0.2);
-  border-top: 3px solid #f48029;
 `;
 
 export const Title = styled.h1`

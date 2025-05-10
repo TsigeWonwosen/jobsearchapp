@@ -1,14 +1,12 @@
-import React from 'react';
-import DOMPurify from 'dompurify';
+import DOMPurify from "dompurify";
+import { timeSince } from "../../utility/timeAge";
+import styled from "styled-components";
 
-import { timeSince } from '../../utility/timeAge';
-
-import styled from 'styled-components';
-
-export default function SingleJob({ featuredJob }) {
-  if (featuredJob === 'undefined' || featuredJob === null) {
+export default function FeaturedJob({ featuredJob }) {
+  if (featuredJob === "undefined" || featuredJob === null) {
     return <h1>Loading ..</h1>;
   }
+
   const {
     title,
     company,
@@ -20,6 +18,7 @@ export default function SingleJob({ featuredJob }) {
     description,
     url,
   } = featuredJob;
+
   const timeOfDays = timeSince(new Date(created_at));
 
   return (
@@ -35,7 +34,10 @@ export default function SingleJob({ featuredJob }) {
               <Badge>{location}</Badge>
               <Badge>{type}</Badge>
             </BadgeContainer>
-            <ApplyButton href={url} target="_blank">
+            <ApplyButton
+              href={url}
+              target="_blank"
+            >
               Apply
             </ApplyButton>
             <div
@@ -47,7 +49,10 @@ export default function SingleJob({ featuredJob }) {
           </Body>
           {company_logo && (
             <ImageContainer>
-              <img src={company_logo} alt={company} />
+              <img
+                src={company_logo}
+                alt={company}
+              />
             </ImageContainer>
           )}
         </JobApply>
@@ -64,6 +69,7 @@ export default function SingleJob({ featuredJob }) {
 export const Card = styled.section`
   background-color: #393939;
   width: 100%;
+  height: 100%;
   max-width: 100%;
   margin: 0 auto;
   color: #f2f2f3;
@@ -197,6 +203,7 @@ export const JobApply = styled.section`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  height: 100%;
 `;
 export const Body = styled.section`
   width: 90%;

@@ -1,113 +1,64 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import SingleJob from "./SingleJob";
 import FeaturedJob from "./FeaturedJob";
-import SearchForm from "./SearchForm";
-import useFilter from "./useFilter";
 import Info from "./Info";
 
 import styled from "styled-components";
 import JobsPagination from "./JobsPagination";
+import { useAppContext } from "../../context/useAppContext";
+import useFetchJobs from "./useFetchJobs";
 
-function Jobs({ jobs, loading, error }) {
-  const [featured, setFeatured] = React.useState(0);
-  const [sortString, setSortString] = React.useState("");
-
+function Jobs() {
+  const { jobs = [], loading, error } = useFetchJobs();
   const {
-    selectedJobs,
+    SortedJobs,
+    handleFeaturedJob,
+    sortString,
+    featured,
+    rest,
+    featuredJob,
     numberOfJobs,
-    setLocation,
-    setType,
-    totalPaginationSize,
-    next,
-    prev,
-    setLastIndexOfSelectedJobs,
-    lastIndexOfSelectedJobs,
-  } = useFilter(jobs);
-
-  let SortedJobs =
-    sortString.length && sortString === "title"
-      ? selectedJobs.sort((a, b) => {
-          const sortStringA = a.title?.toUpperCase();
-          const sortStringB = b.title?.toUpperCase();
-
-          if (sortStringA < sortStringB) {
-            return -1;
-          }
-          if (sortStringA > sortStringB) {
-            return 1;
-          }
-
-          return 0;
-        })
-      : selectedJobs.sort((a, b) => {
-          return new Date(b.created_at) - new Date(a.created_at);
-        });
-
-  const featuredJob = SortedJobs?.[featured];
+  } = useAppContext();
 
   useEffect(() => {}, [sortString, jobs]);
 
-  const rest = {
-    totalPaginationSize,
-    next,
-    prev,
-    setLastIndexOfSelectedJobs,
-    lastIndexOfSelectedJobs,
-  };
-
-  const handleFeaturedJob = (id) => {
-    setFeatured(id);
-  };
-
-  const handleSortJobs = (data) => {
-    setSortString(data);
-  };
   return (
     <Container>
-      <Wrapper>
-        <SearchForm
-          setLocation={setLocation}
-          setType={setType}
-        />
-        <Info
-          numberOfJobs={numberOfJobs}
-          rest={rest}
-          handleSortJobs={handleSortJobs}
-          sortString={sortString}
-        />
-        {loading && <h1>Loading ...</h1>}
-        {error && <h1>Error ...Try Refreshing</h1>}
+      <Info />
+      {loading && <h1>Loading ...</h1>}
+      {error && <h1>Error ...Try Refreshing</h1>}
 
-        <JobsListWrapper>
-          <JobsList>
-            <div className="flex justify-sart align-center px-2 py-2 flex-col gap-2 border-b-[1px] border-gray-600 mb-1">
-              <h2 className="text-base font-semibold">Top job picks for you</h2>
-              <p className="text-sm text-gray-300">
-                Based on your profile, preferences, and activity like applies,
-                searches, and saves {numberOfJobs} results
-              </p>
-            </div>
-            <div className="w-full h-full">
-              {SortedJobs &&
-                SortedJobs?.map((job, index) => (
-                  <SingleJob
-                    job={job}
-                    key={index}
-                    Index={index}
-                    handleFeaturedJob={handleFeaturedJob}
-                  />
-                ))}
-              <JobsPagination rest={rest} />
-            </div>
-          </JobsList>
+      <JobsListWrapper>
+        <JobsList>
+          <div className="flex justify-sart align-center px-2 py-2 flex-col gap-2 border-b-[1px] border-gray-600 mb-1">
+            <h2 className="text-base font-semibold">Top job picks for you</h2>
+            <p className="text-sm text-gray-300">
+              Based on your profile, preferences, and activity like applies,
+              searches, and saves {numberOfJobs} results
+            </p>
+          </div>
+          <div className="w-full h-full">
+            {SortedJobs &&
+              SortedJobs?.map((job) => (
+                <SingleJob
+                  job={job}
+                  key={job.id}
+                  isselected={featured === job.id ? "selected" : undefined}
+                  handleFeaturedJob={handleFeaturedJob}
+                />
+              ))}
+            <JobsPagination rest={rest} />
+          </div>
+        </JobsList>
+        <div className="w-1/2 h-full">
           {SortedJobs.length > 0 && (
             <JobsListShow>
               <FeaturedJob featuredJob={featuredJob} />
             </JobsListShow>
           )}
-        </JobsListWrapper>
-      </Wrapper>
+        </div>
+      </JobsListWrapper>
     </Container>
   );
 }
@@ -115,23 +66,9 @@ function Jobs({ jobs, loading, error }) {
 export default Jobs;
 
 export const Container = styled.div`
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   width: 99vw;
   max-width: 100%;
   min-height: calc(100vh - 50px);
-  padding-left: 200px;
-  @media (max-width: 900px) {
-    padding-left: 0px;
-  }
-`;
-
-export const Wrapper = styled.div`
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  width: 99%;
   min-height: 100%;
   margin: 0rem auto;
   padding: 3rem auto 2rem;
@@ -144,6 +81,9 @@ export const Wrapper = styled.div`
   @media (max-width: 900px) {
     padding: 3rem auto 1rem;
   }
+  @media (max-width: 900px) {
+    padding-left: 0px;
+  }
 `;
 
 export const JobsListWrapper = styled.section`
@@ -151,10 +91,10 @@ export const JobsListWrapper = styled.section`
   width: 100%;
   height: auto;
   margin: 1rem auto;
-  max-width: calc(100vw - 200px);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-
+  max-width: calc(100vw - 20px);
+  padding: 2rem 3rem;
   overflow: hidden;
+
   @media (max-width: 900px) {
     flex-direction: column-reverse;
     width: 100%;

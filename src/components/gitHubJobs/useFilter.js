@@ -6,7 +6,7 @@ const useFilter = (jobs) => {
   const [typeOfJob, setTypeOfJob] = useState("");
   const [jobLocation, setSelectedLocation] = useState("");
   const [selectedJobs, setSelectedJobs] = useState([]);
-  const [lastIndexOfSelectedJobs, setLastIndexOfSelectedJobs] = useState(1);
+  const [lastIndexOfSelectedJobs, setLastIndexOfSelectedJobs] = useState("1");
   const [totalPaginationSize, setTotalPagination] = useState(1);
   const [numberOfJobs, setNumberOfJobs] = useState(jobs.length);
 

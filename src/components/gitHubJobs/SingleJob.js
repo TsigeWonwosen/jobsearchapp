@@ -1,10 +1,9 @@
-import React from "react";
 import DOMPurify from "dompurify";
 
 import styled from "styled-components";
 import { Ellipsis, X } from "lucide-react";
 
-export default function SingleJob({ job, Index, handleFeaturedJob }) {
+export default function SingleJob({ job, handleFeaturedJob, isselected }) {
   const {
     title,
     company,
@@ -16,7 +15,10 @@ export default function SingleJob({ job, Index, handleFeaturedJob }) {
   } = job;
 
   return (
-    <JobApply onClick={() => handleFeaturedJob(Index)}>
+    <JobApply
+      onClick={() => handleFeaturedJob(job.id)}
+      isselected={isselected}
+    >
       {company_logo && (
         <ImageContener>
           <Image
@@ -26,7 +28,11 @@ export default function SingleJob({ job, Index, handleFeaturedJob }) {
         </ImageContener>
       )}
       <Body>
-        <section className="flex justify-between items-center">
+        <section
+          className={`flex justify-between items-center ${
+            isselected ? " text-yellow-300" : ""
+          }`}
+        >
           <CardTitle>{title}</CardTitle>
           <div className="flex justify-center items-center gap-2">
             <Ellipsis className="h-4 w-4  text-gray-300" />{" "}
@@ -60,14 +66,22 @@ export const JobApply = styled.section`
   max-height: 350px;
   max-width: 100%;
   margin: 0.2rem;
-  padding:0.5rem 1rem
+  padding: 0.5rem 1rem;
   margin-right: auto;
   display: flex;
   justify-content: center;
   border-radius: 1px;
-  align-item: center;
   gap: 1rem;
+  background-color: ${({ isselected }) =>
+    isselected ? "#383838" : "transparent"};
+  border-left: 4px solid
+    ${({ isselected }) => (isselected ? "#0050FF" : "transparent")};
   overflow-y: hidden;
+  transition: all 0.3s ease-in-out;
+
+  // &:hover{
+  // background-color: #010101;
+  // }
 
   & img {
     width: 50px;
@@ -225,4 +239,6 @@ export const ApplyButton = styled(Button)`
   background-color: #3ea3fb;
   outline: none;
   border: none;
+  padding: 1px;
+  margin-bottom: 2rem;
 `;

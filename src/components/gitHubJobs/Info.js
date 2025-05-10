@@ -1,7 +1,8 @@
-import React from "react";
-import JobsPagination from "./JobsPagination";
 import styled from "styled-components";
-function Info({ numberOfJobs, rest, handleSortJobs, sortString }) {
+import { useAppContext } from "../../context/useAppContext";
+function Info() {
+  const { handleSortJobs, sortString } = useAppContext();
+
   return (
     <Wrapper>
       <JobSortWrapper>

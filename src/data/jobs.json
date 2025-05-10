@@ -1,6 +1,7 @@
 {
   "jobs": [
     {
+      "id": "10",
       "title": "Senior React Developer",
       "company": "TechVision",
       "created_at": "2025-05-15T09:30:00Z",
@@ -12,6 +13,7 @@
       "url": "https://techvision.io/careers/senior-react-dev"
     },
     {
+      "id": "9",
       "title": "DevOps Engineer (AWS)",
       "company": "CloudNova",
       "created_at": "2025-05-14T11:20:00Z",
@@ -23,6 +25,7 @@
       "url": "https://cloudnova.com/jobs/aws-devops"
     },
     {
+      "id": "8",
       "title": "UX/UI Designer",
       "company": "PixelForge",
       "created_at": "2025-05-13T14:15:00Z",
@@ -34,6 +37,7 @@
       "url": "https://pixelforge.design/careers/ux-contract"
     },
     {
+      "id": "1",
       "title": "Data Scientist (Python)",
       "company": "AI Analytics Co.",
       "created_at": "2025-05-12T10:00:00Z",
@@ -45,6 +49,7 @@
       "url": "https://aianalytics.co/jobs/data-scientist-2025"
     },
     {
+      "id": "2",
       "title": "Technical Writer",
       "company": "DocuTech",
       "created_at": "2025-05-11T13:45:00Z",
@@ -56,6 +61,7 @@
       "url": "https://docutech.org/writer-position"
     },
     {
+      "id": "3",
       "title": "Cybersecurity Specialist",
       "company": "SecureNet",
       "created_at": "2025-04-01T08:10:00Z",
@@ -67,6 +73,7 @@
       "url": "https://securenetsolutions.com/careers/cyber-dc"
     },
     {
+      "id": "4",
       "title": "Frontend Developer (React)",
       "company": "Coolshop",
       "created_at": "2025-03-01T08:10:00Z",
@@ -79,6 +86,7 @@
       "url": "https://securenetsolutions.com/careers/cyber-dc"
     },
     {
+      "id": "5",
       "title": "Senior React Developer",
       "company": "TechVision",
       "created_at": "2025-05-15T09:30:00Z",
@@ -90,6 +98,7 @@
       "url": "https://techvision.io/careers/senior-react-dev"
     },
     {
+      "id": "6",
       "title": "DevOps Engineer (AWS)",
       "company": "CloudNova",
       "created_at": "2025-05-14T11:20:00Z",
@@ -101,6 +110,7 @@
       "url": "https://cloudnova.com/jobs/aws-devops"
     },
     {
+      "id": "7",
       "title": "UX Researcher",
       "company": "DesignHub",
       "created_at": "2025-04-01T08:10:00Z",

@@ -1,13 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import SearchForm from "../gitHubJobs/SearchForm";
 
 function Nav() {
   return (
     <Wrapper>
       <Logo>
-        <h2>Jobs.</h2>
+        <h2 className="font-semibold text-[24px]">Jobs.</h2>
       </Logo>
-      <Title>GitHub Jobs ...</Title>
+      <SearchForm />
       <NavItems>
         <Items>Home</Items>
         <Items>Jobs</Items>

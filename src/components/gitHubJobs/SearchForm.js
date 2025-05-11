@@ -27,8 +27,11 @@ export default function SearchForm() {
             onChange={(e) => setSelectedLocation(e.target.value)}
             placeholder="Search Location"
           />
-          <section className="absolute top-1/2 left-3  -translate-y-1/2 text-gray-200">
-            <MapPin size={"18px"} />
+          <section className="absolute h-auto top-1/2 left-3  -translate-y-1/2 text-gray-200 bg-transparent">
+            <MapPin
+              size={"18px"}
+              className="bg-transparent"
+            />
           </section>
         </SearchLocation>
 
@@ -53,6 +56,7 @@ export const FomContainer = styled.form`
   justify-content: center;
   align-items: center;
   width: auto;
+  height: auto;
   font-size: 14px;
   gap: 0.5rem;
   margin: 1rem auto;
@@ -100,7 +104,7 @@ export const SearchLocation = styled.div`
   width: 100%;
   min-width: 300px;
   max-width: 350px;
-  /* height: 100%; */
+  height: auto;
   background-color: #333334;
   border: 1px solid gray;
   border-right: none;

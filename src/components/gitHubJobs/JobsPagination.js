@@ -30,7 +30,11 @@ export default function JobsPagination({ rest }) {
           onClick={() => {
             setLastIndexOfSelectedJobs(index);
           }}
-          className={lastIndexOfSelectedJobs === index ? "active" : ""}
+          className={
+            lastIndexOfSelectedJobs === index
+              ? "active w-auto h-auto"
+              : " w-auto h-auto"
+          }
         >
           {" "}
           {index}
@@ -46,37 +50,17 @@ export default function JobsPagination({ rest }) {
   );
 }
 
-export const Wrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  border: 0.2px solid rgba(255, 255, 255, 0.2);
-  gap: 2rem;
-  border-radius: 12px;
-  @media (max-width: 900px) {
-    width: 55%;
-    padding: 1rem 0.5rem;
-  }
-`;
-
 export const Pagination = styled.section`
   width: 100%;
+  height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-top: 0.2px solid rgba(255, 255, 255, 0.2);
   border-bottom: 0.2px solid rgba(255, 255, 255, 0.2);
-  padding: 1.5rem 0;
-  margin-top: 1rem;
+  padding: 1rem 0;
   gap: 1rem;
 
-  @media (max-width: 900px) {
-    margin: 1rem 0;
-    padding: 1rem 0.4rem;
-    padding-left: 0.3rem;
-  }
   & span {
     height: 26px;
     width: 26px;
@@ -84,22 +68,16 @@ export const Pagination = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size:13px
+    align-self: center;
+    font-size: 13px;
     color: #3ea3fb;
     border: 1px solid ${({ disabled }) => (disabled ? "#999999" : "#3ea3fb")};
     background-color: ${({ disabled }) =>
       disabled ? "#cccccc" : "transparent"};
     border-radius: 100%;
-    text-align: left;
     outline: none;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-
-    @media (max-width: 900px) {
-      padding: 3px 8px;
-      margin-right: 0.2rem;
-      margin-left: 0.2rem;
-    }
 
     &:hover,
     &:focus {
@@ -117,6 +95,7 @@ export const Pagination = styled.section`
 `;
 
 export const Button = styled.button`
+  height: auto;
   padding: 1px 10px;
   color: #3ea3fb;
   border: 1px solid ${({ disabled }) => (disabled ? "#999999" : "#3ea3fb")};
@@ -126,11 +105,7 @@ export const Button = styled.button`
   outline: none;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  @media (max-width: 900px) {
-    padding: 5px 10px;
-    margin-right: 0.3rem;
-    margin-left: 0.3rem;
-  }
+
   &:hover,
   &:focus {
     color: white;

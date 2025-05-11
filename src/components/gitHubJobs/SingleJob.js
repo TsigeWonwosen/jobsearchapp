@@ -57,13 +57,9 @@ export default function SingleJob({ job, handleFeaturedJob, isselected }) {
 }
 
 export const JobApply = styled.section`
-  background-color: #393939;
-  width: 98%;
-  min-height: 160px;
+  width: 100%;
   max-height: 350px;
-  max-width: 100%;
-  line-height: 0.7rem !important;
-  margin: 0.2rem;
+  line-height: 0.7rem;
   padding: 0.5rem;
   margin-right: auto;
   display: flex;
@@ -71,19 +67,12 @@ export const JobApply = styled.section`
   border-radius: 1px;
   gap: 1rem;
   background-color: ${({ $isselected }) =>
-    $isselected ? "#252728" : "transparent"};
+    $isselected ? "#0e0f1e" : "transparent"};
   border-left: 4px solid
     ${({ $isselected }) => ($isselected ? "#0050FF" : "transparent")};
   border-bottom: 0.5px solid rgba(55, 51, 51, 0.775);
-  overflow-y: hidden;
   transition: all 0.3s ease-in-out;
 
-  & img {
-    width: 50px;
-    height: 50px;
-    border-radius: 5px;
-    object-fit: cover;
-  }
   & ul,
   ol {
     margin-bottom: 13px;
@@ -148,7 +137,7 @@ export const JobApply = styled.section`
 `;
 
 export const ImageContener = styled.section`
-  width: 60x;
+  width: 65px;
   height: 60px;
   border-radius: 3px;
   overflow: hidden;
@@ -177,25 +166,27 @@ export const JobTitle = styled.span`
 `;
 export const CardSubTitle = styled.section`
   color: gray;
-  font-size: 0.9rem;
+  font-size: 10px;
   text-align: left;
   margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 `;
 
 export const BadgeContainer = styled.section`
   display: flex;
-  margin-bottom: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0;
+  margin-bottom: 10px;
 `;
 export const Badge = styled.span`
   background-color: #4e5051;
   color: #e6e7eb;
   font-size: 0.8rem;
   text-align: center;
-  padding: 5px 14px;
-  margin-top: 1rem;
-  margin-right: 1rem;
-  border-radius: 5px;
-  transition: all 0.3s ease-in-out;
+  padding: 4px 8px;
+  border-radius: 3px;
 `;
 export const Image = styled.img`
   width: 100%;
@@ -215,7 +206,6 @@ export const Button = styled.button`
   background-color: transparent;
   border-radius: 4px;
   text-align: left;
-  outline: none;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 

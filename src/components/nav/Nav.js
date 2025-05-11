@@ -3,7 +3,7 @@ import SearchForm from "../gitHubJobs/SearchForm";
 
 function Nav() {
   return (
-    <div className="w-full  border-b border-gray-400">
+    <div className="h-[70px] w-full  border-b-[0.5px] border-gray-400 bg-[#252728] flex flex-col items-center flex-shrink-0 ">
       <Wrapper>
         <Logo>
           <h2 className="font-semibold text-[24px]">Jobs.</h2>
@@ -33,25 +33,20 @@ export const Wrapper = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
-  height: 70px;
-  width: 100vw;
   max-width: 1280px;
-  background-color: #252728;
+  width: 100%;
+  height: 100%;
   color: #ffffff;
-  box-shadow: 0 4px 1rem 4px rgba(0, 0, 0, 0.2);
-`;
-
-export const Title = styled.h1`
-  font-size: 1rem;
-  letter-spacing: 2px;
-  font-family: sans-serif;
-  color: #f2f2f3;
+  background-color: transparent;
 `;
 
 export const Logo = styled.section`
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: auto;
+  background: transparent;
 
   @media (max-width: 600px) {
     max-width: 20%;
@@ -62,16 +57,16 @@ export const Logo = styled.section`
 `;
 
 export const NavItems = styled.ul`
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 `;
 
 export const Items = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4px 10px;
-  margin-left: 1rem;
   cursor: pointer;
 `;

@@ -38,20 +38,22 @@ export default Info;
 export const JobSortWrapper = styled.section`
   width: 100%;
   max-width: 1280px;
+  max-height: 80px;
+  height: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem 1rem;
+  gap: 0.5rem;
+  padding: 0 1rem;
+  margin: 0 auto;
+  flex-shrink: 0;
 `;
 export const JobsInfo = styled.span`
-  height: 100%;
+  height: auto;
   text-align: center;
   color: rgba(255, 255, 255, 0.5);
-  font-size: 0.9rem;
-  @media (max-width: 900px) {
-    margin-right: 0.2rem;
-  }
+  font-size: 1rem;
+  font-weight: 600;
 `;
 
 export const JobsSort = styled.select`
@@ -62,6 +64,7 @@ export const JobsSort = styled.select`
   font-size: 14px;
   letter-spacing: 1px;
   width: auto;
+  height: auto;
   max-width: 250px;
   background-color: #383838;
   background-color: #333334;

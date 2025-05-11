@@ -65,21 +65,23 @@ export default function FeaturedJob({ featuredJob }) {
 }
 
 export const FeaturedJobCard = styled.section`
-  background-color: #252728;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  background-color: #0e0f1e;
   width: 100%;
   height: 100%;
-  min-height: calc(100vh - (70px + 50px));
-  max-width: 100%;
   padding: 1rem;
-  border-radius: 5px;
+  padding-left: 2rem;
+  border-radius: 1px;
   color: #f2f2f3;
-  overflow-y: auto;
 
   & img {
-    width: 80px;
-    height: 80px;
-    border-radius: 5px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    object-position: center;
   }
   & ul,
   ol {
@@ -179,16 +181,18 @@ export const ImageContainer = styled.section`
   max-width: 80px;
   max-height: 80px;
   border-radius: 5px;
+  background: gray;
   overflow: hidden;
 `;
 export const JobApply = styled.section`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 100%;
+  height: auto;
 `;
 export const Body = styled.section`
   width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -197,17 +201,18 @@ export const Body = styled.section`
 
 export const CardTitle = styled.h2`
   text-align: left;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 `;
 
 export const JobTitle = styled.span`
   text-align: left;
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #f2f2f3;
+  line-height: 0.2rem;
 `;
 export const CardSubTitle = styled.section`
   color: rgba(255, 255, 255, 0.3);
-  font-size: 1rem;
+  font-size: 0.8rem;
   margin-top: 0.2rem;
   text-align: left;
 `;
@@ -221,7 +226,7 @@ export const Badge = styled.span`
   color: black;
   font-size: 0.8rem;
   text-align: center;
-  padding: 5px 14px;
+  padding: 3px 8px;
   margin-top: 1rem;
   margin-right: 1rem;
   border-radius: 5px;
@@ -356,12 +361,12 @@ export const Article = styled.article`
     font-weight: 500;
     border: 1px solid white;
   }
-  & a {
-    /* display: none; */
+  /* &:a {
+  
     display: inline-block !important;
     color: #cacccb;
     font-size: 0.8rem;
     max-width: 90%;
     overflow: hidden;
-  }
+  } */
 `;

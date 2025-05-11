@@ -2,7 +2,6 @@ import { useEffect } from "react";
 
 import SingleJob from "./SingleJob";
 import FeaturedJob from "./FeaturedJob";
-import Info from "./Info";
 
 import styled from "styled-components";
 import JobsPagination from "./JobsPagination";
@@ -23,44 +22,40 @@ function Jobs() {
 
   useEffect(() => {}, [sortString, jobs]);
 
+  if (loading | error) {
+    return (
+      <div className="w-full h-full flex justify-center items-center font-semibold text-gray-300">
+        {loading && <h1>Loading ...</h1>}
+        {error && <h1>Error ...Try Refreshing</h1>}
+      </div>
+    );
+  }
   return (
     <Container>
-      <Info />
-      {loading && <h1>Loading ...</h1>}
-      {error && <h1>Error ...Try Refreshing</h1>}
-
-      <JobsListWrapper>
-        <div className="h-full w-1/2 min-h-screen">
-          <div className="w-full flex justify-sart align-center px-1 py-2 pb-3 flex-col gap-2 border-b-[0.5px] border-gray-800 mb-2">
-            <h2 className="text-base font-semibold">Top job picks for you</h2>
-            <p className="text-sm text-gray-300">
-              Based on your profile, preferences, and activity like applies,
-              searches, and saves {numberOfJobs} results
-            </p>
-          </div>
-          <JobsList>
-            <div className="w-full h-full">
-              {SortedJobs &&
-                SortedJobs?.map((job) => (
-                  <SingleJob
-                    job={job}
-                    key={job.id}
-                    isselected={featured === job.id ? "selected" : undefined}
-                    handleFeaturedJob={handleFeaturedJob}
-                  />
-                ))}
-            </div>
-          </JobsList>
-          <JobsPagination rest={rest} />
+      <LeftSideContainer>
+        <div className="w-full h-auto flex justify-sart align-center px-1 py-1 pb-3 flex-col gap-2 border-b-[0.5px] border-gray-800 ">
+          <h2 className="text-base font-semibold">Top job picks for you</h2>
+          <p className="text-sm text-gray-300">
+            Based on your profile, preferences, and activity like applies,
+            searches, and saves {numberOfJobs} results
+          </p>
         </div>
-        <div className="w-1/2 h-full flex justify-center items-center ">
-          {SortedJobs.length > 0 && (
-            <JobsListShow>
-              <FeaturedJob featuredJob={featuredJob} />
-            </JobsListShow>
-          )}
-        </div>
-      </JobsListWrapper>
+        <JobsList>
+          {SortedJobs &&
+            SortedJobs?.map((job) => (
+              <SingleJob
+                job={job}
+                key={job.id}
+                isselected={featured === job.id ? "selected" : undefined}
+                handleFeaturedJob={handleFeaturedJob}
+              />
+            ))}
+        </JobsList>
+        <JobsPagination rest={rest} />
+      </LeftSideContainer>
+      <JobsListShow>
+        {SortedJobs.length > 0 && <FeaturedJob featuredJob={featuredJob} />}
+      </JobsListShow>
     </Container>
   );
 }
@@ -68,46 +63,30 @@ function Jobs() {
 export default Jobs;
 
 export const Container = styled.div`
-  min-height: calc(100vh - 50px);
-  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  max-width: 1280px;
-  margin: 1rem auto;
-  padding: 1rem auto 2rem;
-  border-radius: 5px;
-  background-color: #1c1c1d;
-  text-align: left;
+  flex: 1;
+  margin: 0rem auto;
+  color: #f2f2f3;
+  border-top: 0.5px solid rgba(55, 51, 51, 0.775);
+`;
+export const LeftSideContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #f2f2f3;
-  @media (max-width: 900px) {
-    padding: 3rem auto 1rem;
-  }
-  @media (max-width: 900px) {
-    padding-left: 0px;
-  }
-`;
-
-export const JobsListWrapper = styled.section`
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  margin: 0.2rem auto;
-  padding: 1rem;
-  overflow: hidden;
-  gap: 1rem;
-  border-top: 0.5px solid rgba(55, 51, 51, 0.775);
+  width: 50%;
+  height: 100%;
 `;
 
 export const JobsList = styled.section`
   width: 100%;
-  height: 100%;
-  max-height: calc(100vh - (70px + 100px));
   display: flex;
   flex-direction: column;
+  flex: 1;
   align-items: center;
-  overflow-y: auto;
+  overflow-y: scroll;
   gap: 0.5rem;
 
   &::-webkit-scrollbar {
@@ -132,18 +111,16 @@ export const JobsList = styled.section`
   }
 `;
 export const JobsListShow = styled.section`
-  width: 100%;
-  height: 100%;
-  max-height: 100vh;
-  min-height: calc(100vh - 50px);
+  width: 50%;
   display: flex;
   flex-direction: column;
+  height: 100%;
   align-items: center;
   justify-content: flex-start;
-  overflow-y: auto;
+  overflow-y: scroll;
 
   &::-webkit-scrollbar {
-    width: 3px;
+    width: 8px;
   }
 
   /* Track */
@@ -161,6 +138,7 @@ export const JobsListShow = styled.section`
     background: #555;
   }
 `;
+
 export const Button = styled.button`
   padding: 5px 13px;
   margin-right: 1rem;

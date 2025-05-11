@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 
-const PAGINATION_SIZE = 5;
+const PAGINATION_SIZE = 4;
 
 const useFilter = (jobs) => {
+  const [numberOfJobs, setNumberOfJobs] = useState(jobs.length);
+  const [totalPaginationSize, setTotalPagination] = useState(1);
+  const [lastIndexOfSelectedJobs, setLastIndexOfSelectedJobs] = useState(1);
+  const [selectedJobs, setSelectedJobs] = useState([]);
   const [typeOfJob, setTypeOfJob] = useState("");
   const [jobLocation, setSelectedLocation] = useState("");
-  const [selectedJobs, setSelectedJobs] = useState([]);
-  const [lastIndexOfSelectedJobs, setLastIndexOfSelectedJobs] = useState("1");
-  const [totalPaginationSize, setTotalPagination] = useState(1);
-  const [numberOfJobs, setNumberOfJobs] = useState(jobs.length);
 
   const filteredJobs = () => {
     let newFilteredJobs = [];
-    if (setSelectedLocation.length < 1 && typeOfJob.length < 1) {
-      newFilteredJobs = jobs;
+    if (jobLocation.length < 1 && typeOfJob.length < 1) {
+      return jobs;
     } else {
       newFilteredJobs = jobs?.filter(({ type, location }) => {
         return (
@@ -33,13 +33,15 @@ const useFilter = (jobs) => {
       numberOfJobs > PAGINATION_SIZE
         ? Math.ceil(numberOfJobs / PAGINATION_SIZE)
         : 1;
+
     setTotalPagination(totalPaginationSize);
     setNumberOfJobs(numberOfJobs);
 
     function selectNewJobs() {
       try {
         let finalIndex = lastIndexOfSelectedJobs * PAGINATION_SIZE;
-        let initial = finalIndex - PAGINATION_SIZE;
+        let initial =
+          lastIndexOfSelectedJobs === 1 ? 0 : finalIndex - PAGINATION_SIZE;
         let TopSelectedJobs =
           filteredJobs().length > 0
             ? filteredJobs()?.slice(initial, finalIndex)
@@ -52,9 +54,10 @@ const useFilter = (jobs) => {
 
     return selectNewJobs();
   };
+
   useEffect(() => {
     selectedJobsCb();
-  }, [lastIndexOfSelectedJobs, jobs]);
+  }, [lastIndexOfSelectedJobs, typeOfJob, jobLocation, numberOfJobs, jobs]);
 
   const next = () => {
     setLastIndexOfSelectedJobs(lastIndexOfSelectedJobs + 1);
@@ -70,6 +73,7 @@ const useFilter = (jobs) => {
   const setType = (type) => {
     setTypeOfJob(type);
   };
+
   return {
     selectedJobs,
     numberOfJobs,

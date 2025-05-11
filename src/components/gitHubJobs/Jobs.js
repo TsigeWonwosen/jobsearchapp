@@ -15,7 +15,6 @@ function Jobs() {
     handleFeaturedJob,
     sortString,
     featured,
-    rest,
     featuredJob,
     numberOfJobs,
   } = useAppContext();
@@ -51,7 +50,7 @@ function Jobs() {
               />
             ))}
         </JobsList>
-        <JobsPagination rest={rest} />
+        <JobsPagination />
       </LeftSideContainer>
       <JobsListShow>
         {SortedJobs.length > 0 && <FeaturedJob featuredJob={featuredJob} />}
@@ -69,6 +68,7 @@ export const Container = styled.div`
   width: 100%;
   flex: 1;
   margin: 0rem auto;
+  padding: 0 1rem;
   color: #f2f2f3;
   border-top: 0.5px solid rgba(55, 51, 51, 0.775);
 `;
@@ -86,7 +86,7 @@ export const JobsList = styled.section`
   flex-direction: column;
   flex: 1;
   align-items: center;
-  overflow-y: scroll;
+  overflow-y: auto;
   gap: 0.5rem;
 
   &::-webkit-scrollbar {
@@ -117,20 +117,22 @@ export const JobsListShow = styled.section`
   height: 100%;
   align-items: center;
   justify-content: flex-start;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   &::-webkit-scrollbar {
     width: 8px;
+    border-radius: 8px;
   }
-
   /* Track */
   &::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #888;
+    border-radius: 8px;
   }
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #555;
+    border-radius: 8px;
   }
 
   /* Handle on hover */

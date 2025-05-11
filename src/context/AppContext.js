@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect } from "react";
 import useFilter from "../components/gitHubJobs/useFilter";
 import { useFetchJobs } from "../components";
 
@@ -6,8 +6,10 @@ export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [featured, setFeatured] = React.useState("1");
+  const [featuredJob, setFeaturedJobs] = React.useState([]);
   const [sortString, setSortString] = React.useState("");
   const { jobs = [] } = useFetchJobs();
+
   const {
     selectedJobs,
     numberOfJobs,
@@ -18,7 +20,12 @@ export const AppProvider = ({ children }) => {
     prev,
     setLastIndexOfSelectedJobs,
     lastIndexOfSelectedJobs,
-  } = useFilter(jobs);
+  } = useFilter(sortString);
+
+  useEffect(() => {
+    setSortString(jobs);
+    setFeaturedJobs(jobs[lastIndexOfSelectedJobs]);
+  }, [lastIndexOfSelectedJobs, jobs]);
 
   let SortedJobs =
     sortString.length && sortString === "title"
@@ -39,18 +46,9 @@ export const AppProvider = ({ children }) => {
           return new Date(b.created_at) - new Date(a.created_at);
         });
 
-  const featuredJob = SortedJobs?.find((job) => job.id === featured);
-
-  const rest = {
-    totalPaginationSize,
-    next,
-    prev,
-    setLastIndexOfSelectedJobs,
-    lastIndexOfSelectedJobs,
-  };
-
   const handleFeaturedJob = (id) => {
     setFeatured(id);
+    setFeaturedJobs(SortedJobs?.find((job) => job.id == id));
   };
 
   const handleSortJobs = (data) => {
@@ -60,7 +58,6 @@ export const AppProvider = ({ children }) => {
   const value = {
     handleSortJobs,
     handleFeaturedJob,
-    rest,
     featuredJob,
     SortedJobs,
     numberOfJobs,
@@ -68,6 +65,10 @@ export const AppProvider = ({ children }) => {
     setType,
     totalPaginationSize,
     featured,
+    next,
+    prev,
+    setLastIndexOfSelectedJobs,
+    lastIndexOfSelectedJobs,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

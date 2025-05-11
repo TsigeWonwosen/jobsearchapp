@@ -3,7 +3,7 @@ import SearchForm from "../gitHubJobs/SearchForm";
 
 function Nav() {
   return (
-    <div className="h-[70px] w-full  border-b-[0.5px] border-gray-400 bg-[#252728] flex flex-col items-center flex-shrink-0 ">
+    <div className="h-[70px] w-full  border-b-[0.5px] border-gray-700 bg-[#000000] flex flex-col items-center flex-shrink-0 shadow-sm ">
       <Wrapper>
         <Logo>
           <h2 className="font-semibold text-[24px]">Jobs.</h2>

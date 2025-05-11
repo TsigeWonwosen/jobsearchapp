@@ -1,15 +1,18 @@
 import React from "react";
+import { useAppContext } from "../../context/useAppContext";
+
 import styled from "styled-components";
 
-export default function JobsPagination({ rest }) {
+export default function JobsPagination() {
   const {
     totalPaginationSize,
     next,
     prev,
     setLastIndexOfSelectedJobs,
     lastIndexOfSelectedJobs,
-  } = rest;
-  React.useEffect(() => {}, [totalPaginationSize]);
+  } = useAppContext();
+
+  React.useEffect(() => {}, [totalPaginationSize, lastIndexOfSelectedJobs]);
 
   const paginationIndexes = Array.from(
     { length: totalPaginationSize },

@@ -20,7 +20,7 @@ function Info() {
           key="created_at"
           value="created_at"
         >
-          Day
+          Date
         </option>
         <option
           key="title"

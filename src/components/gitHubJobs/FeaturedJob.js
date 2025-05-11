@@ -20,7 +20,6 @@ export default function FeaturedJob({ featuredJob }) {
   } = featuredJob;
 
   const timeOfDays = timeSince(created_at);
-
   return (
     <FeaturedJobCard>
       <JobApply>
@@ -33,14 +32,15 @@ export default function FeaturedJob({ featuredJob }) {
             <Badge>{location}</Badge>
             <Badge>{type}</Badge>
           </BadgeContainer>
-          <StyledAnchor
+          <Anchor
             href={url}
             target="_blank"
+            rel="noopener noreferrer"
           >
             Apply
-          </StyledAnchor>
+          </Anchor>
           <div
-            className="content"
+            className="content font-semibold mb-1"
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(how_to_apply),
             }}
@@ -67,9 +67,8 @@ export default function FeaturedJob({ featuredJob }) {
 export const FeaturedJobCard = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: start;
-  background-color: #0e0f1e;
   width: 100%;
   height: 100%;
   padding: 1rem;
@@ -139,11 +138,6 @@ export const FeaturedJobCard = styled.section`
     font-weight: 500;
     border: 1px solid white;
   }
-  & a {
-    display: none;
-    max-width: 90%;
-    overflow: hidden;
-  }
 
   & pre {
     all: none !important;
@@ -178,8 +172,8 @@ export const FeaturedJobCard = styled.section`
 `;
 
 export const ImageContainer = styled.section`
-  max-width: 80px;
-  max-height: 80px;
+  max-width: 90px;
+  max-height: 90px;
   border-radius: 5px;
   background: gray;
   overflow: hidden;
@@ -189,6 +183,7 @@ export const JobApply = styled.section`
   justify-content: space-between;
   width: 100%;
   height: auto;
+  gap: 1rem;
 `;
 export const Body = styled.section`
   width: 100%;
@@ -197,11 +192,13 @@ export const Body = styled.section`
   flex-direction: column;
   justify-content: left;
   align-items: left;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 `;
 
 export const CardTitle = styled.h2`
   text-align: left;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 `;
 
 export const JobTitle = styled.span`
@@ -213,13 +210,14 @@ export const JobTitle = styled.span`
 export const CardSubTitle = styled.section`
   color: rgba(255, 255, 255, 0.3);
   font-size: 0.8rem;
-  margin-top: 0.2rem;
   text-align: left;
 `;
 
 export const BadgeContainer = styled.section`
   display: flex;
-  margin-bottom: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
 `;
 export const Badge = styled.span`
   background-color: #cfd2d6;
@@ -227,8 +225,6 @@ export const Badge = styled.span`
   font-size: 0.8rem;
   text-align: center;
   padding: 3px 8px;
-  margin-top: 1rem;
-  margin-right: 1rem;
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
 `;
@@ -241,132 +237,63 @@ export const Text = styled.p`
   width: 100%;
   height: auto;
   color: #cfd2d6;
-  font-size: 0.7px;
+  font-size: 0.9px;
   text-align: left;
 `;
 
-const StyledAnchor = styled.a`
-  color: #2c3e50;
+export const Anchor = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: wheat;
   text-decoration: none;
-  font-family: "Arial", sans-serif;
-  padding: 6px 12px;
-  border: 1px solid #bdc3c7;
-  border-radius: 3px;
-  transition: all 0.2s;
+  font-weight: 500;
+  padding: 4px 0.3rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  max-width: 100px;
+  background: transparent;
+  border: 1px solid #007bff;
 
   &:hover {
-    background-color: #2c3e50;
-    color: white;
-    border-color: #2c3e50;
+    color: #0056b3;
+    background: rgba(0, 123, 255, 0.1); /* Light hover effect */
   }
 
-  &:visited {
-    color: #7f8c8d;
+  &:active {
+    color: #003d7a;
+  }
+
+  &:focus {
+    outline: 2px solid #80bdff;
+    outline-offset: 2px;
   }
 `;
 
-// export const FeaturedJobButton = styled(ButtonFeatured)`
-//   color: white;
-//   background-color: #3ea3fb;
-//   outline: none;
-//   border: none;
-//   font-size: 0.9rem;
-//   letter-spacing: 1px;
-//   border: 1px solid #3ea3fb;
-//   max-width: 5rem;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   margin-bottom: 2rem;
-// `;
-
-export const Article = styled.article`
+export const Article = styled.div`
   width: 100%;
-  height: 100%;
-  margin-top: 2rem;
-  padding: 3rem 0.5 1rem;
-  & div {
-    max-width: 100%;
-  }
-  & li {
-    margin: 1rem 0;
-    font-size: 0.8rem;
-    line-height: 1.6rem;
-    font-weight: 700;
-    color: #cacccb;
-    list-style: inside;
-
-    & p > quotes {
-      font-size: 0.84rem;
-      line-height: 1.4rem;
-      font-weight: 700;
-      color: #facccb;
-      margin: 0.7rem 0;
-    }
-  }
-  & p::target-text {
-    font-size: 0.84rem;
-    line-height: 1.4rem;
-    font-weight: 700;
-    color: #facccb;
-    margin: 0.7rem 0;
-  }
-
-  & ::marker {
-    unicode-bidi: isolate;
-    font-variant-numeric: tabular-nums;
-    text-transform: none;
-    text-indent: 0px !important;
-    text-align: start !important;
-    text-align-last: start !important;
-  }
-  & p:first-child {
-    font-size: 1.1rem;
-    line-height: 1.7rem;
-    font-weight: 500;
-    color: #f4f4f4;
-    margin: 0.6rem 0;
-  }
+  height: auto !important;
+  padding: 1rem 0.5 1rem;
+  margin: 0;
+  padding: 0;
   p {
-    font-size: 0.9rem;
-    line-height: 1.6rem;
-    font-weight: 500;
-    color: #cacccb;
-    margin: 0.6rem 0;
+    height: auto;
   }
-  & p em,
-  strong {
-    font-size: 1.1rem;
-    line-height: 1.6rem;
-    font-weight: 500;
-    color: #cacccb;
-    margin: 0.6rem 0;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    width: 100%;
+    height: auto;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    margin-bottom: 1rem;
   }
-  & blockquote {
-    font-size: 0.8rem;
-    line-height: 1.6rem;
-    font-weight: 500;
-    color: #cacccb;
-    margin: 0.5rem 0;
+  ul,
+  ol {
+    height: auto;
   }
-
-  & code,
-  quote {
-    display: block;
-    position: relative;
-    margin: 0;
-    color: #cacccb;
-    font-size: 0.8rem;
-    box-sizing: border-box;
-    font-weight: 500;
-    border: 1px solid white;
-  }
-  /* &:a {
-  
-    display: inline-block !important;
-    color: #cacccb;
-    font-size: 0.8rem;
-    max-width: 90%;
-    overflow: hidden;
-  } */
 `;

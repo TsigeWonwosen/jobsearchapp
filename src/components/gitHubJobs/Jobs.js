@@ -111,6 +111,7 @@ export const JobsList = styled.section`
   }
 `;
 export const JobsListShow = styled.section`
+  background-color: #0e0f1e;
   width: 50%;
   display: flex;
   flex-direction: column;

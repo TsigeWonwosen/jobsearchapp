@@ -1,6 +1,7 @@
 import DOMPurify from "dompurify";
 import { timeSince } from "../../utility/timeAge";
 import styled from "styled-components";
+import { ArrowUpRight } from "lucide-react";
 
 export default function FeaturedJob({ featuredJob }) {
   if (featuredJob === "undefined" || featuredJob === null) {
@@ -38,6 +39,7 @@ export default function FeaturedJob({ featuredJob }) {
             rel="noopener noreferrer"
           >
             Apply
+            <ArrowUpRight size={"17px"} />
           </Anchor>
           <div
             className="content font-semibold mb-1"
@@ -73,6 +75,8 @@ export const FeaturedJobCard = styled.section`
   height: 100%;
   padding: 1rem;
   padding-left: 2rem;
+  padding-bottom: 3rem;
+  margin-bottom: 2rem;
   border-radius: 1px;
   color: #f2f2f3;
 
@@ -245,19 +249,23 @@ export const Anchor = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: wheat;
+  color: white;
+  font-size: 17px;
+  letter-spacing: 1px;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 400;
   padding: 4px 0.3rem;
   margin: 1rem 0;
-  border-radius: 4px;
+  margin-top: 2.4rem;
+  border-radius: 6px;
   transition: all 0.2s ease;
   max-width: 100px;
   background: transparent;
   border: 1px solid #007bff;
+  overflow: hidden;
+  gap: 0.7rem;
 
   &:hover {
-    color: #0056b3;
     background: rgba(0, 123, 255, 0.1); /* Light hover effect */
   }
 
@@ -274,7 +282,7 @@ export const Anchor = styled.a`
 export const Article = styled.div`
   width: 100%;
   height: auto !important;
-  padding: 1rem 0.5 1rem;
+  padding: 1rem 0.5 1rem 2rem;
   margin: 0;
   padding: 0;
   p {

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getfiltered } from "../../utility/filter";
 
 const PAGINATION_SIZE = 4;
 
@@ -10,25 +11,12 @@ const useFilter = (jobs) => {
   const [typeOfJob, setTypeOfJob] = useState("");
   const [jobLocation, setSelectedLocation] = useState("");
 
-  const filteredJobs = () => {
-    let newFilteredJobs = [];
-    if (jobLocation.length < 1 && typeOfJob.length < 1) {
-      return jobs;
-    } else {
-      newFilteredJobs = jobs?.filter(({ type, location }) => {
-        return (
-          location.toLowerCase().includes(jobLocation.toLowerCase()) &&
-          type.toLowerCase().includes(typeOfJob.toLowerCase())
-        );
-      });
-    }
-    return newFilteredJobs;
-  };
+  const filteredJobs = getfiltered(jobs, typeOfJob, jobLocation);
 
   const selectedJobsCb = () => {
     let totalPaginationSize = 1;
     let numberOfJobs;
-    numberOfJobs = filteredJobs()?.length;
+    numberOfJobs = filteredJobs?.length;
     totalPaginationSize =
       numberOfJobs > PAGINATION_SIZE
         ? Math.ceil(numberOfJobs / PAGINATION_SIZE)
@@ -43,8 +31,8 @@ const useFilter = (jobs) => {
         let initial =
           lastIndexOfSelectedJobs === 1 ? 0 : finalIndex - PAGINATION_SIZE;
         let TopSelectedJobs =
-          filteredJobs().length > 0
-            ? filteredJobs()?.slice(initial, finalIndex)
+          filteredJobs.length > 0
+            ? filteredJobs?.slice(initial, finalIndex)
             : [];
         setSelectedJobs(TopSelectedJobs);
       } catch (error) {

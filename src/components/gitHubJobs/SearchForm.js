@@ -13,8 +13,8 @@ export default function SearchForm() {
     e.preventDefault();
     setLocation(location);
     setType(type);
-    setSelectedLocation("");
-    setSelectedType("");
+    // setSelectedLocation("");
+    // setSelectedType("");
   };
 
   return (
@@ -39,7 +39,7 @@ export default function SearchForm() {
           value={type}
           onChange={(e) => setSelectedType(e.target.value)}
         >
-          <option value="">Jobs Type </option>
+          <option value="">All </option>
           <option value="contract">Contract</option>
           <option value="full time">Full Time</option>
           <option value="remote">Remote</option>

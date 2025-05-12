@@ -14,7 +14,7 @@ function Info() {
           key="Matches"
           value=""
         >
-          Matches
+          All
         </option>
         <option
           key="created_at"

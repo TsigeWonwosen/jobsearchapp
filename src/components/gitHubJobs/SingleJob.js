@@ -72,7 +72,7 @@ export const JobApply = styled.section`
     ${({ $isselected }) => ($isselected ? "#0050FF" : "transparent")};
   border-bottom: 0.5px solid rgba(55, 51, 51, 0.775);
   transition: all 0.3s ease-in-out;
-
+  /* overflow: hidden; */
   & ul,
   ol {
     margin-bottom: 13px;

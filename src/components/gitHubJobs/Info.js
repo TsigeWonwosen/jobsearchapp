@@ -8,6 +8,7 @@ function Info() {
       <JobsInfo>Sort by :</JobsInfo>
       <JobsSort
         value={sortString}
+        name="sortString"
         onChange={(e) => handleSortJobs(e.target.value)}
       >
         <option
@@ -17,13 +18,13 @@ function Info() {
           All
         </option>
         <option
-          key="created_at"
+          name="created_at"
           value="created_at"
         >
           Date
         </option>
         <option
-          key="title"
+          name="title"
           value="title"
         >
           Title

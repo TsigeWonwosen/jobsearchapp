@@ -5,6 +5,7 @@ import { Ellipsis, X } from "lucide-react";
 
 export default function SingleJob({ job, handleFeaturedJob, isselected }) {
   const {
+    id,
     title,
     company,
     created_at,
@@ -15,7 +16,7 @@ export default function SingleJob({ job, handleFeaturedJob, isselected }) {
   } = job;
   return (
     <JobApply
-      onClick={() => handleFeaturedJob(job.id)}
+      onClick={() => handleFeaturedJob(id)}
       $isselected={isselected}
     >
       {company_logo && (
@@ -58,7 +59,7 @@ export default function SingleJob({ job, handleFeaturedJob, isselected }) {
 
 export const JobApply = styled.section`
   width: 100%;
-  max-height: 350px;
+  max-height: 180px;
   line-height: 0.7rem;
   padding: 0.5rem;
   margin-right: auto;

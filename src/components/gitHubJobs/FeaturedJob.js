@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { ArrowUpRight } from "lucide-react";
 
 export default function FeaturedJob({ featuredJob }) {
-  if (featuredJob === "undefined" || featuredJob === null) {
+  if (featuredJob?.length > 0) {
     return <h1>Loading ..</h1>;
   }
 

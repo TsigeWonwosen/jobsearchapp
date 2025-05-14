@@ -1,30 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { MapPin } from "lucide-react";
 import styled from "styled-components";
 import { useAppContext } from "../../context/useAppContext";
 
 export default function SearchForm() {
-  const [location, setSelectedLocation] = React.useState("");
-  const [type, setSelectedType] = React.useState("");
+  const [location, setLocation] = useState("");
+  const [jobtype, setJobType] = useState("");
+  const { updateFilters } = useAppContext();
 
-  const { setLocation, setType } = useAppContext();
-
-  const handleSubmit = (e) => {
+  const handleSubmite = (e) => {
     e.preventDefault();
-    setLocation(location);
-    setType(type);
-    // setSelectedLocation("");
-    // setSelectedType("");
+    updateFilters({ location, jobType: jobtype });
   };
 
   return (
-    <FomContainer onSubmit={handleSubmit}>
+    <FomContainer onSubmit={handleSubmite}>
       <SearchAndSelectWrapper>
         <SearchLocation>
           <Input
             id="label"
+            name="location"
             value={location}
-            onChange={(e) => setSelectedLocation(e.target.value)}
+            onChange={(e) => setLocation(e.target.value)}
             placeholder="Search Location"
           />
           <section className="absolute h-auto top-1/2 left-3  -translate-y-1/2 text-gray-200 bg-transparent">
@@ -36,12 +33,14 @@ export default function SearchForm() {
         </SearchLocation>
 
         <FormSelect
-          value={type}
-          onChange={(e) => setSelectedType(e.target.value)}
+          value={jobtype}
+          name="jobtype"
+          onChange={(e) => setJobType(e.target.value)}
         >
           <option value="">All </option>
+          <option value="full-time">Full Time</option>
+          <option value="part-time"> Part Time</option>
           <option value="contract">Contract</option>
-          <option value="full time">Full Time</option>
           <option value="remote">Remote</option>
         </FormSelect>
       </SearchAndSelectWrapper>

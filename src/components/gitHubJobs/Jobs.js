@@ -1,25 +1,19 @@
-import { useEffect } from "react";
-
 import SingleJob from "./SingleJob";
 import FeaturedJob from "./FeaturedJob";
-
-import styled from "styled-components";
 import JobsPagination from "./JobsPagination";
 import { useAppContext } from "../../context/useAppContext";
-import useFetchJobs from "./useFetchJobs";
+
+import styled from "styled-components";
 
 function Jobs() {
-  const { jobs = [], loading, error } = useFetchJobs();
   const {
     SortedJobs,
     handleFeaturedJob,
-    sortString,
-    featured,
     featuredJob,
     numberOfJobs,
+    loading,
+    error,
   } = useAppContext();
-
-  useEffect(() => {}, [sortString, jobs]);
 
   if (loading | error) {
     return (
@@ -40,20 +34,28 @@ function Jobs() {
           </p>
         </div>
         <JobsList>
-          {SortedJobs &&
+          {SortedJobs ? (
             SortedJobs?.map((job) => (
               <SingleJob
                 job={job}
                 key={job.id}
-                isselected={featured === job.id ? "selected" : undefined}
+                isselected={featuredJob?.id === job.id ? "selected" : undefined}
                 handleFeaturedJob={handleFeaturedJob}
               />
-            ))}
+            ))
+          ) : (
+            <p>No jobs match your filters</p>
+          )}
         </JobsList>
         <JobsPagination />
       </LeftSideContainer>
       <JobsListShow>
-        {SortedJobs.length > 0 && <FeaturedJob featuredJob={featuredJob} />}
+        {!featuredJob && <div>Loading jobs...</div>}
+        {featuredJob && Object.keys(featuredJob).length > 0 ? (
+          <FeaturedJob featuredJob={featuredJob} />
+        ) : (
+          <p>No jobs match your filters</p>
+        )}
       </JobsListShow>
     </Container>
   );

@@ -1,59 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getfiltered } from "../../utility/filter";
 
-const PAGINATION_SIZE = 4;
-
-const useFilter = (jobs) => {
-  const [numberOfJobs, setNumberOfJobs] = useState(jobs.length);
-  const [totalPaginationSize, setTotalPagination] = useState(1);
-  const [lastIndexOfSelectedJobs, setLastIndexOfSelectedJobs] = useState(1);
-  const [selectedJobs, setSelectedJobs] = useState([]);
+const useFilter = (jobs = []) => {
   const [typeOfJob, setTypeOfJob] = useState("");
   const [jobLocation, setSelectedLocation] = useState("");
 
   const filteredJobs = getfiltered(jobs, typeOfJob, jobLocation);
-
-  const selectedJobsCb = () => {
-    let totalPaginationSize = 1;
-    let numberOfJobs;
-    numberOfJobs = filteredJobs?.length;
-    totalPaginationSize =
-      numberOfJobs > PAGINATION_SIZE
-        ? Math.ceil(numberOfJobs / PAGINATION_SIZE)
-        : 1;
-
-    setTotalPagination(totalPaginationSize);
-    setNumberOfJobs(numberOfJobs);
-
-    function selectNewJobs() {
-      try {
-        let finalIndex = lastIndexOfSelectedJobs * PAGINATION_SIZE;
-        let initial =
-          lastIndexOfSelectedJobs === 1 ? 0 : finalIndex - PAGINATION_SIZE;
-        let TopSelectedJobs =
-          filteredJobs.length > 0
-            ? filteredJobs?.slice(initial, finalIndex)
-            : [];
-        setSelectedJobs(TopSelectedJobs);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    return selectNewJobs();
-  };
-
-  useEffect(() => {
-    selectedJobsCb();
-  }, [lastIndexOfSelectedJobs, typeOfJob, jobLocation, numberOfJobs, jobs]);
-
-  const next = () => {
-    setLastIndexOfSelectedJobs(lastIndexOfSelectedJobs + 1);
-  };
-
-  const prev = () => {
-    setLastIndexOfSelectedJobs(lastIndexOfSelectedJobs - 1);
-  };
 
   const setLocation = (location) => {
     setSelectedLocation(location);
@@ -61,17 +13,11 @@ const useFilter = (jobs) => {
   const setType = (type) => {
     setTypeOfJob(type);
   };
-
+  useEffect(() => {}, [jobs]);
   return {
-    selectedJobs,
-    numberOfJobs,
+    filteredJobs,
     setType,
     setLocation,
-    totalPaginationSize,
-    next,
-    prev,
-    setLastIndexOfSelectedJobs,
-    lastIndexOfSelectedJobs,
   };
 };
 

@@ -1,14 +1,16 @@
-export const getfiltered = (arrayOfData, text1 = "", text2 = "") => {
-  let newFilteredJobs = [];
-  if (text1.length < 1 && text2.length < 1) {
+export const getfiltered = (arrayOfData, filters) => {
+  if (filters?.jobType.length < 1 && filters?.location.length < 1) {
     return arrayOfData;
-  } else {
-    newFilteredJobs = arrayOfData?.filter(({ type, location }) => {
-      return (
-        location.toLowerCase().includes(text1.toLowerCase()) ||
-        type.toLowerCase().includes(text2.toLowerCase())
-      );
-    });
   }
-  return newFilteredJobs;
+
+  const filtered = arrayOfData.filter((job) => {
+    const locationMatch = job.location
+      .toLowerCase()
+      .includes(filters.location.toLowerCase());
+    const typeMatch = filters.jobType
+      ? job.type.toLowerCase() === filters.jobType.toLocaleLowerCase()
+      : true;
+    return locationMatch && typeMatch;
+  });
+  return filtered;
 };

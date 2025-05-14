@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 function Jobs() {
   const {
-    SortedJobs,
+    paginatedJobs,
     handleFeaturedJob,
     featuredJob,
     numberOfJobs,
@@ -23,41 +23,52 @@ function Jobs() {
       </div>
     );
   }
+  if (paginatedJobs.length === 0) {
+    return (
+      <h3 className="text-white font-semibold text-center">
+        No matching jobs found.
+      </h3>
+    );
+  }
   return (
-    <Container>
-      <LeftSideContainer>
-        <div className="w-full h-auto flex justify-sart align-center px-1 py-1 pb-3 flex-col gap-2 border-b-[0.5px] border-gray-800 ">
-          <h2 className="text-base font-semibold">Top job picks for you</h2>
-          <p className="text-sm text-gray-300">
-            Based on your profile, preferences, and activity like applies,
-            searches, and saves {numberOfJobs} results
-          </p>
-        </div>
-        <JobsList>
-          {SortedJobs ? (
-            SortedJobs?.map((job) => (
-              <SingleJob
-                job={job}
-                key={job.id}
-                isselected={featuredJob?.id === job.id ? "selected" : undefined}
-                handleFeaturedJob={handleFeaturedJob}
-              />
-            ))
+    <div className="px-[1rem] flex-1 w-full">
+      <Container>
+        <LeftSideContainer>
+          <div className="w-full h-auto flex justify-sart align-center px-1 py-1 pb-3 flex-col gap-2 border-b-[0.5px] border-gray-800 ">
+            <h2 className="text-base font-semibold">Top job picks for you</h2>
+            <p className="text-sm text-gray-300">
+              Based on your profile, preferences, and activity like applies,
+              searches, and saves {numberOfJobs} results
+            </p>
+          </div>
+          <JobsList>
+            {paginatedJobs ? (
+              paginatedJobs?.map((job) => (
+                <SingleJob
+                  job={job}
+                  key={job.id}
+                  isselected={
+                    featuredJob?.id === job.id ? "selected" : undefined
+                  }
+                  handleFeaturedJob={handleFeaturedJob}
+                />
+              ))
+            ) : (
+              <p>No jobs match your filters</p>
+            )}
+          </JobsList>
+          <JobsPagination />
+        </LeftSideContainer>
+        <JobsListShow>
+          {!featuredJob && <div>Loading jobs...</div>}
+          {featuredJob && Object.keys(featuredJob).length > 0 ? (
+            <FeaturedJob featuredJob={featuredJob} />
           ) : (
             <p>No jobs match your filters</p>
           )}
-        </JobsList>
-        <JobsPagination />
-      </LeftSideContainer>
-      <JobsListShow>
-        {!featuredJob && <div>Loading jobs...</div>}
-        {featuredJob && Object.keys(featuredJob).length > 0 ? (
-          <FeaturedJob featuredJob={featuredJob} />
-        ) : (
-          <p>No jobs match your filters</p>
-        )}
-      </JobsListShow>
-    </Container>
+        </JobsListShow>
+      </Container>
+    </div>
   );
 }
 
@@ -68,10 +79,11 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  flex: 1;
+  height: 100%;
+  /* flex: 1; */
   margin: 0rem auto;
-  padding: 0 1rem;
   color: #f2f2f3;
+  box-sizing: border-box;
   border-top: 0.5px solid rgba(55, 51, 51, 0.775);
 `;
 export const LeftSideContainer = styled.div`

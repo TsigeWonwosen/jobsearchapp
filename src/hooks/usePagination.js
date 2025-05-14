@@ -1,41 +1,25 @@
-import { useState, useEffect } from "react";
-const PAGINATION_SIZE = 4;
+import { useState, useEffect, useMemo } from "react";
+const DEFAULT_PAGE_SIZE = 5;
 
-function usePagination(jobs) {
-  const [lastIndexOfSelectedJobs, setLastIndexOfSelectedJobs] = useState(1);
-  const [selectedJobs, setSelectedJobs] = useState([]);
+function usePagination(jobs = []) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [paginatedJobs, setPaginatedJobs] = useState([]);
 
-  const numberOfJobs = jobs.length;
-
-  const PaginationSize =
-    numberOfJobs > PAGINATION_SIZE
-      ? Math.ceil(numberOfJobs / PAGINATION_SIZE)
-      : 1;
-
-  let finalIndex = lastIndexOfSelectedJobs * PAGINATION_SIZE;
-  let initial =
-    lastIndexOfSelectedJobs === 1 ? 0 : finalIndex - PAGINATION_SIZE;
-
-  let TopSelectedJobs = jobs.length > 0 ? jobs?.slice(initial, finalIndex) : [];
+  const totalPages = useMemo(() => {
+    return Math.max(1, Math.ceil(jobs.length / DEFAULT_PAGE_SIZE));
+  }, [jobs.length]);
 
   useEffect(() => {
-    setSelectedJobs(TopSelectedJobs);
-  }, [jobs, lastIndexOfSelectedJobs]);
-  const next = () => {
-    setLastIndexOfSelectedJobs(lastIndexOfSelectedJobs + 1);
-  };
-
-  const prev = () => {
-    setLastIndexOfSelectedJobs(lastIndexOfSelectedJobs - 1);
-  };
+    let startIndex = (currentPage - 1) * DEFAULT_PAGE_SIZE;
+    let endIndex = startIndex + DEFAULT_PAGE_SIZE;
+    setPaginatedJobs(jobs?.slice(startIndex, endIndex));
+  }, [jobs, currentPage]);
 
   return {
-    totalPaginationSize: PaginationSize,
-    next,
-    prev,
-    setLastIndexOfSelectedJobs,
-    lastIndexOfSelectedJobs,
-    selectedJobs,
+    totalPages,
+    currentPage,
+    setCurrentPage,
+    paginatedJobs,
   };
 }
 

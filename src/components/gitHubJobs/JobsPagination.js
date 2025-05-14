@@ -4,26 +4,19 @@ import { useAppContext } from "../../context/useAppContext";
 import styled from "styled-components";
 
 export default function JobsPagination() {
-  const {
-    totalPaginationSize,
-    next,
-    prev,
-    setLastIndexOfSelectedJobs,
-    lastIndexOfSelectedJobs,
-  } = useAppContext();
+  const { totalPages, currentPage, setCurrentPage } = useAppContext();
 
-  React.useEffect(() => {}, [totalPaginationSize, lastIndexOfSelectedJobs]);
+  React.useEffect(() => {}, [totalPages, currentPage]);
 
-  const paginationIndexes = Array.from(
-    { length: totalPaginationSize },
-    (v, k) => k + 1
-  );
+  const paginationIndexes = Array.from({ length: totalPages }, (v, k) => k + 1);
 
   return (
     <Pagination>
       <Button
-        onClick={prev}
-        disabled={lastIndexOfSelectedJobs <= 1}
+        onClick={() => {
+          setCurrentPage(setCurrentPage - 1);
+        }}
+        disabled={currentPage <= 1}
       >
         Prev
       </Button>
@@ -31,21 +24,20 @@ export default function JobsPagination() {
         <span
           key={index}
           onClick={() => {
-            setLastIndexOfSelectedJobs(index);
+            setCurrentPage(index);
           }}
           className={
-            lastIndexOfSelectedJobs === index
-              ? "active w-auto h-auto"
-              : " w-auto h-auto"
+            currentPage === index ? "active w-auto h-auto" : " w-auto h-auto"
           }
         >
-          {" "}
           {index}
         </span>
       ))}
       <Button
-        onClick={next}
-        disabled={lastIndexOfSelectedJobs >= totalPaginationSize}
+        onClick={() => {
+          setCurrentPage(currentPage + 1);
+        }}
+        disabled={currentPage >= totalPages}
       >
         Next
       </Button>

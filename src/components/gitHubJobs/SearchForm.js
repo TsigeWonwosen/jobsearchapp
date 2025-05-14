@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { MapPin } from "lucide-react";
 import styled from "styled-components";
 import { useAppContext } from "../../context/useAppContext";
@@ -6,11 +6,12 @@ import { useAppContext } from "../../context/useAppContext";
 export default function SearchForm() {
   const [location, setLocation] = useState("");
   const [jobtype, setJobType] = useState("");
-  const { updateFilters } = useAppContext();
+  const { updateFilters, setCurrentPage } = useAppContext();
 
   const handleSubmite = (e) => {
     e.preventDefault();
     updateFilters({ location, jobType: jobtype });
+    setCurrentPage(1);
   };
 
   return (

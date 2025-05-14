@@ -2,7 +2,7 @@ import { createContext, useEffect, useState, useMemo } from "react";
 import { useFetchJobs } from "../components";
 import sort from "../utility/sort";
 import usePagination from "../hooks/usePagination";
-import { getfiltered } from "../utility/filter";
+import { getFilteredJobs } from "../utility/filter";
 
 export const AppContext = createContext();
 
@@ -15,7 +15,6 @@ export const AppProvider = ({ children }) => {
   });
 
   const { jobs = [], loading, error } = useFetchJobs();
-  const [filteredAndSelectedJobs, setFilteredAndSelectedJobs] = useState(jobs);
 
   const updateFilters = (newFilters) => {
     setFilters((prev) => ({ ...prev, ...newFilters }));
@@ -23,27 +22,20 @@ export const AppProvider = ({ children }) => {
 
   const filteredJobs = useMemo(() => {
     let result = [...jobs];
-    result = getfiltered(result, filters);
+    result = getFilteredJobs(result, filters);
     result = sort(result, sortString);
     return result;
   }, [filters, sortString, jobs]);
 
-  const {
-    totalPaginationSize,
-    next,
-    prev,
-    setLastIndexOfSelectedJobs,
-    lastIndexOfSelectedJobs,
-    selectedJobs,
-  } = usePagination(filteredJobs);
+  const { totalPages, currentPage, setCurrentPage, paginatedJobs } =
+    usePagination(filteredJobs);
 
   useEffect(() => {
-    setFeaturedJobs(selectedJobs[0]);
-    setFilteredAndSelectedJobs(filteredJobs);
-  }, [sortString, filters, selectedJobs, filteredJobs]);
+    setFeaturedJobs(paginatedJobs[0]);
+  }, [sortString, filters, paginatedJobs, filteredJobs]);
 
   const handleFeaturedJob = (id) => {
-    setFeaturedJobs(selectedJobs?.find((job) => job.id === id));
+    setFeaturedJobs(paginatedJobs?.find((job) => job.id === id));
   };
 
   const handleSortJobs = (data) => {
@@ -52,19 +44,16 @@ export const AppProvider = ({ children }) => {
 
   const numberOfJobs = filteredJobs ? filteredJobs?.length : 0;
 
-  console.log(selectedJobs[0]);
   const value = {
     handleSortJobs,
     sortString,
     handleFeaturedJob,
     featuredJob,
-    SortedJobs: selectedJobs,
     numberOfJobs,
-    totalPaginationSize,
-    next,
-    prev,
-    setLastIndexOfSelectedJobs,
-    lastIndexOfSelectedJobs,
+    totalPages,
+    currentPage,
+    setCurrentPage,
+    paginatedJobs,
     updateFilters,
     filters,
     loading,

@@ -4,8 +4,11 @@ import JobsPagination from "./JobsPagination";
 import { useAppContext } from "../../context/useAppContext";
 
 import styled from "styled-components";
+import { useState } from "react";
 
 function Jobs() {
+  const [show, setShow] = useState(true);
+
   const {
     paginatedJobs,
     handleFeaturedJob,
@@ -33,7 +36,7 @@ function Jobs() {
   return (
     <div className="px-[1rem] flex-1 w-full">
       <Container>
-        <LeftSideContainer>
+        <LeftSideContainer $isShow={show}>
           <div className="w-full h-auto flex justify-sart align-center px-1 py-1 pb-3 flex-col gap-2 border-b-[0.5px] border-gray-800 ">
             <h2 className="text-base font-semibold">Top job picks for you</h2>
             <p className="text-sm text-gray-300">
@@ -47,6 +50,7 @@ function Jobs() {
                 <SingleJob
                   job={job}
                   key={job.id}
+                  setShow={setShow}
                   isselected={
                     featuredJob?.id === job.id ? "selected" : undefined
                   }
@@ -59,14 +63,18 @@ function Jobs() {
           </JobsList>
           <JobsPagination />
         </LeftSideContainer>
-        <JobsListShow>
+
+        <JobsDiscription $isShow={show}>
           {!featuredJob && <div>Loading jobs...</div>}
           {featuredJob && Object.keys(featuredJob).length > 0 ? (
-            <FeaturedJob featuredJob={featuredJob} />
+            <FeaturedJob
+              featuredJob={featuredJob}
+              setShow={setShow}
+            />
           ) : (
             <p>No jobs match your filters</p>
           )}
-        </JobsListShow>
+        </JobsDiscription>
       </Container>
     </div>
   );
@@ -80,7 +88,6 @@ export const Container = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  /* flex: 1; */
   margin: 0rem auto;
   color: #f2f2f3;
   box-sizing: border-box;
@@ -92,6 +99,11 @@ export const LeftSideContainer = styled.div`
   align-items: center;
   width: 50%;
   height: 100%;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    padding-top: 1rem;
+    display: ${({ $isShow }) => ($isShow ? "flex" : "none")};
+  }
 `;
 
 export const JobsList = styled.section`
@@ -105,17 +117,17 @@ export const JobsList = styled.section`
 
   &::-webkit-scrollbar {
     width: 8px;
-    border-radius: 8px;
+    /* border-radius: 1px; */
   }
   /* Track */
   &::-webkit-scrollbar-track {
-    background: #888;
-    border-radius: 8px;
+    background: #0e0f1e;
+    border-radius: 2px;
   }
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
-    background: #555;
+    background: #7c7c7d;
     border-radius: 8px;
   }
 
@@ -124,7 +136,7 @@ export const JobsList = styled.section`
     background: #555;
   }
 `;
-export const JobsListShow = styled.section`
+export const JobsDiscription = styled.section`
   background-color: #0e0f1e;
   width: 50%;
   display: flex;
@@ -133,20 +145,23 @@ export const JobsListShow = styled.section`
   align-items: center;
   justify-content: flex-start;
   overflow-y: auto;
-
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    display: ${({ $isShow }) => ($isShow ? "none" : "flex")};
+  }
   &::-webkit-scrollbar {
     width: 8px;
     border-radius: 8px;
   }
   /* Track */
   &::-webkit-scrollbar-track {
-    background: #888;
+    background: #0e0f1e;
     border-radius: 8px;
   }
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
-    background: #555;
+    background: #1b1f23;
     border-radius: 8px;
   }
 

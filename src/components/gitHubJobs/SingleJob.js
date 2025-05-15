@@ -3,7 +3,12 @@ import DOMPurify from "dompurify";
 import styled from "styled-components";
 import { Ellipsis, X } from "lucide-react";
 
-export default function SingleJob({ job, handleFeaturedJob, isselected }) {
+export default function SingleJob({
+  job,
+  handleFeaturedJob,
+  isselected,
+  setShow,
+}) {
   const {
     id,
     title,
@@ -16,7 +21,10 @@ export default function SingleJob({ job, handleFeaturedJob, isselected }) {
   } = job;
   return (
     <JobApply
-      onClick={() => handleFeaturedJob(id)}
+      onClick={() => {
+        setShow(false);
+        handleFeaturedJob(id);
+      }}
       $isselected={isselected}
     >
       {company_logo && (

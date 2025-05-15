@@ -120,6 +120,18 @@
       "company_logo": "logo11.jpg",
       "description": "<p><strong>Impact:</strong> Conduct user research for Fortune 500 clients using mixed methods (surveys, diary studies, usability tests).</p><p><strong>Tools We Use:</strong></p><ul><li>Qualtrics for quantitative analysis</li><li>Dovetail for qualitative insights</li><li>Figma for prototype testing</li></ul><p><strong>Ideal Candidate:</strong> 3+ years in enterprise UX research, fluent in German/English, with experience in accessibility audits (WCAG 2.1).</p>",
       "url": "https://designhub.com/ux-researcher"
+    },
+    {
+      "id": "11",
+      "title": "React Developer",
+      "company": "Dedagroup",
+      "created_at": "2025-05-12T11:20:00Z",
+      "how_to_apply": "Email CV to devops@cloudnova.com",
+      "location": "Turin, Piedmont, Italy",
+      "type": "Full-time",
+      "company_logo": "logo10.jpg",
+      "description": "<h2>React Developer</h2><p><strong>Location:</strong> Torino (Hybrid/Remote possible)</p> <p><strong>Experience Required:</strong> 3+ years</p><h3>About the Position</h3><p>You'll join <strong>SCAI Tecno</strong>, part of <strong>DEDAGROUP</strong>, a leader in IT solutions for advanced markets. We're strengthening our project team working with a major Connected Vehicle sector client.</p><p>You'll be part of a friendly, collaborative team building cutting-edge IoT applications. If you love software development and want to work with前沿 technologies, join us!</p><h3>Key Responsibilities</h3><ul class=\"responsibilities\"><li>Create and maintain reusable components (HTML, CSS, TypeScript)</li><li>Use modules, directives, pipes and services to structure applications</li><li>Work with React and Angular services</li><li>Implement state management solutions</li><li>Backend communication using HttpClient</li><li>Manage async calls, error handling and data visualization</li></ul><h2>Technical Requirements</h2><h4>Must Have:</h4><ul><li>3+ years frontend development experience</li><li>Advanced React knowledge</li><li>TypeScript and JavaScript expertise</li><li>HTML5/CSS3 proficiency</li><li>Angular experience</li><li>Object-oriented programming understanding</li><li>Clean code practices (TDD/BDD preferred)</li><li>REST Web Services and JSON experience</li><li>Git version control</li></ul><h3>Soft Skills</h3><p>We're looking for someone with problem-solving skills, proactive attitude, willingness to mentor juniors, flexibility and motivation.</p><h3>Dedicated to Growth</h3><p>At the heart of every project - whether software, tech solution or consulting - are people working together. Our people are competent, curious, ambitious and tenacious. Dedication for us means continuous improvement, pursuing new goals, achieving results and teamwork.</p><p>We're committed to helping people grow to express their full potential and contribute to building a better future - for themselves, for Deda and for society.</p><p><em>We welcome applications from candidates of all genders, sexual orientations, ages, ethnicities and religious beliefs (in compliance with Italian Laws 198/2006, 215/2003, 216/2003).</em></p><p><em>Submitted CVs will be processed by Dedagroup S.p.A. for potential contractual relationships and may be shared within the Dedagroup companies as per our Privacy Policy. Accepted file formats: doc, docx or pdf (max 4MB).</em></p>",
+      "url": "https://cloudnova.com/jobs/aws-devops"
     }
   ],
   "total": 50,

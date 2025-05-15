@@ -1,9 +1,9 @@
 import DOMPurify from "dompurify";
 import { timeSince } from "../../utility/timeAge";
 import styled from "styled-components";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 
-export default function FeaturedJob({ featuredJob }) {
+export default function FeaturedJob({ featuredJob, setShow }) {
   if (featuredJob?.length > 0) {
     return <h1>Loading ..</h1>;
   }
@@ -23,6 +23,12 @@ export default function FeaturedJob({ featuredJob }) {
   const timeOfDays = timeSince(created_at);
   return (
     <FeaturedJobCard>
+      <div className="flex justify-start items-center md:hidden  h-auto mb-5 text-gray-300">
+        <ArrowLeft
+          size={"20px"}
+          onClick={() => setShow(true)}
+        />
+      </div>
       <JobApply>
         <Body>
           <CardTitle>

@@ -77,8 +77,8 @@ export const FormSelect = styled.select`
   color: white;
   font-size: 14px;
   letter-spacing: 1px;
-  width: 100%;
-  max-width: 250px;
+  width: 40%;
+  min-width: 150px;
   background-color: #383838;
   background-color: #333334;
 
@@ -101,15 +101,15 @@ export const SearchLocation = styled.div`
   flex-direction: column;
   align-items: left;
   justify-content: center;
-  width: 100%;
-  min-width: 300px;
-  max-width: 350px;
+  width: 90%;
+  min-width: 200px;
   height: auto;
   background-color: #333334;
   border: 1px solid gray;
   border-right: none;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
+  overflow: hidden;
 
   @media (max-width: 900px) {
     width: 100%;
@@ -123,7 +123,19 @@ export const Input = styled.input`
   width: 100%;
   font-size: 14px;
   outline: none;
-  background: transparent;
+  background: inherit;
+  &:focus,
+  &:active {
+    background-color: transparent !important;
+  }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px inherit inset !important;
+    box-shadow: 0 0 0px 1000px inherit inset !important;
+    -webkit-text-fill-color: #c4c8cc !important;
+    transition: background-color 9999s ease-in-out 0s; /* Prevent flash */
+    background-color: transparent !important;
+  }
   @media (max-width: 900px) {
     padding: 0.4rem 0.5;
     margin-bottom: 0rem;
@@ -138,7 +150,7 @@ export const Select = styled.select`
   letter-spacing: 1px;
   color: #f2f2f2;
   padding: 6px 1.4em;
-  width: 100%;
+  width: 40%;
   max-width: 100px;
   /* border: 1px solid gray; */
   /* box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);

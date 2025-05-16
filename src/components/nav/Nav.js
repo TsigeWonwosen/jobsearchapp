@@ -20,7 +20,7 @@ function Nav() {
         <Logo>
           <h2 className="font-semibold text-[24px]">Jobs.</h2>
         </Logo>
-        <div className="hidden md:block">
+        <div className="hidden md:flex w-full h-full justify-center items-center">
           <SearchForm />
         </div>
         <NavItems>
@@ -101,7 +101,7 @@ export const NavItems = styled.ul`
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  @media screen and (max-width: 900px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;

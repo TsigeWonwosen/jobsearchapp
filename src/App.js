@@ -9,7 +9,7 @@ function App() {
         <Nav />
         <Info />
         <MainContainer>
-          <Jobs />;
+          <Jobs />
         </MainContainer>
       </AppContainer>
     </AppProvider>

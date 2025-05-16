@@ -1,35 +1,41 @@
 import styled from "styled-components";
 import { useAppContext } from "../../context/useAppContext";
+import SearchForm from "./SearchForm";
 function Info() {
   const { handleSortJobs, sortString } = useAppContext();
 
   return (
     <JobSortWrapper>
-      <JobsInfo>Sort by :</JobsInfo>
-      <JobsSort
-        value={sortString}
-        name="sortString"
-        onChange={(e) => handleSortJobs(e.target.value)}
-      >
-        <option
-          key="Matches"
-          value=""
+      <div className="w-full h-full flex items-center justify-center md:hidden">
+        <SearchForm />
+      </div>
+      <div className="w-auto h-full flex items-center justify-end gap-1 ml-auto">
+        <JobsInfo>Sort by :</JobsInfo>
+        <JobsSort
+          value={sortString}
+          name="sortString"
+          onChange={(e) => handleSortJobs(e.target.value)}
         >
-          All
-        </option>
-        <option
-          name="created_at"
-          value="created_at"
-        >
-          Date
-        </option>
-        <option
-          name="title"
-          value="title"
-        >
-          Title
-        </option>
-      </JobsSort>
+          <option
+            key="Matches"
+            value=""
+          >
+            All
+          </option>
+          <option
+            name="created_at"
+            value="created_at"
+          >
+            Date
+          </option>
+          <option
+            name="title"
+            value="title"
+          >
+            Title
+          </option>
+        </JobsSort>
+      </div>
     </JobSortWrapper>
   );
 }
@@ -39,7 +45,7 @@ export default Info;
 export const JobSortWrapper = styled.section`
   width: 100%;
   max-width: 1280px;
-  max-height: 80px;
+  max-height: 70px;
   height: 100%;
   display: flex;
   justify-content: flex-end;
@@ -48,6 +54,10 @@ export const JobSortWrapper = styled.section`
   padding: 0 1rem;
   margin: 0 auto;
   flex-shrink: 0;
+
+  @media screen and (max-width: 900px) {
+    justify-content: space-between;
+  }
 `;
 export const JobsInfo = styled.span`
   height: auto;
@@ -55,11 +65,15 @@ export const JobsInfo = styled.span`
   color: rgba(255, 255, 255, 0.5);
   font-size: 1rem;
   font-weight: 600;
+  white-space: nowrap;
+  @media screen and (max-width: 900px) {
+    font-size: 0.87rem;
+  }
 `;
 
 export const JobsSort = styled.select`
   padding: 8px 10px;
-  border: 1px solid gray;
+  border: 1px solid #404040;
   border-radius: 5px;
   color: white;
   font-size: 14px;

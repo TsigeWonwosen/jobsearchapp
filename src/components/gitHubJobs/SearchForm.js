@@ -56,32 +56,42 @@ export const FomContainer = styled.form`
   justify-content: center;
   align-items: center;
   width: auto;
+  max-width: 500px;
   height: auto;
   font-size: 14px;
   gap: 0.5rem;
-  margin: 1rem auto;
-  @media (max-width: 900px) {
-    width: 100%;
+  margin: 0 auto;
+  @media (max-width: 768px) {
+    /* width: 100%; */
     overflow: hidden;
   }
 `;
 
 export const SearchAndSelectWrapper = styled.div`
   display: flex;
+  flex: 1;
 `;
 export const FormSelect = styled.select`
-  padding: 8px 16px;
-  border: 1px solid gray;
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px;
+  padding: 8px 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 1px solid #404040;
   color: white;
   font-size: 14px;
-  letter-spacing: 1px;
-  width: 40%;
-  min-width: 150px;
-  background-color: #383838;
-  background-color: #333334;
-
+  width: auto;
+  background-color: transparent;
+  outline: none;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #404040 !important;
+  }
+  & option {
+    background: #1f2937;
+    color: #ecf0f1;
+    border: none !important;
+    border-radius: 0 !important;
+  }
   &:focus {
     outline: none;
     border-color: #3b82f6;
@@ -105,10 +115,10 @@ export const SearchLocation = styled.div`
   min-width: 200px;
   height: auto;
   background-color: #333334;
-  border: 1px solid gray;
+  border: 1px solid #404040;
   border-right: none;
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   overflow: hidden;
 
   @media (max-width: 900px) {
@@ -136,7 +146,7 @@ export const Input = styled.input`
     transition: background-color 9999s ease-in-out 0s; /* Prevent flash */
     background-color: transparent !important;
   }
-  @media (max-width: 900px) {
+  @media (max-width: 768px) {
     padding: 0.4rem 0.5;
     margin-bottom: 0rem;
   }
@@ -152,14 +162,7 @@ export const Select = styled.select`
   padding: 6px 1.4em;
   width: 40%;
   max-width: 100px;
-  /* border: 1px solid gray; */
-  /* box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-  border-radius: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: #333334;
-  background-size: 0.65em auto, 100%; */
+  background-color: red;
 
   &::-ms-expand {
     display: none;
@@ -181,13 +184,16 @@ export const Select = styled.select`
 
 export const Button = styled.button`
   width: auto;
-  padding: 5px 1rem;
+  padding: 8px 10px;
   font-size: 15px;
   letter-spacing: 1px;
   text-align: center;
-  border-radius: 50px;
-  border: 2px solid gray;
+  border-radius: 5px;
+  border: 1px solid #404040;
   color: white;
   outline: none;
   cursor: pointer;
+  @media (max-width: 768px) {
+    font-size: 13.4px;
+  }
 `;

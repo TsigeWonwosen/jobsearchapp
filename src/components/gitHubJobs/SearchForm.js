@@ -65,6 +65,7 @@ export const FomContainer = styled.form`
     width: 100%;
     max-width: auto;
     justify-content: flex-end;
+    margin-left: auto;
   }
 `;
 

@@ -61,9 +61,10 @@ export const FomContainer = styled.form`
   font-size: 14px;
   gap: 0.5rem;
   margin: 0 auto;
-  @media (max-width: 768px) {
-    /* width: 100%; */
-    overflow: hidden;
+  @media (max-width: 640px) {
+    width: 100%;
+    max-width: auto;
+    justify-content: flex-end;
   }
 `;
 

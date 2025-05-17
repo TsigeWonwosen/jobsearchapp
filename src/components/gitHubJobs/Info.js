@@ -6,9 +6,7 @@ function Info() {
 
   return (
     <JobSortWrapper>
-      <div className="w-full h-full flex items-center justify-center md:hidden">
-        <SearchForm />
-      </div>
+      <SearchForm />
       <div className="w-auto h-full flex items-center justify-end gap-1 ml-auto">
         <JobsInfo>Sort by :</JobsInfo>
         <JobsSort
@@ -57,6 +55,13 @@ export const JobSortWrapper = styled.section`
 
   @media screen and (max-width: 900px) {
     justify-content: space-between;
+  }
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+    max-height: 100px;
+    padding: 1rem;
   }
 `;
 export const JobsInfo = styled.span`

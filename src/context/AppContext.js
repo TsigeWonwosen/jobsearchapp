@@ -10,7 +10,7 @@ export const AppProvider = ({ children }) => {
   const [featuredJob, setFeaturedJobs] = useState({});
   const [sortString, setSortString] = useState("");
   const [filters, setFilters] = useState({
-    location: "",
+    search: "",
     jobType: "",
   });
 

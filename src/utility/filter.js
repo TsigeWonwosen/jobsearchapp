@@ -1,19 +1,20 @@
 export const getFilteredJobs = (jobs, filters) => {
-  if (!filters?.jobType?.length && !filters?.location?.length) {
+  if (!filters?.jobType?.length && !filters?.search?.length) {
     return jobs;
   }
 
-  const locationFilter = filters.location?.toLowerCase() || "";
+  const searchFilter = filters.search?.toLowerCase() || "";
   const jobTypeFilter = filters.jobType?.toLowerCase() || "";
 
   return jobs.filter((job) => {
-    const matchesLocation = locationFilter
-      ? job.location.toLowerCase().includes(locationFilter)
+    const matchesSearch = searchFilter
+      ? job.location.toLowerCase().includes(searchFilter) ||
+        job.title.toLowerCase().includes(searchFilter)
       : true;
     const matchesJobType = jobTypeFilter
       ? job.type.toLowerCase() === jobTypeFilter
       : true;
 
-    return matchesLocation && matchesJobType;
+    return matchesSearch && matchesJobType;
   });
 };

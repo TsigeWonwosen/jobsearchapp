@@ -79,11 +79,11 @@ export const JobsInfo = styled.span`
 `;
 
 export const JobsSort = styled.select`
-  padding: 8px 10px;
+  padding: 7px 8px;
   border: 1px solid #404040;
   border-radius: 5px;
   color: white;
-  font-size: 14px;
+  font-size: 13.5px;
   letter-spacing: 1px;
   width: auto;
   height: auto;

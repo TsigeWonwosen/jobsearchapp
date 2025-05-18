@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { MapPin } from "lucide-react";
+import { Search, X } from "lucide-react";
 import styled from "styled-components";
 import { useAppContext } from "../../context/useAppContext";
 
 export default function SearchForm() {
-  const [location, setLocation] = useState("");
+  const [search, setSearch] = useState("");
   const [jobtype, setJobType] = useState("");
   const { updateFilters, setCurrentPage } = useAppContext();
 
   const handleSubmite = (e) => {
     e.preventDefault();
-    updateFilters({ location, jobType: jobtype });
+    updateFilters({ search, jobType: jobtype });
     setCurrentPage(1);
   };
 
@@ -20,17 +20,29 @@ export default function SearchForm() {
         <SearchLocation>
           <Input
             id="label"
-            name="location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            placeholder="Search Location"
+            name="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search"
           />
+
           <section className="absolute h-auto top-1/2 left-3  -translate-y-1/2 text-gray-200 bg-transparent">
-            <MapPin
-              size={"18px"}
+            <Search
+              size={"16px"}
               className="bg-transparent"
             />
           </section>
+          {search && (
+            <section className="absolute h-auto top-1/2 right-3  -translate-y-1/2 text-gray-200 bg-transparent">
+              <X
+                size={"14px"}
+                className="bg-transparent"
+                onClick={() => {
+                  setSearch("");
+                }}
+              />
+            </section>
+          )}
         </SearchLocation>
 
         <FormSelect
@@ -74,7 +86,7 @@ export const SearchAndSelectWrapper = styled.div`
   flex: 1;
 `;
 export const FormSelect = styled.select`
-  padding: 8px 10px;
+  padding: 7px 10px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   border: 1px solid #404040;
@@ -129,9 +141,9 @@ export const SearchLocation = styled.div`
 `;
 
 export const Input = styled.input`
-  padding: 8px 1rem;
+  padding: 7px 1rem;
   padding-left: 3rem;
-  color: #c4c8cc;
+  color: #e7e9c5;
   width: 100%;
   font-size: 14px;
   outline: none;
@@ -161,7 +173,7 @@ export const Select = styled.select`
   font-weight: 400;
   letter-spacing: 1px;
   color: #f2f2f2;
-  padding: 6px 1.4em;
+  padding: 7px 1.4em;
   width: 40%;
   max-width: 100px;
   background-color: red;
@@ -186,7 +198,7 @@ export const Select = styled.select`
 
 export const Button = styled.button`
   width: auto;
-  padding: 8px 10px;
+  padding: 7px 10px;
   font-size: 15px;
   letter-spacing: 1px;
   text-align: center;

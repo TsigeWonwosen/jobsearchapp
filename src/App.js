@@ -31,7 +31,8 @@ export const MainContainer = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  height: calc(100vh - 150px);
+  height: flex-1;
+  max-height: calc(100vh - 130px);
   @media screen and (max-width: 680px) {
     height: flex-1;
   }

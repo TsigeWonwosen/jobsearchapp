@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import SearchForm from "../gitHubJobs/SearchForm";
 import { AlignRight, X } from "lucide-react";
 
@@ -11,21 +12,26 @@ function Nav() {
 
   const menuLinks = [
     { label: "Home", path: "/" },
-    { label: "Jobs", path: "#" },
+    { label: "Jobs", path: "/jobs" },
     { label: "Contact", path: "#" },
+    { label: "About", path: "/about" },
   ];
   return (
     <div className="h-[60px] w-full  relative border-b-[0.5px] border-gray-700 bg-[#000000] flex flex-col items-center flex-shrink-0 shadow-sm ">
       <Wrapper>
         <Logo>
-          <h2 className="font-semibold text-[24px]">Jobs.</h2>
+          <Link to="/">
+            <h2 className="font-semibold text-[24px]">Jobs.</h2>
+          </Link>
         </Logo>
         <div className="hidden md:flex w-full h-full justify-center items-center">
           <SearchForm />
         </div>
         <NavItems>
           {menuLinks.map((menu) => (
-            <Items key={menu.label}>{menu.label}</Items>
+            <Link to={menu.path}>
+              <Items key={menu.label}>{menu.label}</Items>
+            </Link>
           ))}
         </NavItems>
         <div className="flex md:hidden">
@@ -43,12 +49,15 @@ function Nav() {
           {open && (
             <div className="z-10 absolute top-[74px] right-3 w-[160px] h-[170px] bg-[#252728] rounded-sm flex flex-col justify-center items-center gap-2">
               {menuLinks.map((menu) => (
-                <li
-                  key={menu.label}
-                  className="hover:bg-[#4E5051]  w-[90%] h-auto text-center text-sm py-2 rounded-md font-semibold text-[#E5E7EB]  hover:text-gray-300 transition-all duration-200 shadow-xl border-b-[1px] border-gray-800"
-                >
-                  {menu.label}
-                </li>
+                <Link to={menu.path}>
+                  <li
+                    key={menu.label}
+                    to={menu.path}
+                    className="hover:bg-[#4E5051]  w-[90%] h-auto text-center text-sm py-2 rounded-md font-semibold text-[#E5E7EB]  hover:text-gray-300 transition-all duration-200 shadow-xl border-b-[1px] border-gray-800"
+                  >
+                    {menu.label}
+                  </li>
+                </Link>
               ))}
             </div>
           )}

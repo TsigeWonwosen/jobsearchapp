@@ -34,6 +34,7 @@ function Info() {
           >
             Title
           </option>
+          {/* Internship */}
         </JobsSort>
       </div>
     </JobSortWrapper>
@@ -88,8 +89,7 @@ export const JobsSort = styled.select`
   width: auto;
   height: auto;
   max-width: 250px;
-  background-color: #383838;
-  background-color: #333334;
+  background-color: transparent;
 
   &:focus {
     outline: none;

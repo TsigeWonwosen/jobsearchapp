@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import { useState } from "react";
 
 function useFilter(jobs) {
   const [filters, setFilters] = useState({

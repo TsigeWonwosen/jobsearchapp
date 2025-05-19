@@ -1,18 +1,34 @@
-import { Info, Jobs, Nav } from "./components/";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import { HomePage, AboutPage, Nav, JobsContainer } from "./components/";
 import { AppProvider } from "./context/AppContext";
 import styled from "styled-components";
 import "./App.css";
 function App() {
   return (
-    <AppProvider>
-      <AppContainer>
-        <Nav />
-        <Info />
-        <MainContainer>
-          <Jobs />
-        </MainContainer>
-      </AppContainer>
-    </AppProvider>
+    <Router>
+      <AppProvider>
+        <AppContainer>
+          <Nav />
+          <MainContainer>
+            <Routes>
+              <Route
+                path="/"
+                element={<HomePage />}
+              />
+              <Route
+                path="/about"
+                element={<AboutPage />}
+              />
+              <Route
+                path="/jobs"
+                element={<JobsContainer />}
+              />
+            </Routes>
+          </MainContainer>
+        </AppContainer>
+      </AppProvider>
+    </Router>
   );
 }
 
@@ -31,8 +47,7 @@ export const MainContainer = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  height: flex-1;
-  max-height: calc(100vh - 130px);
+  height: calc(100vh - 130px);
   @media screen and (max-width: 680px) {
     height: flex-1;
   }

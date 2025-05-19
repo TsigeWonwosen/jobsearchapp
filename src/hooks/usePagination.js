@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-const DEFAULT_PAGE_SIZE = 5;
+const DEFAULT_PAGE_SIZE = 10;
 
 function usePagination(jobs = []) {
   const [currentPage, setCurrentPage] = useState(1);

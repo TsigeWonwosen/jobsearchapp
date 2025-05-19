@@ -55,6 +55,12 @@ export default function SearchForm() {
           <option value="part-time"> Part Time</option>
           <option value="contract">Contract</option>
           <option value="remote">Remote</option>
+          <option
+            name="internship"
+            value="internship"
+          >
+            Internship
+          </option>
         </FormSelect>
       </SearchAndSelectWrapper>
 
@@ -68,7 +74,7 @@ export const FomContainer = styled.form`
   justify-content: center;
   align-items: center;
   width: auto;
-  max-width: 500px;
+  max-width: 600px;
   height: auto;
   font-size: 14px;
   gap: 0.5rem;
@@ -174,7 +180,7 @@ export const Select = styled.select`
   letter-spacing: 1px;
   color: #f2f2f2;
   padding: 7px 1.4em;
-  width: 40%;
+  /* width: 40%; */
   max-width: 100px;
   background-color: red;
 

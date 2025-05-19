@@ -13,7 +13,7 @@ function Nav() {
   const menuLinks = [
     { label: "Home", path: "/" },
     { label: "Jobs", path: "/jobs" },
-    { label: "Contact", path: "#" },
+    { label: "Contact", path: "/contact" },
     { label: "About", path: "/about" },
   ];
   return (

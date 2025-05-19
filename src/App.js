@@ -1,6 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { HomePage, AboutPage, Nav, JobsContainer } from "./components/";
+import {
+  HomePage,
+  AboutPage,
+  Nav,
+  JobsContainer,
+  Contact,
+} from "./components/";
 import { AppProvider } from "./context/AppContext";
 import styled from "styled-components";
 import "./App.css";
@@ -23,6 +29,10 @@ function App() {
               <Route
                 path="/jobs"
                 element={<JobsContainer />}
+              />
+              <Route
+                path="/contact"
+                element={<Contact />}
               />
             </Routes>
           </MainContainer>

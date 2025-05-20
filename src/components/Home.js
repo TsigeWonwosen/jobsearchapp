@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 const HomePage = () => {
   return (
     <main className="mt-8 relative flex flex-col justify-center  items-center h-full w-full    md:flex-row md:justify-between text-gray-300 gap-8 md:gap-4 ">
-      {/* Left Column */}
       <div className="px-4 flex-1 flex flex-col justify-center items-center  gap-6 md:items-start max-w-[600px] z-10">
         <h1 className="h-auto w-auto text-3xl font-bold mb-1 ">
           Find Your <span className="text-white">Dream Job</span> Today
@@ -29,9 +28,14 @@ const HomePage = () => {
               Browse Jobs
             </button>
           </Link>
-          <button className="h-auto px-6 py-2 border border-blue-800 text-blue-600 rounded-lg hover:bg-blue-50 transition">
-            Post a Job
-          </button>
+          <Link
+            to="/contact"
+            className="h-auto"
+          >
+            <button className="h-auto px-6 py-2 border border-blue-800 text-blue-600 rounded-lg hover:bg-blue-50 transition">
+              Contact Us
+            </button>
+          </Link>
         </div>
       </div>
       <img

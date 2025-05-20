@@ -204,13 +204,13 @@ export const Select = styled.select`
 
 export const Button = styled.button`
   width: auto;
-  padding: 7px 10px;
+  padding: 6px 10px;
   font-size: 15px;
   letter-spacing: 1px;
   text-align: center;
   border-radius: 5px;
-  border: 1px solid #404040;
-  color: white;
+  border: 1px solid #1d4ed8;
+  color: #1d4ed8;
   outline: none;
   cursor: pointer;
   @media (max-width: 768px) {

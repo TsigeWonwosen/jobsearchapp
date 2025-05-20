@@ -18,7 +18,7 @@ const AboutPage = () => {
 
       <div className="px-4 w-full h-auto mt-4 flex flex-col items-start justify-start  min-h-[200px] gap-4 max-w-[550px]">
         <h2 className="h-auto  text-3xl font-semibold ">Our Tech Stack</h2>
-        <div className="flex flex-wrap justify-start gap-4 w-full h-auto ">
+        <div className="flex flex-wrap justify-start gap-4 w-full h-auto">
           {[
             "React",
             "Tailwind CSS",
@@ -29,7 +29,7 @@ const AboutPage = () => {
           ].map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1 bg-[#CFD2D6] text-gray-700 rounded-full"
+              className="px-3 py-1 bg-[#CFD2D6] text-gray-700 rounded-md h-auto w-auto"
             >
               {tech}
             </span>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SearchForm from "../gitHubJobs/SearchForm";
 import { AlignRight, X } from "lucide-react";
 
@@ -10,11 +10,13 @@ function Nav() {
 
   const hundleToggle = () => setOpen((prvState) => !prvState);
 
+  const location = useLocation();
+
   const menuLinks = [
     { label: "Home", path: "/" },
     { label: "Jobs", path: "/jobs" },
-    { label: "Contact", path: "/contact" },
     { label: "About", path: "/about" },
+    { label: "Contact", path: "/contact" },
   ];
   return (
     <div className="h-[60px] w-full  relative border-b-[0.5px] border-gray-700 bg-[#000000] flex flex-col items-center flex-shrink-0 shadow-sm ">
@@ -29,8 +31,13 @@ function Nav() {
         </div>
         <NavItems>
           {menuLinks.map((menu) => (
-            <Link to={menu.path}>
-              <Items key={menu.label}>{menu.label}</Items>
+            <Link
+              to={menu.path}
+              key={menu.label}
+            >
+              <Items $isActive={location.pathname === menu.path}>
+                {menu.label}
+              </Items>
             </Link>
           ))}
         </NavItems>
@@ -47,13 +54,21 @@ function Nav() {
             />
           )}
           {open && (
-            <div className="z-10 absolute top-[74px] right-3 w-[160px] h-[170px] bg-[#252728] rounded-sm flex flex-col justify-center items-center gap-2">
+            <div className="z-100 absolute top-[70px] right-4 w-[160px] h-auto bg-[#252728] rounded-sm flex flex-col justify-center items-center gap-2 py-5 ">
               {menuLinks.map((menu) => (
-                <Link to={menu.path}>
+                <Link
+                  to={menu.path}
+                  className="w-full"
+                  onClick={() => setOpen(false)}
+                >
                   <li
                     key={menu.label}
                     to={menu.path}
-                    className="hover:bg-[#4E5051]  w-[90%] h-auto text-center text-sm py-2 rounded-md font-semibold text-[#E5E7EB]  hover:text-gray-300 transition-all duration-200 shadow-xl border-b-[1px] border-gray-800"
+                    className={`hover:border-blue-600  w-[50%] h-auto text-center text-sm py-2 font-semibold text-[#E5E7EB]  hover:text-blue-500 transition-all duration-200 shadow-xl border-b-[1px] border-gray-700 mx-auto ${
+                      location.pathname === menu.path
+                        ? "border-blue-600 text-blue-500"
+                        : ""
+                    }`}
                   >
                     {menu.label}
                   </li>
@@ -75,7 +90,7 @@ export const Wrapper = styled.nav`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 50;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -99,7 +114,7 @@ export const Logo = styled.section`
   @media (max-width: 600px) {
     max-width: 20%;
     & h2 {
-      font-size: 0.99rem;
+      font-size: 1.2rem;
     }
   }
 `;
@@ -119,5 +134,9 @@ export const Items = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: ${({ $isActive }) =>
+    $isActive ? "2px solid #1D4ED8" : "none"};
+  padding-bottom: 3px;
+  color: ${({ $isActive }) => ($isActive ? "#1d4ed8" : "")};
   cursor: pointer;
 `;

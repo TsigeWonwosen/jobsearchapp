@@ -93,6 +93,17 @@ export const JobsSort = styled.select`
 
   &:focus {
     outline: none;
+    box-shadow: none;
+    border: 1px solid #404040 !important;
+  }
+  & option {
+    background: #1f2937;
+    color: #ecf0f1;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+  &:focus {
+    outline: none;
     border-color: #3b82f6;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
   }

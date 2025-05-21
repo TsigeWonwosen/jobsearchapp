@@ -1,6 +1,6 @@
 const AboutPage = () => {
   return (
-    <main className="mt-8  flex flex-col justify-start  items-center h-full w-full    md:flex-row md:justify-between text-gray-300 gap-8 md:gap-6 ">
+    <main className="mt-8  flex flex-col justify-center  items-center h-full w-full md:flex-row md:justify-between text-gray-300 gap-8 md:gap-6 ">
       <div className="px-4 flex flex-col items-start w-full h-auto text-gray-300 text-lg gap-4 max-w-[550px]">
         <h1 className="w-full text-3xl font-bold">About Jobs.</h1>
         <div className="w-full h-auto flex flex-col gap-2">

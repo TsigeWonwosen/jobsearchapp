@@ -1,3 +1,4 @@
+import { ArrowBigRight, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
@@ -24,8 +25,9 @@ const HomePage = () => {
             to="/jobs"
             className="h-auto"
           >
-            <button className="h-auto px-6 py-2 bg-blue-800 text-white rounded-lg hover:bg-blue-700 transition">
+            <button className="flex justify-center items-center gap-2 h-auto px-6 py-2 bg-blue-800 text-white rounded-lg hover:bg-blue-700 transition">
               Browse Jobs
+              <ArrowRight size={"20px"} />
             </button>
           </Link>
           <Link

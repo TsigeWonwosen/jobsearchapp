@@ -4,10 +4,10 @@ import Jobs from "./Jobs";
 
 function JobsContainer() {
   return (
-    <>
+    <div className="flex-1">
       <Info />
       <Jobs />
-    </>
+    </div>
   );
 }
 

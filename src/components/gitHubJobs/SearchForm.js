@@ -172,40 +172,11 @@ export const Input = styled.input`
   }
 `;
 
-export const Select = styled.select`
-  display: block;
-  font-size: 14px;
-  font-family: sans-serif;
-  font-weight: 400;
-  letter-spacing: 1px;
-  color: #f2f2f2;
-  padding: 7px 1.4em;
-  /* width: 40%; */
-  max-width: 100px;
-  background-color: red;
-
-  &::-ms-expand {
-    display: none;
-  }
-  &:hover {
-    border-color: #888;
-  }
-  &:focus {
-    border-color: #aaa;
-    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
-    box-shadow: 0 0 0 3px -moz-mac-focusring;
-    color: #fff;
-    outline: none;
-  }
-  & option {
-    font-weight: normal;
-  }
-`;
-
 export const Button = styled.button`
   width: auto;
   padding: 6px 10px;
-  font-size: 15px;
+  font-size: 13.5px;
+  font-weight: 600;
   letter-spacing: 1px;
   text-align: center;
   border-radius: 5px;

@@ -47,7 +47,7 @@ export default function JobsPagination() {
 
 export const Pagination = styled.section`
   width: 100%;
-  height: 70px;
+  height: 65px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,6 +55,7 @@ export const Pagination = styled.section`
   padding: 0.5rem 0;
   gap: 1rem;
   background: #1b1f23;
+  margin-top: auto;
 
   & span {
     height: 26px;

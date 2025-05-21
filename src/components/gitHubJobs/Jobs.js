@@ -87,7 +87,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 100%;
+  height: flex-1;
   margin: 0rem auto;
   color: #f2f2f3;
   box-sizing: border-box;
@@ -102,6 +102,7 @@ export const LeftSideContainer = styled.div`
   @media screen and (max-width: 900px) {
     width: 100%;
     padding-top: 1rem;
+    padding-bottom: 1.3rem;
     display: ${({ $isShow }) => ($isShow ? "flex" : "none")};
   }
 `;

@@ -179,6 +179,17 @@ export const FeaturedJobCard = styled.section`
     overflow: auto;
     padding: 1rem;
   }
+
+  div {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 export const ImageContainer = styled.section`
